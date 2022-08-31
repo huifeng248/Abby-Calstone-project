@@ -42,15 +42,24 @@ class User(db.Model, UserMixin):
     back_populates="user_comment_likes",
     )
 
-    friends = db.relationship(
-    "User",
-    secondary=Friends,
-    primaryjoin=(Friends.c.user_id == id),
-    secondaryjoin=(Friends.c.friend_id == id),
-    backref=db.backref("Friends", lazy="dynamic"),
-    lazy="dynamic"
-    )
+    # friends = db.relationship(
+    # "User",
+    # secondary=Friends,
+    # primaryjoin=(Friends.c.user_id == id),
+    # secondaryjoin=(Friends.c.friend_id == id),
+    # backref=db.backref("Friends", lazy="dynamic"),
+    # lazy="dynamic"
+    # )
 
+    accept_user = db.relationship("Friends",
+        foreign_keys='Friends.user_id',
+        back_populates="accepter",
+        lazy='dynamic')
+
+    request_user = db.relationship("Friends",
+        foreign_keys='Friends.friend_id',
+        back_populates="requester",
+        lazy='dynamic')
 
 
     @property

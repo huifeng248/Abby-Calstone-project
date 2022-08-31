@@ -16,7 +16,7 @@ user2 = User(
     password='password',
     first_name="marnie",
     last_name="Lu",
-    friends=[user1]
+    # friends=[user1]
     )
 
 user3 = User(
@@ -25,7 +25,7 @@ user3 = User(
     password='password',
     first_name="bobbie",
     last_name="Juan",
-    friends=[user1, user2]
+    # friends=[user1, user2]
     )
 
 def seed_users():
