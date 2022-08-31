@@ -19,3 +19,16 @@ class Comment(db.Model):
     secondary=CommentsLikes,
     back_populates="comments_likes",
     )
+
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "user_id": self.user_id,
+            "post_id": self.post_id,
+            "comment": self.comment,
+            "createdAt": self.createdAt,
+            "updatedAt": self.updatedAt,
+            "user": self.user.to_dict(),
+            "total_comment_likes": len(self.user_comment_likes),
+            "user_comment_likes": [{'id':user.id, 'username':user.username, 'name':user.name, 'profile_img':user.profile_img} for user in self.user_comment_likes] 
+        }

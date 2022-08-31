@@ -25,3 +25,10 @@ class Friends(db.Model):
         foreign_keys=[friend_id],
         back_populates="request_user")
 
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "user_id": self.user_id,
+            "friend_id": self.friend_id,
+            "accepted_status": self.accepted_status
+        }

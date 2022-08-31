@@ -25,3 +25,18 @@ class Post (db.Model):
     )
     
     comments = db.relationship("Comment", back_populates="post", cascade="all, delete-orphan")
+
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "user_id": self.user_id,
+            "url": self.url,
+            "description": self.description,
+            "location": self.location,
+            "show_stats": self.show_stats,
+            "createdAt": self.createdAt,
+            "updatedAt": self.updatedAt,
+            "comments": [comment.to_dict() for comment in self.comments],
+            "user_image_likes": len(self.user_image_likes),
+            "liked_user_ids": [{'id':user.id, 'username':user.username, 'name':user.name, 'profile_img':user.profile_img} for user in self.user_image_likes] 
+        }
