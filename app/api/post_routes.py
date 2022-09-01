@@ -4,7 +4,7 @@ from sqlalchemy import delete
 from flask import Blueprint, jsonify, session, request, redirect, url_for
 from app.models import User, db, Post, Comment, Friends
 from flask_login import current_user, login_user, logout_user, login_required
-# from app.forms.image_form import ImageForm, DeleteImageForm, FormValidation
+from app.forms.post_form import PostForm, FormValidation
 # from app.forms.comment_form import CommentForm
 # from app.models import Imageslikes
 
@@ -45,8 +45,15 @@ def get_posts_at_homepage():
 @login_required
 def get_post_by_post_id(id):
     post = Post.query.get(id)
-    post_to_json = post.to_dict()
-    return jsonify(post_to_json)
+    if (not post):
+        result = {
+            "message": "post does not exist",
+            "statusCode": 404
+            }
+        return jsonify(result)
+    else: 
+        post_to_json = post.to_dict()
+        return jsonify(post_to_json)
 
 # get post by user id, get all posts of a certain user 
 @post_routes.route('users/<id>')
@@ -83,18 +90,88 @@ def get_all_posts_by_userid(id):
     return jsonify(posts_to_json)
 
 # create a post 
-@post_routes.route('/new')
+@post_routes.route('/new', methods=['POST'])
 @login_required
+def add_post():
+    form = PostForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
 
+    if form.validate_on_submit():
+        post = Post(
+            user_id = current_user.id,
+            url = form.data['url'],
+            description = form.data['description'],
+            location = form.data['location'],
+            show_stats = form.data['show_stats']
+        )
+        db.session.add(post)
+        db.session.commit()
+        post = post.to_dict()
+        post['post_user'] = User.query.get(current_user.id).to_dict()
+        return post
+    else:
+        return jsonify(form.errors)
 
 #update a post 
+@post_routes.route('/<id>', methods=['PUT'])
+@login_required
+def update_post(id):
+    form = FormValidation()
+    form['csrf_token'].data = request.cookies['csrf_token']
 
-
+    post = Post.query.get(id)
+    if (not post):
+        result = {
+            "message": "post does not exist",
+            "statusCode": 404
+            }
+        return jsonify(result)
+    if (post.user_id != current_user.id):
+        result = {
+            "message": "cannot delete other's post",
+            "statusCode": 403
+            }
+        return jsonify(result)
+    if form.validate_on_submit():
+        post.url = form.data['url']
+        post.description = form.data['description']
+        post.location = form.data['location']
+        post.show_stats = form.data['show_stats']
+        db.session.commit()
+        post = post.to_dict()
+        post['post_user'] = User.query.get(current_user.id).to_dict()
+        return jsonify(post)
+    else:
+        return jsonify(form.errors)
 
 
 #delete a post 
+@post_routes.route('/<id>', methods=['DELETE'])
+@login_required
+def delete_post(id):
+    form = PostForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
 
-
+    post = Post.query.get(id)
+    if (not post):
+        result = {
+            "message": "post does not exist",
+            "statusCode": 404
+            }
+        return jsonify(result)
+    if (post.user_id != current_user.id):
+        result = {
+            "message": "cannot delete other's post",
+            "statusCode": 403
+            }
+        return jsonify(result)
+    if form.validate_on_submit():
+        db.session.delete(post)
+        db.session.commit()
+        result = {
+            "message": "Successfully deleted!"
+        }
+        return jsonify(result)
     
 
 
