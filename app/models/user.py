@@ -15,7 +15,7 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String(20), nullable=False, unique=True)
     first_name = db.Column(db.String(100), nullable=False)
     last_name = db.Column(db.String(100), nullable=False)
-    phone = db.Column(db.Integer, nullable=True, unique=True)
+    # phone = db.Column(db.Integer, nullable=True, unique=True)
     email = db.Column(db.String(255), nullable=False, unique=True)
     birthday = db.Column(db.DateTime(timezone=True), nullable=True)
     gender = db.Column(db.String(50), nullable=True)
@@ -79,7 +79,7 @@ class User(db.Model, UserMixin):
             'username': self.username,
             'first_name': self.first_name,
             'last_name': self.last_name,
-            'phone': self.phone,
+            # 'phone': self.phone,
             'email': self.email,
             'birthday': self.birthday,
             'gender': self.gender,

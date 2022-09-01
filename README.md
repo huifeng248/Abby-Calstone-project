@@ -85,3 +85,4 @@ each of the following variables:
 | `heroku run -a <app name>` | Run a command from within the deployed container on Heroku |
 
 
+heroku restart --app faceta && heroku pg:reset DATABASE --confirm faceta --app faceta && heroku run flask db migrate --app faceta && heroku run flask db upgrade --app faceta && heroku run flask seed all --app faceta
