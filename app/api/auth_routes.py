@@ -140,8 +140,9 @@ def sign_up():
             password=form.data['password'],
             first_name= form.data['first_name'],
             last_name= form.data['last_name'],
-            phone= form.data['phone']
+            # phone= form.data['phone']
         )
+        print("~~~~~~~~~~~~~~~~~", user.password)
         db.session.add(user)
         db.session.commit()
         login_user(user)
