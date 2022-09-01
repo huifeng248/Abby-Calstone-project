@@ -37,6 +37,6 @@ class Post (db.Model):
             "createdAt": self.createdAt,
             "updatedAt": self.updatedAt,
             "comments": [comment.to_dict() for comment in self.comments],
-            "user_image_likes": len(self.user_image_likes),
-            "liked_user_ids": [{'id':user.id, 'username':user.username, 'name':user.name, 'profile_img':user.profile_img} for user in self.user_image_likes] 
+            "user_post_likes": len(self.user_post_likes),
+            "liked_user_ids": [{'id':user.id, 'username':user.username, 'last_name':user.last_name, 'first_name':user.first_name, 'profile_img':user.profile_img} for user in self.user_post_likes] 
         }
