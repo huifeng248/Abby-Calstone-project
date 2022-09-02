@@ -9,7 +9,7 @@ import UsersList from './components/UsersList';
 import User from './components/User';
 import { authenticate } from './store/session';
 import PostByUser from './components/PostByUser';
-import Pic_card from './components/Pic_card'
+import PicCard from './components/Pic_Card'
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -46,7 +46,7 @@ function App() {
           <PostByUser />
         </ProtectedRoute>
         <ProtectedRoute path='/' exact={true} >
-          <Pic_card />
+          <PicCard />
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>
