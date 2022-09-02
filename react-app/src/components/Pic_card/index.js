@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Load_Posts_Homepage } from '../../store/post'
-import CardDetail from '../Card_Detail'
+import Post_Create_Box from './Post_Create_Box'
+import CardDetail from './Card_Detail'
 import './Pic_Card.css'
 
 function PicCard() {
@@ -10,6 +11,7 @@ function PicCard() {
     const user = useSelector(state => state.session.user)
     const posts = useSelector(state => state.Posts)
     const post_arr = Object.values(posts)
+    console.log("current user!!!!!!!!", user)
 
     useEffect(() => {
         dispatch(Load_Posts_Homepage())
@@ -19,14 +21,14 @@ function PicCard() {
     // return "this is homepage"
     return (
         <div className="outer_container">
-            <div className="create_post_container">
+            <Post_Create_Box user={user}/>
+            {/* <div className="create_post_container">
                 <div>
                     <img className="user_profile_image" src={user.profile_img}></img>
                 </div>
                 <input className="post_input"
                     placeholder={`What's on your mind, ${user.first_name}?`}></input>
-
-            </div>
+            </div> */}
             {loaded && post_arr.map((post, index) => {
                 return <div key={index} className="post_card_container">
                     <CardDetail user={user} post={post}/>

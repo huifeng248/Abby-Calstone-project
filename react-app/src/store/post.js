@@ -10,14 +10,36 @@ const get_posts_action = (posts) =>({
     posts
 })
 
-export const Load_Posts_Homepage = () => async(dispatch) => {
+const create_post_action = (post)=>({
+    type: ADD_POST,
+    post
 
+})
+// get all post in home page
+export const Load_Posts_Homepage = () => async(dispatch) => {
     const response = await fetch('/api/posts')
     if (response.ok) {
         const data = await response.json()
         dispatch(get_posts_action(data))
         return data
     } 
+}
+
+// create a post
+export const CreatePost = (post) => async(dispatch) => {
+    const response = await fetch('/api/posts/new', {
+        method: "POST",
+        headers: {
+			"Content-Type": "application/json",
+		},
+		body: JSON.stringify(post)
+    })
+    if (response.ok) {
+        const new_post = await response.json()
+        dispatch(create_post_action(new_post))
+        console.log("!!!!!!!!", new_post)
+        return new_post
+    }
 }
 
 const initialState = {}
@@ -31,6 +53,10 @@ const Posts = (state = initialState, action) => {
             });
             return newState
         }
+        case ADD_POST:
+            newState = {...state}
+            newState[action.post.id] = action.post
+            return newState
         default:
 			return state;
     }
