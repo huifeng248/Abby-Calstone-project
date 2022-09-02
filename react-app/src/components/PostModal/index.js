@@ -5,7 +5,7 @@ import {CreatePost} from '../../store/post'
 import './PostModal.css'
 
 
-function PostModal({user, showModal, setShowModal}) {
+function PostModal({user, showModal, setShowModal, onClose}) {
     const [description, setDescription] = useState()
     const [url, setUrl] = useState()
     const [errors, setErrors] = useState([]);
@@ -25,7 +25,6 @@ function PostModal({user, showModal, setShowModal}) {
         if (errors_arr.length > 0) {
             return setErrors(errors_arr)
         }
-
         const create_post_payload = {
             description,
             url
@@ -37,15 +36,12 @@ function PostModal({user, showModal, setShowModal}) {
                 }
             })
         setShowModal(false)
-
-
     }
-
 
     return (
         <div>
             {showModal &&
-                <Modal>
+                <Modal onClose={()=>setShowModal(false)}>
                     <div className='create_post_container'>
                         <div>Create post</div>
                         {errors.length > 0 && (
@@ -80,7 +76,7 @@ function PostModal({user, showModal, setShowModal}) {
                                 value={url}
                             >
                             </input>
-                            {/* <div>
+                            {/* <div> need to change the image size
                                 <img className='post_image_preview_holder' src={url}></img>
                             </div> */}
                             <button type='submit'

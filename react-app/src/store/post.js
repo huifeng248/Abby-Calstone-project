@@ -4,18 +4,24 @@ const ADD_POST = "ADD_Post"
 const UPDATE_POST = "UPDATE_Post"
 const DELETE_POST = "DELETE_Post"
 
-
+// action: get all post in home page
 const get_posts_action = (posts) =>({
     type: GET_POSTS_HomePage,
     posts
 })
-
+// action: create a post
 const create_post_action = (post)=>({
     type: ADD_POST,
     post
-
 })
-// get all post in home page
+
+const get_profile_post_action = (posts) => ({
+    type: Get_POST_UserProfile,
+    posts
+})
+
+
+// thunk: get all post in home page
 export const Load_Posts_Homepage = () => async(dispatch) => {
     const response = await fetch('/api/posts')
     if (response.ok) {
@@ -25,7 +31,7 @@ export const Load_Posts_Homepage = () => async(dispatch) => {
     } 
 }
 
-// create a post
+// thunk: create a post
 export const CreatePost = (post) => async(dispatch) => {
     const response = await fetch('/api/posts/new', {
         method: "POST",
@@ -39,6 +45,16 @@ export const CreatePost = (post) => async(dispatch) => {
         dispatch(create_post_action(new_post))
         console.log("!!!!!!!!", new_post)
         return new_post
+    }
+}
+
+//thunk: get all posts for a user
+export const GetPostByUser = (id) => async(dispatch) =>{
+    const response = await fetch(`/api/posts/users/${id}`)
+    if (response.ok) {
+        const data = await response.json()
+        dispatch(get_profile_post_action(data))
+        return data
     }
 }
 
@@ -56,6 +72,13 @@ const Posts = (state = initialState, action) => {
         case ADD_POST:
             newState = {...state}
             newState[action.post.id] = action.post
+            return newState
+        case Get_POST_UserProfile:
+            newState = {...state}
+            console.log("^^^^^^^^^^^" , action.posts)
+            action.posts.forEach(post => {
+                newState[post.id] = post
+            });
             return newState
         default:
 			return state;

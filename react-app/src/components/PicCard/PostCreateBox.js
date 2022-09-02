@@ -15,7 +15,7 @@ function PostCreateBox({user}) {
                 placeholder={`What's on your mind, ${user.first_name}?`}
                 onClick={()=>setShowModal(true)}>
             </input>
-            <PostModal user={user} showModal={showModal} setShowModal={setShowModal}/>
+            <PostModal user={user} showModal={showModal} setShowModal={setShowModal} />
             
         </div>
     )
