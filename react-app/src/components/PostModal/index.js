@@ -5,12 +5,12 @@ import {CreatePost} from '../../store/post'
 import './PostModal.css'
 
 
-function PostModal({user, showModal, setShowModal, onClose}) {
+function PostModal({user, showModal, setShowModal}) {
     const [description, setDescription] = useState()
     const [url, setUrl] = useState()
     const [errors, setErrors] = useState([]);
     const dispatch = useDispatch()
-    console.log("@@@@@ at the modal", user)
+    // console.log("@@@@@ at the modal", user)
 
     const handleSubmit = async (e) => {
         e.preventDefault()

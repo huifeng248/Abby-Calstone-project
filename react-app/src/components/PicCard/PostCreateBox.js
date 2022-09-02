@@ -4,7 +4,7 @@ import PostModal from "../PostModal";
 
 
 function PostCreateBox({user}) {
-    console.log("!!!!!!!!!!!!!user", user)
+    // console.log("!!!!!!!!!!!!!user", user)
     const [showModal, setShowModal] = useState(false)
     return (
         <div className="create_post_container">

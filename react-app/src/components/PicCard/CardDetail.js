@@ -1,8 +1,10 @@
+import { useState } from "react"
 import { useSelector } from "react-redux"
+import PostActionModal from "../PostActionModal"
 
 function CardDetail({ user, post }) {
     const current_user = useSelector(state => state.session.user)
-    console.log("ooooooooooooooo", user)
+    const [showModal, setShowModal] = useState(false)
     return (
         <div>
             <div className="user_edit_line">
@@ -16,7 +18,12 @@ function CardDetail({ user, post }) {
             </div>
             <div>
             <div className="edit_icon">
-                    {current_user.id === post.user.id? <i class="fa-solid fa-ellipsis"></i> : null}
+                    {current_user.id === post.user.id? 
+                        <i className="fa-solid fa-ellipsis"
+                        onClick={()=> {setShowModal(true)}}
+                        ></i> : null}
+                    <PostActionModal user={current_user} post={post} showModal={showModal} setShowModal={setShowModal} />
+                    
             </div>
             </div>
 
