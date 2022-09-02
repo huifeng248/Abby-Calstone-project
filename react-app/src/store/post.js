@@ -75,7 +75,6 @@ const Posts = (state = initialState, action) => {
             return newState
         case Get_POST_UserProfile:
             newState = {...state}
-            console.log("^^^^^^^^^^^" , action.posts)
             action.posts.forEach(post => {
                 newState[post.id] = post
             });

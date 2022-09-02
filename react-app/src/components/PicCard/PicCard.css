@@ -80,3 +80,13 @@
     flex-direction: column;
 }
 
+.user_edit_line{
+    display: flex;
+    justify-content: space-between;
+}
+
+.edit_icon{
+    display: flex;
+    align-items: center;
+}
+

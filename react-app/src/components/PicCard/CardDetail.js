@@ -1,16 +1,25 @@
-function CardDetail({ user, post }) {
+import { useSelector } from "react-redux"
 
+function CardDetail({ user, post }) {
+    const current_user = useSelector(state => state.session.user)
+    console.log("ooooooooooooooo", user)
     return (
         <div>
-
+            <div className="user_edit_line">
             <div className="user_box">
                 <div>
-                    {console.log("##############", post)}
                     <img className="user_profile_image" src={post.user.profile_img}></img>
                 </div>
                 <div className="user_name">
                     {post.user.first_name} {post.user.last_name}
                 </div>
+            </div>
+            <div>
+            <div className="edit_icon">
+                    {current_user.id === post.user.id? <i class="fa-solid fa-ellipsis"></i> : null}
+            </div>
+            </div>
+
             </div>
             <div> {post.description}</div>
             <div>
