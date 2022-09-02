@@ -19,6 +19,17 @@ const get_profile_post_action = (posts) => ({
     type: Get_POST_UserProfile,
     posts
 })
+//action: edit a post 
+const edit_post = (post) => ({
+    type: UPDATE_POST,
+    post
+})
+
+//action delete a post
+const delete_post = (id) =>({
+    type: DELETE_POST,
+    id
+}) 
 
 
 // thunk: get all post in home page
@@ -48,6 +59,35 @@ export const CreatePost = (post) => async(dispatch) => {
     }
 }
 
+//thunk update a post 
+export const EditPost = (post) => async (dispatch) => {
+    const response = await fetch(`/api/posts/${post.id}`, {
+        method: "PUT",
+        headers: {
+			"Content-Type": "application/json"
+		},
+		body: JSON.stringify(post)
+
+    })
+    if (response.ok) {
+        const updated_image = await response.json()
+        dispatch(edit_post(updated_image))
+        return updated_image
+    }
+}
+
+//thunk delete a post 
+export const DeletePost = (id) => async(dispatch) => {
+    const response = await fetch(`/api/posts/${id}`, {
+        method: "DELETE"
+    })
+    if (response.ok) {
+        const data = await response.json()
+        await dispatch(delete_post(id))
+        return data
+    }
+}
+
 //thunk: get all posts for a user
 export const GetPostByUser = (id) => async(dispatch) =>{
     const response = await fetch(`/api/posts/users/${id}`)
@@ -58,8 +98,8 @@ export const GetPostByUser = (id) => async(dispatch) =>{
     }
 }
 
-const initialState = {}
-const Posts = (state = initialState, action) => {
+// const initialState = {}
+const Posts = (state = {}, action) => {
     let newState ={}
     switch(action.type) {
         case GET_POSTS_HomePage :{
@@ -78,6 +118,14 @@ const Posts = (state = initialState, action) => {
             action.posts.forEach(post => {
                 newState[post.id] = post
             });
+            return newState
+        case UPDATE_POST:
+            newState = {...state}
+            newState[action.post.id] = action.post
+            return newState
+        case DELETE_POST:
+            newState = {...state}
+            delete newState[action.id]
             return newState
         default:
 			return state;

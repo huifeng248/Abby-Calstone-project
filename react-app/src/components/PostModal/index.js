@@ -1,16 +1,25 @@
 import { Modal } from '../../context/Modal'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from "react-redux";
-import {CreatePost} from '../../store/post'
+import {CreatePost, EditPost} from '../../store/post'
 import './PostModal.css'
 
 
-function PostModal({user, showModal, setShowModal}) {
+function PostModal({user, post, setShowPostModal,showPostModal}) {
     const [description, setDescription] = useState()
     const [url, setUrl] = useState()
     const [errors, setErrors] = useState([]);
+
     const dispatch = useDispatch()
-    // console.log("@@@@@ at the modal", user)
+
+    // this will populate the data for the edit
+    useEffect(()=> {
+        if (post) {
+            setDescription(post.description)
+            setUrl(post.url)
+        }
+    }, [post])
+
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -25,25 +34,44 @@ function PostModal({user, showModal, setShowModal}) {
         if (errors_arr.length > 0) {
             return setErrors(errors_arr)
         }
-        const create_post_payload = {
-            description,
-            url
+        // create a post  
+        if (!post) {
+            const create_post_payload = {
+                description,
+                url
+            }
+    
+            dispatch(CreatePost(create_post_payload))
+                // .then(() => onClose())
+                .catch(async (data) => {
+                    if (data && data.errors) {
+                        setErrors(data.errors)
+                    }
+                })
+            setShowPostModal(false)
+        } else {
+            const edit_post_payload = {
+                id: post.id,
+                description,
+                url
+            }
+            dispatch(EditPost(edit_post_payload))
+                // .then(() => onClose())
+                .catch(async(data) => {
+                    if (data && data.errors) {
+                        setErrors(data.errors)
+                    }
+                })
+            setShowPostModal(false)
         }
-        dispatch(CreatePost(create_post_payload))
-            .catch(async (data) => {
-                if (data && data.errors) {
-                    setErrors(data.errors)
-                }
-            })
-        setShowModal(false)
     }
 
     return (
         <div>
-            {showModal &&
-                <Modal onClose={()=>setShowModal(false)}>
+            {showPostModal &&
+                <Modal onClose={()=>setShowPostModal(false)}>
                     <div className='create_post_container'>
-                        <div>Create post</div>
+                        <div>{post? "Edit post": "Create post"}</div>
                         {errors.length > 0 && (
                             <ul>
                             {console.log("error here")}
@@ -81,7 +109,7 @@ function PostModal({user, showModal, setShowModal}) {
                             </div> */}
                             <button type='submit'
                             // onClick={()=> setShowModal(false)}
-                            > Post</button>
+                            > {post? "Save" : "Post"}</button>
                         </form>
                     </div>
                 </Modal>}

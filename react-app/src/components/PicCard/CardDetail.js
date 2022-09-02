@@ -4,7 +4,13 @@ import PostActionModal from "../PostActionModal"
 
 function CardDetail({ user, post }) {
     const current_user = useSelector(state => state.session.user)
-    const [showModal, setShowModal] = useState(false)
+    const [ShowPostActionModal, setShowPostActionModal] = useState(false)
+    // const [showModal, setShowModal] = useState(false)
+    // const closeBothModals = () =>{
+    //     setShowPostActionModal(false)
+    //     setShowModal(false)
+    // }
+
     return (
         <div>
             <div className="user_edit_line">
@@ -20,9 +26,11 @@ function CardDetail({ user, post }) {
             <div className="edit_icon">
                     {current_user.id === post.user.id? 
                         <i className="fa-solid fa-ellipsis"
-                        onClick={()=> {setShowModal(true)}}
+                        onClick={()=> {setShowPostActionModal(true)}}
                         ></i> : null}
-                    <PostActionModal user={current_user} post={post} showModal={showModal} setShowModal={setShowModal} />
+                    <PostActionModal user={current_user} post={post} 
+                    ShowPostActionModal={ShowPostActionModal} setShowPostActionModal={setShowPostActionModal}
+                    />
                     
             </div>
             </div>
