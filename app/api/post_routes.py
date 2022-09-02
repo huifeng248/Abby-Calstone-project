@@ -15,7 +15,7 @@ post_routes = Blueprint('posts', __name__)
 @login_required
 def get_posts_at_homepage():
     id = current_user.id
-    print("!!!!", id)
+    print("!!!!!!!!!!!!", id)
     #get the friends for the current user by filtering userId
     friend_obj_list = Friends.query.filter(Friends.user_id == id).all()
     # print ("!!!!!!!!!!!!!!", friend_obj_list)
@@ -29,7 +29,7 @@ def get_posts_at_homepage():
     # print("!!!!!!!!", post_userId)
     for post in posts_to_json:
         # for every post, include the post user info
-        post['post_user'] = User.query.get(post['user_id']).to_dict()
+        post['user'] = User.query.get(post['user_id']).to_dict()
         for user in post["liked_user_ids"]:
             if user['id'] == current_user.id:
                 # print("!!!!!!!!!!", user['id'], current_user.id)
@@ -79,7 +79,7 @@ def get_all_posts_by_userid(id):
     # print("!!!!!!!!", post_userId)
     for post in posts_to_json:
         # for every post, include the post user info
-        post['post_user'] = User.query.get(post['user_id']).to_dict()
+        post['user'] = User.query.get(post['user_id']).to_dict()
         for user in post["liked_user_ids"]:
             if user['id'] == current_user.id:
                 # print("!!!!!!!!!!", user['id'], current_user.id)
@@ -107,7 +107,7 @@ def add_post():
         db.session.add(post)
         db.session.commit()
         post = post.to_dict()
-        post['post_user'] = User.query.get(current_user.id).to_dict()
+        post['user'] = User.query.get(current_user.id).to_dict()
         return post
     else:
         return jsonify(form.errors)
@@ -139,7 +139,7 @@ def update_post(id):
         post.show_stats = form.data['show_stats']
         db.session.commit()
         post = post.to_dict()
-        post['post_user'] = User.query.get(current_user.id).to_dict()
+        post['user'] = User.query.get(current_user.id).to_dict()
         return jsonify(post)
     else:
         return jsonify(form.errors)

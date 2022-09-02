@@ -1,0 +1,82 @@
+.user_profile_image{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.user_box{
+    display: flex;
+}
+
+.post_image{
+    /* width: 680px;
+    height: 545px; */
+    width: 100%;
+}
+
+.user_name{
+    display: flex;
+    align-items: center;
+}
+
+.post_card_container{
+    display: flex;
+    justify-content: center;
+    background-color: white;
+    /* width: 578px; */
+
+}
+
+.Image_likes{
+    display: flex;
+}
+.Comments_signs{
+    display: flex;
+}
+.below_post_line{
+    display: flex;
+    justify-content: space-between;
+}
+.comment_input{
+    background-color: #F0F2F5;
+    border-radius: 20px;
+    width: 100%;
+    
+
+}
+.comment_line_container{
+    display: flex;
+    /* width: 578px; */
+    height: 44px;
+    width: 100%;
+}
+.input_container{
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.post_input{
+    background-color: #F0F2F5;
+    width: 90%;
+    height: 95%;
+    border-radius: 20px;
+}
+
+.create_post_container{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: white;
+    width: 100%;
+}
+
+.outer_container{
+    width: 526px;
+    /* height: 123px; */
+    margin: auto;
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+}
+
