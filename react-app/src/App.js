@@ -8,6 +8,8 @@ import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
 import User from './components/User';
 import { authenticate } from './store/session';
+import PostByUser from './components/PostByUser';
+import Pic_card from './components/Pic_card'
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -40,8 +42,11 @@ function App() {
         <ProtectedRoute path='/users/:userId' exact={true} >
           <User />
         </ProtectedRoute>
+        <ProtectedRoute path='/posts/users/:userId' exact={true}>
+          <PostByUser />
+        </ProtectedRoute>
         <ProtectedRoute path='/' exact={true} >
-          <h1>My Home Page</h1>
+          <Pic_card />
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>

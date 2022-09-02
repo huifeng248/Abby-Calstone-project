@@ -1,0 +1,11 @@
+.nav_bar_container{
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+}
+
+.drop_down_menu{
+    position: absolute;
+    right: 0px;
+    top: 40px;
+}
