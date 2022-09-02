@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Load_Posts_Homepage } from '../../store/post'
-import Post_Create_Box from './Post_Create_Box'
-import CardDetail from './Card_Detail'
-import './Pic_Card.css'
+import PostCreateBox from './PostCreateBox'
+import CardDetail from './CardDetail'
+import './PicCard.css'
 
 function PicCard() {
     const dispatch = useDispatch()
@@ -21,7 +21,7 @@ function PicCard() {
     // return "this is homepage"
     return (
         <div className="outer_container">
-            <Post_Create_Box user={user}/>
+            <PostCreateBox user={user}/>
             {/* <div className="create_post_container">
                 <div>
                     <img className="user_profile_image" src={user.profile_img}></img>
