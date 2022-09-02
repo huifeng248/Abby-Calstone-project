@@ -9,7 +9,7 @@ import UsersList from './components/UsersList';
 import User from './components/User';
 import { authenticate } from './store/session';
 import PostByUser from './components/PostByUser';
-import PicCard from './components/Pic_Card'
+import PicCard from './components/PicCard';
 
 function App() {
   const [loaded, setLoaded] = useState(false);

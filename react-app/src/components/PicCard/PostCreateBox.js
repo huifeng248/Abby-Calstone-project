@@ -3,7 +3,7 @@ import PostModal from "../PostModal";
 
 
 
-function Post_Create_Box({user}) {
+function PostCreateBox({user}) {
     console.log("!!!!!!!!!!!!!user", user)
     const [showModal, setShowModal] = useState(false)
     return (
@@ -21,4 +21,4 @@ function Post_Create_Box({user}) {
     )
 }
 
-export default Post_Create_Box
+export default PostCreateBox
