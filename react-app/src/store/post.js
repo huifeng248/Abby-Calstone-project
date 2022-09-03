@@ -61,16 +61,18 @@ export const CreatePost = (post) => async(dispatch) => {
 
 //thunk update a post 
 export const EditPost = (post) => async (dispatch) => {
+    console.log("goooooooooooooooooo")
     const response = await fetch(`/api/posts/${post.id}`, {
         method: "PUT",
         headers: {
-			"Content-Type": "application/json"
+            "Content-Type": "application/json"
 		},
 		body: JSON.stringify(post)
 
     })
     if (response.ok) {
         const updated_image = await response.json()
+        console.log("OOOOKKKKKKK", updated_image)
         dispatch(edit_post(updated_image))
         return updated_image
     }

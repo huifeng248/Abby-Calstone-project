@@ -116,7 +116,7 @@ def add_post():
 @post_routes.route('/<id>', methods=['PUT'])
 @login_required
 def update_post(id):
-    form = FormValidation()
+    form = PostForm()
     form['csrf_token'].data = request.cookies['csrf_token']
 
     post = Post.query.get(id)
