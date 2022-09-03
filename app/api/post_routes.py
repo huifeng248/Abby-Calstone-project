@@ -149,7 +149,7 @@ def update_post(id):
 @post_routes.route('/<id>', methods=['DELETE'])
 @login_required
 def delete_post(id):
-    form = PostForm()
+    form = FormValidation()
     form['csrf_token'].data = request.cookies['csrf_token']
 
     post = Post.query.get(id)

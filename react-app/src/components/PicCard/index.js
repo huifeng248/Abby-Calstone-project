@@ -11,7 +11,7 @@ function PicCard() {
     const user = useSelector(state => state.session.user)
     const posts = useSelector(state => state.Posts)
     const post_arr = Object.values(posts)
-    console.log("current user!!!!!!!!", user)
+
 
     useEffect(() => {
         dispatch(Load_Posts_Homepage())
