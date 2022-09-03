@@ -142,7 +142,6 @@ def sign_up():
             last_name= form.data['last_name'],
             # phone= form.data['phone']
         )
-        print("~~~~~~~~~~~~~~~~~", user.password)
         db.session.add(user)
         db.session.commit()
         login_user(user)
