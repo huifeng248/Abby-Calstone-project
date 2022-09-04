@@ -32,6 +32,7 @@
 }
 .Comments_signs{
     display: flex;
+    cursor: pointer;
 }
 .below_post_line{
     display: flex;
@@ -109,4 +110,13 @@
     padding: 12px 16px;
     text-decoration: none;
     display: block;
-  }
+}
+
+.counts_container{
+    display: flex;
+    justify-content: space-between;
+}
+
+.likecount{
+    color: red;
+}

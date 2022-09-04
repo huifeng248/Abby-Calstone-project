@@ -74,7 +74,6 @@ function PostModal({user, post, setShowPostModal,showPostModal}) {
                         <div>{post? "Edit post": "Create post"}</div>
                         {errors.length > 0 && (
                             <ul>
-                            {console.log("error here")}
                                 {errors.map((error, index) => (
                                     <li key={index}>
                                         {error}
