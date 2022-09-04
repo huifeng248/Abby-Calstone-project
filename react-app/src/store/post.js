@@ -4,6 +4,10 @@ const ADD_POST = "ADD_Post"
 const UPDATE_POST = "UPDATE_Post"
 const DELETE_POST = "DELETE_Post"
 
+const ADD_COMMENT = "ADD_Comment"
+const UPDATE_COMMENT = "UPDATE_Comment"
+const DELETE_COMMENT = "DELETE_Comment"
+
 // action: get all post in home page
 const get_posts_action = (posts) =>({
     type: GET_POSTS_HomePage,
@@ -31,6 +35,23 @@ const delete_post = (id) =>({
     id
 }) 
 
+// action create a comment
+const create_comment_action = (comment) =>({
+    type: ADD_COMMENT,
+    comment
+})
+//action edit a comment
+const edit_comment = (comment) => ({
+    type: UPDATE_COMMENT,
+    comment
+})
+
+//action delete a comment
+const delete_comment = (post_id, comment_id) => ({
+    type: DELETE_COMMENT,
+    post_id,
+    comment_id
+})
 
 // thunk: get all post in home page
 export const Load_Posts_Homepage = () => async(dispatch) => {
@@ -54,14 +75,30 @@ export const CreatePost = (post) => async(dispatch) => {
     if (response.ok) {
         const new_post = await response.json()
         dispatch(create_post_action(new_post))
-        console.log("!!!!!!!!", new_post)
         return new_post
     }
 }
 
+// thunk: create a comment
+export const CreateComment = (comment) => async(dispatch) => {
+    const response = await fetch(`/api/posts/${comment.post_id}/comments/new`, {
+        method: "POST",
+        headers: {
+			"Content-Type": "application/json",
+		},
+		body: JSON.stringify(comment)
+    })
+    if (response.ok) {
+        const new_comment = await response.json()
+        dispatch(create_comment_action(new_comment))
+        return new_comment
+    }
+}
+
+
+
 //thunk update a post 
 export const EditPost = (post) => async (dispatch) => {
-    console.log("goooooooooooooooooo")
     const response = await fetch(`/api/posts/${post.id}`, {
         method: "PUT",
         headers: {
@@ -72,28 +109,54 @@ export const EditPost = (post) => async (dispatch) => {
     })
     if (response.ok) {
         const updated_image = await response.json()
-        console.log("OOOOKKKKKKK", updated_image)
         dispatch(edit_post(updated_image))
         return updated_image
     }
 }
 
+//thunk update a comment 
+export const EditComment = (comment) => async (dispatch) => {
+    const response = await fetch (`/api/comments/${comment.id}`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json"
+		},
+		body: JSON.stringify(comment)   
+    })
+    if (response.ok) {
+        const updated_comment = await response.json()
+        dispatch(edit_comment(updated_comment))
+        return updated_comment
+    }
+
+}
+
 //thunk delete a post 
 export const DeletePost = (id) => async(dispatch) => {
     const response = await fetch(`/api/posts/${id}`, {
-        method: "Delete"
+        method: "DELETE"
     })
-    console.log("hihihihih")
     if (response.ok) {
         const data = await response.json()
-        console.log("99999999", data)
         dispatch(delete_post(id))
         return data
-    } else {
-        const data = await response.json()
-        console.log("99999999", data)
-    }
+    } 
 }
+
+// thunk delete a comment 
+export const Delete_comment = (post_id, comment_id) => async (dispatch) => {
+    const response = await fetch (`/api/comments/${comment_id}`, {
+        method: "DELETE"
+    })
+    if (response.ok) {
+        const data = await response.json()
+        dispatch(delete_comment(post_id, comment_id))
+        return data
+    } 
+
+}
+
+
 
 //thunk: get all posts for a user
 export const GetPostByUser = (id) => async(dispatch) =>{
@@ -133,6 +196,27 @@ const Posts = (state = {}, action) => {
         case DELETE_POST:
             newState = {...state}
             delete newState[action.id]
+            return newState
+        case ADD_COMMENT:
+            newState = {...state}
+                    // need to revisit the data structure and see if the update one has the user info
+            newState[action.comment.post_id].comments.push(action.comment)
+            return newState
+        case UPDATE_COMMENT:
+            newState = {state}
+            newState[action.comment].comments.forEach((comment, index) => {
+                if (comment.id === action.comment.id) {
+                    // need to revisit the data structure and see if the update one has the user info
+                    newState[action.comment.post_id].comments[index] = action.comment
+                }
+            })
+        case DELETE_COMMENT:
+            newState = {...state}
+            newState[action.post_id].comments.forEach((comment, index)=> {
+                if (comment.id === action.comment_id) {
+                    newState[action.post_id].comments.splice(index,1)
+                }
+            })
             return newState
         default:
 			return state;
