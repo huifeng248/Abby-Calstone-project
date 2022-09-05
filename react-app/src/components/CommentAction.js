@@ -1,18 +1,22 @@
-import { EditComment, Delete_comment } from '../store/post'
+import { EditComment, Delete_comment, Load_Posts_Homepage } from '../store/post'
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react"
+import { useEffect } from "react";
 
 
 
+function CommentAction({ edit_comment, post }) {
+    const PostId = edit_comment.post_id
+    const CommentId = edit_comment.id
+    const comment_desc = edit_comment.comment
 
-function CommentAction({ PostId, CommentId, comment_desc }) {
+
     const dispatch = useDispatch()
     const [showCommentAction, setShowCommentAction] = useState(false)
     const [showEditInput, setShowEditInput] = useState(false)
     const [comment, setComment] = useState(comment_desc)
     const [errors, setErrors] = useState([])
     const user = useSelector(state => state.session.user)
-
 
 
 
@@ -54,29 +58,40 @@ function CommentAction({ PostId, CommentId, comment_desc }) {
     return (
         <div>
 
-        
+            <div className="comment_inner_container">
+                <div>
+                    <img className="user_profile_image" src={post.user.profile_img}></img>
+                </div>
+                <div className="comment_and_user_name">
+                    <div>{edit_comment.user.first_name} {edit_comment.user.last_name}</div>
+                    <div>{edit_comment.comment}</div>
+                </div>
+
+                {
+                    user.id === edit_comment.user.id &&
 
 
+                    <div className="dot_div">
+                        <i onClick={() => {
+                            // console.log(index)
+                            setShowCommentAction(!showCommentAction)
+                        }}
+                            className="fa-solid fa-ellipsis"></i>
+                        {showCommentAction &&
+                            <div className="comment_buttons">
+                                <button
+                                    onClick={() => {
+                                        setShowEditInput(!showEditInput)
+                                        setShowCommentAction(false)
+                                    }
+                                    }>Edit</button>
 
-            <div className="dot_div">
-                <i onClick={() => {
-                    // console.log(index)
-                    setShowCommentAction(!showCommentAction)
-                }}
-                    className="fa-solid fa-ellipsis"></i>
-                {showCommentAction && 
-                    <div className="comment_buttons">
-                        <button
-                            onClick={() => {
-                                setShowEditInput(!showEditInput)
-                                setShowCommentAction(false)
-                            }
-                            }>Edit</button>
 
-
-                        <button onClick={() => deleteCommentOnclick(PostId, CommentId)} >Delete</button>
+                                <button onClick={() => deleteCommentOnclick(PostId, CommentId)} >Delete</button>
+                            </div>}
                     </div>}
             </div>
+
             {showEditInput && <form onSubmit={handleCommentSubmit}>
                 <div className="comment_line_container">
                     <div>
@@ -95,6 +110,7 @@ function CommentAction({ PostId, CommentId, comment_desc }) {
                     <button type='submit'>Comment</button>
                 </div>
             </form>}
+
         </div>
     )
 }

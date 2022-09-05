@@ -116,7 +116,6 @@ export const EditPost = (post) => async (dispatch) => {
 
 //thunk update a comment 
 export const EditComment = (comment) => async (dispatch) => {
-    console.log("########", comment)
     const response = await fetch (`/api/comments/${comment.id}`, {
         method: "PUT",
         headers: {
@@ -204,12 +203,11 @@ const Posts = (state = {}, action) => {
             newState[action.comment.post_id].comments.push(action.comment)
             return newState
         case UPDATE_COMMENT:
-            newState = {state}
-            console.log("!!!!!!!!!", action.comment)
+            newState = {...state}
             newState[action.comment.post_id].comments.forEach((comment, index) => {
                 if (comment.id === action.comment.id) {
                     // need to revisit the data structure and see if the update one has the user info
-                    newState[action.comment.post_id].comments[index] = action.comment
+                    newState[action.comment.post_id].comments[index]= action.comment
                 }
             })
         case DELETE_COMMENT:

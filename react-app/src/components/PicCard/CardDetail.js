@@ -140,20 +140,21 @@ function CardDetail({ user, post }) {
                     {
                         post.comments.length > 0 ? 
                         post.comments.map((comment, index) => {
-                            return <div className="comment_inner_container">
-                                <div>
-                                    <img className="user_profile_image" src={post.user.profile_img}></img>
-                                </div>
-                                <div className="comment_and_user_name">
-                                    <div>{comment.user.first_name} {comment.user.last_name}</div>
-                                    <div key={index}>{comment.comment}</div>
-                                </div>
-                                {
-                                    current_user.id === comment.user.id &&
-                                    <CommentAction PostId={post.id} CommentId={comment.id} comment_desc={comment.comment}/>
+                            return <CommentAction edit_comment={comment} post={post}/>
+                            // return <div className="comment_inner_container">
+                            //     <div>
+                            //         <img className="user_profile_image" src={post.user.profile_img}></img>
+                            //     </div>
+                            //     <div className="comment_and_user_name">
+                            //         <div>{comment.user.first_name} {comment.user.last_name}</div>
+                            //         <div key={index}>{comment.comment}</div>
+                            //     </div>
+                            //     {
+                            //         current_user.id === comment.user.id &&
+                            //         <CommentAction PostId={post.id} CommentId={comment.id} comment_desc={comment.comment}/>
 
-                                }
-                            </div>
+                            //     }
+                            // </div>
                         })
                         : <div>Be the first one to leave a comment</div>
                     }
