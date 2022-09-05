@@ -118,5 +118,48 @@
 }
 
 .likecount{
-    color: red;
+    color: #0070E3
+}
+
+.count_number{
+    color: #64676B;
+}
+
+.like_counts_container{
+    display: flex;
+}
+
+.comment_counts_container{
+    display: flex;
+    cursor: pointer;
+}
+
+.comment_inner_container{
+    display: flex;
+}
+
+.comment_and_user_name{
+    display: flex;
+    flex-direction: column;
+    background-color: #F0F2F5;
+    border-radius: 20px;
+}
+
+.dot_div:hover{
+    background-color: #F0F2F5;
+    
+    
+}
+.dot_div{
+    cursor: pointer;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.comment_buttons{
+    display: flex;
+    flex-direction: column;
 }

@@ -1,11 +1,11 @@
 import { Modal } from '../../context/Modal'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from "react-redux";
-import {CreatePost, EditPost} from '../../store/post'
+import { CreatePost, EditPost } from '../../store/post'
 import './PostModal.css'
 
 
-function PostModal({user, post, setShowPostModal,showPostModal}) {
+function PostModal({ user, post, setShowPostModal, showPostModal }) {
     const [description, setDescription] = useState()
     const [url, setUrl] = useState()
     const [errors, setErrors] = useState([]);
@@ -13,7 +13,7 @@ function PostModal({user, post, setShowPostModal,showPostModal}) {
     const dispatch = useDispatch()
 
     // this will populate the data for the edit
-    useEffect(()=> {
+    useEffect(() => {
         if (post) {
             setDescription(post.description)
             setUrl(post.url)
@@ -40,7 +40,7 @@ function PostModal({user, post, setShowPostModal,showPostModal}) {
                 description,
                 url
             }
-    
+
             dispatch(CreatePost(create_post_payload))
                 // .then(() => onClose())
                 .catch(async (data) => {
@@ -57,7 +57,7 @@ function PostModal({user, post, setShowPostModal,showPostModal}) {
             }
             dispatch(EditPost(edit_post_payload))
                 // .then(() => onClose())
-                .catch(async(data) => {
+                .catch(async (data) => {
                     if (data && data.errors) {
                         setErrors(data.errors)
                     }
@@ -69,17 +69,14 @@ function PostModal({user, post, setShowPostModal,showPostModal}) {
     return (
         <div>
             {showPostModal &&
-                <Modal onClose={()=>setShowPostModal(false)}>
+                <Modal onClose={() => setShowPostModal(false)}>
                     <div className='create_post_container'>
-                        <div>{post? "Edit post": "Create post"}</div>
-                        {errors.length > 0 && (
-                            <ul>
-                                {errors.map((error, index) => (
-                                    <li key={index}>
-                                        {error}
-                                    </li>
-                                ))}
-                            </ul>)}
+                        <div>{post ? "Edit post" : "Create post"}</div>
+                        {errors.length > 0 && <ul>
+                            {errors.map((error, index) => (
+                                <li key={index}>{error}</li>
+                            ))}
+                        </ul>}
                         <div className="user_box">
                             <div>
                                 <img className="user_profile_image" src={user.profile_img}></img>
@@ -108,7 +105,7 @@ function PostModal({user, post, setShowPostModal,showPostModal}) {
                             </div> */}
                             <button type='submit'
                             // onClick={()=> setShowModal(false)}
-                            > {post? "Save" : "Post"}</button>
+                            > {post ? "Save" : "Post"}</button>
                         </form>
                     </div>
                 </Modal>}
