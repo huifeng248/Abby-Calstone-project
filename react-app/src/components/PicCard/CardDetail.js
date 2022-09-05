@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import PostActionModal from "../PostActionModal"
 import { DeletePost } from '../../store/post'
 import { useDispatch, useSelector } from "react-redux";
@@ -16,6 +16,14 @@ function CardDetail({ user, post }) {
     const [errors, setErrors] = useState([])
     const [showComments, SetShowComments] = useState(false)
     // const [showCommentAction, setShowCommentAction] = useState(false)
+
+    useEffect(() => {
+        if (!showDiv) return;
+        const closeDivMenu = () => setShowDiv(false);
+                document.addEventListener("click", closeDivMenu);
+        return () => document.removeEventListener("click", closeDivMenu);
+        }, [showDiv]);
+
 
     function FocusEventListener() {
         document.getElementById("text").focus();
@@ -66,7 +74,9 @@ function CardDetail({ user, post }) {
 
     return (
         <div>
+            <PostModal user={current_user} post={post} setShowPostModal={setShowPostModal} showPostModal={showPostModal} />
             <div className="user_edit_line">
+
                 <div className="user_box">
                     <div>
                         <img className="user_profile_image" src={post.user.profile_img}></img>
@@ -87,7 +97,6 @@ function CardDetail({ user, post }) {
                             onClick={() => setShowPostModal(true)}
                         > Edit post
                         </div>
-                        <PostModal user={current_user} post={post} setShowPostModal={setShowPostModal} showPostModal={showPostModal} />
                         <div className='action_div'
                             onClick={() => deletePostOnclick(post.id)}
                         > Delete Post

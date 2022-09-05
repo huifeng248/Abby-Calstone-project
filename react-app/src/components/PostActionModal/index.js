@@ -9,31 +9,6 @@ import { useDispatch} from "react-redux";
 function PostActionModal({ user, post, ShowPostActionModal, setShowPostActionModal}) {
     const [showPostModal, setShowPostModal] = useState(false)
     const dispatch = useDispatch()
-    
-
-    // const deletePostOnclick = async (postId) => {
-    //     const response = await dispatch(DeletePost(postId));
-    //     console.log("##########", response)
-    //     if (response) {
-    //         window.alert('Successfully deleted!')
-    //     }
-    // }
-
-    // const deletePostOnclick = async (post.id) => {
-	// 	if (
-	// 		window.confirm(
-	// 			"Do you really want to delete this Image? This action can not be undone!"
-	// 		)
-	// 	) {
-	// 		const response = await dispatch(DeleteImage(imageId));
-	// 		if (response) {
-	// 			window.alert(
-	// 				"Successfully deleted the Image, Click OK to bring you back to the home page"
-	// 			);
-	// 			history.push(`/`);
-	// 		}
-	// 	}
-	// };
 
 
     return (
