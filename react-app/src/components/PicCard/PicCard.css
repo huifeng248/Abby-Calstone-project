@@ -104,6 +104,13 @@
 .dropdown-content{
     position: absolute;
     z-index: 1;
+    right: 0px;
+    top: 40px;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    width: 150px;
+    padding: 8px;
 }
 
 .dropdown-content div {
