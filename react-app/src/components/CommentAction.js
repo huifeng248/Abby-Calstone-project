@@ -27,6 +27,13 @@ function CommentAction({ PostId, CommentId, comment }) {
         }
     }, [comment])
 
+    useEffect(() => {
+        if (!showCommentAction) return;
+        const closeCommentDivMenu = () => setShowCommentAction(false);
+                document.addEventListener("click", closeCommentDivMenu);
+        return () => document.removeEventListener("click", closeCommentDivMenu);
+    }, [showCommentAction]);
+
     const handleCommentSubmit = async (e) => {
         e.preventDefault()
         let errors_arr = []

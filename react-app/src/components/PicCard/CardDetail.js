@@ -22,7 +22,7 @@ function CardDetail({ user, post }) {
         const closeDivMenu = () => setShowDiv(false);
                 document.addEventListener("click", closeDivMenu);
         return () => document.removeEventListener("click", closeDivMenu);
-        }, [showDiv]);
+    }, [showDiv]);
 
 
     function FocusEventListener() {

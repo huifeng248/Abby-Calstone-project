@@ -1,7 +1,7 @@
 import { Modal } from '../../context/Modal'
 import './PostActionModal.css'
 import PostModal from '../PostModal'
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { DeletePost } from '../../store/post'
 import { useDispatch} from "react-redux";
 
