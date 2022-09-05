@@ -82,23 +82,23 @@ function CardDetail({ user, post }) {
                                 onClick={() => { setShowDiv(!showDiv) }}
                             ></i> : null}
                     </div>
-                </div>
-                {showDiv && <div className='dropdown-content"'>
-                    <div className='action_div'
-                        onClick={() => setShowPostModal(true)}
-                    > Edit post
-                    </div>
-                    <PostModal user={current_user} post={post} setShowPostModal={setShowPostModal} showPostModal={showPostModal} />
-                    <div className='action_div'
-                        onClick={() => deletePostOnclick(post.id)}
-                    > Delete Post
-                    </div>
-                    <div className='action_div'
-                        onClick={() => { setShowDiv(false) }}
-                    > Cancel
-                    </div>
+                    {showDiv && <div className='dropdown-content'>
+                        <div className='action_div'
+                            onClick={() => setShowPostModal(true)}
+                        > Edit post
+                        </div>
+                        <PostModal user={current_user} post={post} setShowPostModal={setShowPostModal} showPostModal={showPostModal} />
+                        <div className='action_div'
+                            onClick={() => deletePostOnclick(post.id)}
+                        > Delete Post
+                        </div>
+                        <div className='action_div'
+                            onClick={() => { setShowDiv(false) }}
+                        > Cancel
+                        </div>
 
-                </div>}
+                    </div>}
+                </div>
 
             </div>
             <div> {post.description}</div>
@@ -149,7 +149,7 @@ function CardDetail({ user, post }) {
                                 </div>
                                 {
                                     current_user.id === comment.user.id &&
-                                    <CommentAction PostId={post.id} CommentId={comment.id}/>
+                                    <CommentAction PostId={post.id} CommentId={comment.id} comment={comment} />
 
                                 }
                             </div>
@@ -186,6 +186,9 @@ function CardDetail({ user, post }) {
                     <button type='submit'>Comment</button>
                 </div>
             </form>
+
+
+
             <div>
                 Comments: {post.comments.length > 0 ? post.comments[(post.comments.length - 1)].comment : null}
             </div>

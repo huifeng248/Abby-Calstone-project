@@ -1,10 +1,9 @@
 import { Modal } from '../../context/Modal'
 import './PostActionModal.css'
-import { NavLink } from 'react-router-dom';
 import PostModal from '../PostModal'
 import { useState } from 'react';
 import { DeletePost } from '../../store/post'
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch} from "react-redux";
 
 
 function PostActionModal({ user, post, ShowPostActionModal, setShowPostActionModal}) {
@@ -48,8 +47,7 @@ function PostActionModal({ user, post, ShowPostActionModal, setShowPostActionMod
                         }}>
                             Edit Post</button>
                         <PostModal user={user} post={post} setShowPostModal={setShowPostModal} showPostModal={showPostModal} />
-                        <button onClick={()=> {dispatch(DeletePost(post.id))
-                        console.log("^^^^^^^^^^^", post.id)}}
+                        <button onClick={()=> {dispatch(DeletePost(post.id))}}
                         >Delete Post</button>
                         <button onClick={() => setShowPostActionModal(false)}>Cancel</button>
                     </div>

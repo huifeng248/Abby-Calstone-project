@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import PostModal from "../PostModal";
 
 
@@ -8,7 +8,7 @@ function PostCreateBox({user}) {
     return (
         <div className="create_post_container">
             <div>
-                <img className="user_profile_image" src={user.profile_img}></img>
+                <img className="user_profile_image" src={user.profile_img} alt='profile_image'></img>
             </div>
             <input className="post_input"
                 placeholder={`What's on your mind, ${user.first_name}?`}

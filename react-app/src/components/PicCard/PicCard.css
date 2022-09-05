@@ -84,6 +84,7 @@
 .user_edit_line{
     display: flex;
     justify-content: space-between;
+    /* position: relative; */
 }
 
 .edit_icon{

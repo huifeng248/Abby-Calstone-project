@@ -1,6 +1,6 @@
 import { Modal } from '../../context/Modal'
 import { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch} from "react-redux";
 import { CreatePost, EditPost } from '../../store/post'
 import './PostModal.css'
 
