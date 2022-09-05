@@ -15,7 +15,7 @@ function CardDetail({ user, post }) {
     const [comment, setComment] = useState()
     const [errors, setErrors] = useState([])
     const [showComments, SetShowComments] = useState(false)
-    const [showCommentAction, setShowCommentAction] = useState(false)
+    // const [showCommentAction, setShowCommentAction] = useState(false)
 
     function FocusEventListener() {
         document.getElementById("text").focus();
@@ -138,7 +138,7 @@ function CardDetail({ user, post }) {
             {showComments &&
                 <div >
                     {
-                        post.comments.length > 0 ? post.comments.map((comment, index) => {
+                        post.comments.length > 0 && post.comments.map((comment, index) => {
                             return <div className="comment_inner_container">
                                 <div>
                                     <img className="user_profile_image" src={post.user.profile_img}></img>
@@ -148,25 +148,13 @@ function CardDetail({ user, post }) {
                                     <div key={index}>{comment.comment}</div>
                                 </div>
                                 {
-                                    current_user.id === comment.user.id ?
-                                        <div className="dot_div">
-                                            <i className="fa-solid fa-ellipsis"
-                                                onClick={() => setShowCommentAction(!showCommentAction)}></i>
-                                <CommentAction PostId= {post.id} CommentId={comment.id} showCommentAction={showCommentAction}/>
-                                {/* {showCommentAction &&
-                                    <div className="comment_buttons">
-                                    <button>Edit</button>
-                                    <button onClick={() => deleteCommentOnclick(post.id, comment.id)} >Delete</button>
-                                    </div>} */}
-                                        </div>
-                                        : null
+                                    current_user.id === comment.user.id &&
+                                    <CommentAction PostId={post.id} CommentId={comment.id}/>
+
                                 }
                             </div>
                         })
-                            : null
                     }
-
-
                 </div>
             }
 
