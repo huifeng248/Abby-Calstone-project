@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { Load_Posts_Homepage } from '../../store/post'
 import PostCreateBox from './PostCreateBox'
 import CardDetail from './CardDetail'
-
 import './PicCard.css'
 
 function PicCard() {
