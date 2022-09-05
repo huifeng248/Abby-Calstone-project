@@ -55,6 +55,7 @@ function CommentAction({ PostId, CommentId, comment }) {
                     setErrors(data.errors)
                 }
             })
+        setShowEditInput(false)
     }
 
 
