@@ -138,7 +138,8 @@ function CardDetail({ user, post }) {
             {showComments &&
                 <div >
                     {
-                        post.comments.length > 0 && post.comments.map((comment, index) => {
+                        post.comments.length > 0 ? 
+                        post.comments.map((comment, index) => {
                             return <div className="comment_inner_container">
                                 <div>
                                     <img className="user_profile_image" src={post.user.profile_img}></img>
@@ -149,17 +150,17 @@ function CardDetail({ user, post }) {
                                 </div>
                                 {
                                     current_user.id === comment.user.id &&
-                                    <CommentAction PostId={post.id} CommentId={comment.id}/>
+                                    <CommentAction PostId={post.id} CommentId={comment.id} comment_desc={comment.comment}/>
 
                                 }
                             </div>
                         })
+                        : <div>Be the first one to leave a comment</div>
                     }
                 </div>
+                
+
             }
-
-
-
 
             {errors.length > 0 && <ul>
                 {errors.map((error, index) => (
@@ -186,6 +187,8 @@ function CardDetail({ user, post }) {
                     <button type='submit'>Comment</button>
                 </div>
             </form>
+
+
             <div>
                 Comments: {post.comments.length > 0 ? post.comments[(post.comments.length - 1)].comment : null}
             </div>
