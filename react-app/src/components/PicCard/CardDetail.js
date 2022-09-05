@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import PostModal from '../PostModal'
 import { CreateComment, EditComment, Delete_comment } from '../../store/post'
 import CommentAction from "../CommentAction";
+import CommentForm from './CommentForm'
 
 
 function CardDetail({ user, post }) {
@@ -15,12 +16,13 @@ function CardDetail({ user, post }) {
     const [comment, setComment] = useState()
     const [errors, setErrors] = useState([])
     const [showComments, SetShowComments] = useState(false)
-    // const [showCommentAction, setShowCommentAction] = useState(false)
+    const [showEditInput, setShowEditInput] = useState(false)
+    const [commentDesc, setCommentDesc] = useState()
 
     useEffect(() => {
         if (!showDiv) return;
         const closeDivMenu = () => setShowDiv(false);
-                document.addEventListener("click", closeDivMenu);
+        document.addEventListener("click", closeDivMenu);
         return () => document.removeEventListener("click", closeDivMenu);
     }, [showDiv]);
 
@@ -37,15 +39,8 @@ function CardDetail({ user, post }) {
         }
     }
 
-    const deleteCommentOnclick = async (post_id, comment_id) => {
-        const response = await dispatch(Delete_comment(post_id, comment_id))
-        if (response) {
-            window.alert('Comment is successfully deleted!')
-        }
-    }
 
-
-    const handleCommentSubmit = async (e) => {
+    const handleCreateCommentSubmit = async (e) => {
         e.preventDefault();
         const error_arr = []
         if (!comment || comment.trimEnd().length === 0) {
@@ -71,6 +66,34 @@ function CardDetail({ user, post }) {
 
         }
     }
+
+    const handleCommentSubmit = async (e) => {
+        e.preventDefault()
+        let error_arr = []
+        if (!commentDesc || commentDesc.trimEnd().length === 0) {
+            error_arr.push('Please provide a valid comment')
+            setErrors(error_arr)
+        } else if (commentDesc.trimEnd().length > 1000) {
+            error_arr.push('Comment must be within 1000 characters')
+            setErrors(error_arr)
+        } else {
+
+            const edit_comment_payload = {
+                user_id: current_user.id,
+                id: comment.id,
+                post_id: post.id,
+                comment: commentDesc
+            }
+            dispatch(EditComment(edit_comment_payload))
+                .catch(async (data) => {
+                    if (data && data.errors) {
+                        setErrors(data.errors)
+                    }
+                })
+            setShowEditInput(false)
+        }
+    }
+
 
     return (
         <div>
@@ -149,6 +172,7 @@ function CardDetail({ user, post }) {
                     {
                         post.comments.length > 0 && post.comments.map((comment, index) => {
                             return <div className="comment_inner_container">
+                                <div className="comment_info_box">
                                 <div>
                                     <img className="user_profile_image" src={post.user.profile_img}></img>
                                 </div>
@@ -161,6 +185,30 @@ function CardDetail({ user, post }) {
                                     <CommentAction PostId={post.id} CommentId={comment.id} comment={comment} />
 
                                 }
+                                </div>
+
+
+                                 <CommentForm comment={comment} post={post} setShowEditInput={setShowEditInput}/>
+                                {/* {showEditInput && <form onSubmit={handleCommentSubmit}>
+                                    <div className="comment_line_container">
+                                        <div>
+                                            <img className="user_profile_image" src={user.profile_img}></img>
+                                        </div>
+                                        <div className="input_container">
+                                            <input id="text"
+                                                className="comment_input"
+                                                onChange={(e) => {
+                                                    setCommentDesc(e.target.value)
+                                                    setErrors([])
+                                                }}
+                                                value={commentDesc}
+                                            ></input>
+                                        </div>
+                                        <button type='submit'>Comment</button>
+                                    </div>
+                                </form>} */}
+
+
                             </div>
                         })
                     }
@@ -170,14 +218,21 @@ function CardDetail({ user, post }) {
 
 
 
-            {errors.length > 0 && <ul>
+
+
+
+
+
+
+            {/* {errors.length > 0 && <ul>
                 {errors.map((error, index) => (
                     <li key={index}>{error}</li>
                 ))}
-            </ul>}
+            </ul>} */}
+            
+            <CommentForm comment={comment} post={post} setShowEditInput={setShowEditInput}/>
 
-
-            <form onSubmit={handleCommentSubmit}>
+            {/* <form onSubmit={handleCreateCommentSubmit}>
                 <div className="comment_line_container">
                     <div>
                         <img className="user_profile_image" src={user.profile_img}></img>
@@ -194,7 +249,7 @@ function CardDetail({ user, post }) {
                     </div>
                     <button type='submit'>Comment</button>
                 </div>
-            </form>
+            </form> */}
 
 
 

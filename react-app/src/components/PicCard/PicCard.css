@@ -144,6 +144,7 @@
 
 .comment_inner_container{
     display: flex;
+    flex-direction: column;
 }
 
 .comment_and_user_name{
@@ -170,4 +171,9 @@
 .comment_buttons{
     display: flex;
     flex-direction: column;
+}
+
+.comment_info_box{
+    display: flex;
+    flex-direction: row;
 }
