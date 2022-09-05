@@ -182,13 +182,13 @@ function CardDetail({ user, post }) {
                                 </div>
                                 {
                                     current_user.id === comment.user.id &&
-                                    <CommentAction PostId={post.id} CommentId={comment.id} comment={comment} />
+                                    <CommentAction PostId={post.id} CommentId={comment.id} comment={comment} setShowEditInput={setShowEditInput} />
 
                                 }
                                 </div>
 
 
-                                 <CommentForm comment={comment} post={post} setShowEditInput={setShowEditInput}/>
+                                {showEditInput &&<CommentForm comment={comment} post={post} setShowEditInput={setShowEditInput} showEditInput={showEditInput}/>}
                                 {/* {showEditInput && <form onSubmit={handleCommentSubmit}>
                                     <div className="comment_line_container">
                                         <div>

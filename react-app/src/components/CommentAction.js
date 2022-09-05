@@ -5,13 +5,13 @@ import { useEffect, useState } from "react"
 
 
 
-function CommentAction({ PostId, CommentId, comment }) {
+function CommentAction({ PostId, CommentId, comment, setShowEditInput, showEditInput }) {
     const dispatch = useDispatch()
     const [showCommentAction, setShowCommentAction] = useState(false)
     const [errors, setErrors] = useState([]);
     const user = useSelector(state => state.session.user)
     const [commentDesc, setCommentDesc] = useState()
-    const [showEditInput, setShowEditInput] = useState(false)
+    // const [showEditInput, setShowEditInput] = useState(false)
 
 
     const deleteCommentOnclick = async (post_id, comment_id) => {
@@ -74,6 +74,7 @@ function CommentAction({ PostId, CommentId, comment }) {
                 {showCommentAction &&
                     <div className="comment_buttons">
                         <button onClick={() => setShowEditInput(!showEditInput)}>Edit</button>
+                        
                         <button onClick={() => deleteCommentOnclick(PostId, CommentId)} >Delete</button>
                     </div>}
             </div>
