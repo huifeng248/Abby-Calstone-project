@@ -172,91 +172,19 @@ function CardDetail({ user, post }) {
                     {
                         post.comments.length > 0 && post.comments.map((comment, index) => {
                             return <div className="comment_inner_container">
-                                <CommentAction post={post} comment={comment}/>
-                                {/* <div className="comment_info_box">
-                                    <div>
-                                        <img className="user_profile_image" src={post.user.profile_img}></img>
-                                    </div>
-                                    <div className="comment_and_user_name">
-                                        <div>{comment.user.first_name} {comment.user.last_name}</div>
-                                        <div key={index}>{comment.comment}</div>
-                                    </div>
-                                    {
-                                        current_user.id === comment.user.id &&
-                                        <CommentAction PostId={post.id} CommentId={comment.id} comment={comment} setShowEditInput={setShowEditInput} />
-
-                                    }
-                                </div> */}
-
-
+                                <CommentAction post={post} comment={comment} />
                                 {showEditInput && <CommentForm comment={comment} post={post} setShowEditInput={setShowEditInput} showEditInput={showEditInput} />}
-                                {/* {showEditInput && <form onSubmit={handleCommentSubmit}>
-                                    <div className="comment_line_container">
-                                        <div>
-                                            <img className="user_profile_image" src={user.profile_img}></img>
-                                        </div>
-                                        <div className="input_container">
-                                            <input id="text"
-                                                className="comment_input"
-                                                onChange={(e) => {
-                                                    setCommentDesc(e.target.value)
-                                                    setErrors([])
-                                                }}
-                                                value={commentDesc}
-                                            ></input>
-                                        </div>
-                                        <button type='submit'>Comment</button>
-                                    </div>
-                                </form>} */}
-
-
                             </div>
                         })
                     }
                 </div>
             }
 
-
-
-
-
-
-
-
-
-
-            {/* {errors.length > 0 && <ul>
-                {errors.map((error, index) => (
-                    <li key={index}>{error}</li>
-                ))}
-            </ul>} */}
-
             <CommentForm comment={comment} post={post} setShowEditInput={setShowEditInput} />
 
-            {/* <form onSubmit={handleCreateCommentSubmit}>
-                <div className="comment_line_container">
-                    <div>
-                        <img className="user_profile_image" src={user.profile_img}></img>
-                    </div>
-                    <div className="input_container">
-                        <input id="text"
-                            className="comment_input"
-                            onChange={(e) => {
-                                setComment(e.target.value)
-                                setErrors([])
-                            }}
-                            value={comment}
-                        ></input>
-                    </div>
-                    <button type='submit'>Comment</button>
-                </div>
-            </form> */}
-
-
-
-            <div>
+            {/* <div>
                 Comments: {post.comments.length > 0 ? post.comments[(post.comments.length - 1)].comment : null}
-            </div>
+            </div> */}
         </div>
     )
 

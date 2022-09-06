@@ -70,39 +70,47 @@ function CommentAction({ post, comment }) {
         <div>
 
             <div className="comment_info_box">
-                {!showEditInput&&<div className='wrapper_comment'>
-                <div>
-                    <img className="user_profile_image" src={post.user.profile_img}></img>
-                </div>
-                <div className="comment_and_user_name">
-                    <div>{comment.user.first_name} {comment.user.last_name}</div>
-                    <div>{comment.comment}</div>
-                </div> 
-                {
-                    current_user.id === comment.user.id &&
-                    <div className="dot_div_container"
-                    onClick={() => {
-                        // console.log(index)
-                        setShowCommentAction(!showCommentAction)
-                    }}>
-                        <i className="fa-solid fa-ellipsis"></i>
-                        {showCommentAction &&
-                            <div className="comment_buttons_container">
-                                <div className='button-wrapper'>
-                                <button className="comment_edit_delete_buttons" onClick={() => setShowEditInput(!showEditInput)}>Edit</button>
-                                </div>
-                                <div className='button-wrapper'>
-                                <button className="comment_edit_delete_buttons" 
-                                onClick={() => deleteCommentOnclick(post.id, comment.id)} >Delete</button>
-                                </div>
-                            </div>}
-
+                {!showEditInput && <div className='wrapper_comment'>
+                    <div>
+                        <img className="user_profile_image" src={post.user.profile_img}></img>
                     </div>
+                    <div className="comment_and_user_name">
+                        <div>{comment.user.first_name} {comment.user.last_name}</div>
+                        <div>{comment.comment}</div>
+                    </div>
+                    {
+                        current_user.id === comment.user.id &&
+                        <div className="dot_div_container"
+                            onClick={() => {
+                                // console.log(index)
+                                setShowCommentAction(!showCommentAction)
+                            }}>
+                            <i className="fa-solid fa-ellipsis"></i>
+                            {showCommentAction &&
+                                <div className="comment_buttons_container">
+                                    <div className='button-wrapper'
+                                        onClick={() => setShowEditInput(!showEditInput)}
+                                    >
+                                        <button className="comment_edit_delete_buttons"
+                                        >Edit</button>
+                                    </div>
+                                    <div className='button-wrapper'
+                                        onClick={() => deleteCommentOnclick(post.id, comment.id)}
+                                    >
+                                        <button className="comment_edit_delete_buttons"
+                                        >Delete</button>
+                                    </div>
+                                </div>}
 
-                }
+                        </div>
+
+                    }
                 </div>}
                 {showEditInput &&
-                <CommentForm comment={comment} post={post} setShowEditInput={setShowEditInput} showEditInput={showEditInput} />}
+                    <div className='edit_comment_container'>
+                        <CommentForm comment={comment} post={post} setShowEditInput={setShowEditInput} showEditInput={showEditInput} />
+                        <button onClick={() => setShowEditInput(false)}>Cancel</button>
+                    </div>}
             </div>
 
 
