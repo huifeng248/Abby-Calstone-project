@@ -18,7 +18,6 @@ const create_post_action = (post)=>({
     type: ADD_POST,
     post
 })
-
 const get_profile_post_action = (posts) => ({
     type: Get_POST_UserProfile,
     posts

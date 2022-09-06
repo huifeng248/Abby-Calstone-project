@@ -6,7 +6,7 @@ import "./SignUpModal.css";
 
 
 
-const SignUpForm = ({ onClose, showModal, setShowModal }) => {
+const SignUpForm = ({ onClose }) => {
   const [errors, setErrors] = useState([]);
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
@@ -16,15 +16,35 @@ const SignUpForm = ({ onClose, showModal, setShowModal }) => {
   const [repeatPassword, setRepeatPassword] = useState('');
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
+  // const [showSignup, setShowSignup] = useState(true)
+  
 
   const onSignUp = async (e) => {
     e.preventDefault();
-    if (password === repeatPassword) {
-      const data = await dispatch(signUp(username, email, password, first_name, last_name));
-      // console.log("!!!!!!!!!!!!!!", data)
-      if (data) {
-        setErrors(data)
-      }
+    const error_list = []
+    if (first_name.trimEnd().length === 0) {
+      error_list.push("First Name is required")
+    } 
+    if (last_name.trimEnd().length === 0) {
+      error_list.push("Last name is required")
+    } 
+    if (username.trimEnd().length <4 || username.length >20) {
+      error_list.push("Username must between 4 to 20 characters")
+    }
+    if (password !== repeatPassword) {
+      error_list.push("Repeat password must be the same as  password")
+    }
+
+
+
+    if (error_list.length > 0) {
+      setErrors(error_list)
+    } else {
+        const data = await dispatch(signUp(username, email, password, first_name, last_name));
+  
+        if (data) {
+          setErrors(data)
+        }
     }
   };
 
@@ -52,11 +72,12 @@ const SignUpForm = ({ onClose, showModal, setShowModal }) => {
     <div className='signup_page'>
       <div>
         <div className='above_signup_form'>
+          <i onClick={()=> onClose()} className="fa-solid fa-x"></i>
           <div className='sign_up_title_line'> Sign Up </div>
           <div className='Paragraph_line'> It's quick and easy. </div>
         </div>
         <form className='sign_up_form_container' onSubmit={onSignUp}>
-          <div>
+          <div className='error_msg_box'>
             {errors.map((error, ind) => (
               <div key={ind}>{error}</div>
             ))}
@@ -69,9 +90,12 @@ const SignUpForm = ({ onClose, showModal, setShowModal }) => {
             <input
               type='text'
               name='username'
+              required
               onChange={updateUsername}
               value={username}
               placeholder='User name'
+              minLength='4'
+              maxLength='20'
             ></input>
           </div>
 
@@ -80,9 +104,11 @@ const SignUpForm = ({ onClose, showModal, setShowModal }) => {
             <input
               type='text'
               name='firstName'
+              required
               onChange={(e) => set_first_name(e.target.value)}
               value={first_name}
               placeholder='First name'
+              maxLength='100'
             ></input>
           </div>
 
@@ -91,9 +117,11 @@ const SignUpForm = ({ onClose, showModal, setShowModal }) => {
             <input
               type='text'
               name='lastName'
+              required
               onChange={(e) => set_last_name(e.target.value)}
               value={last_name}
               placeholder='Last name'
+              maxLength='100'
             ></input>
           </div>
 
@@ -101,10 +129,12 @@ const SignUpForm = ({ onClose, showModal, setShowModal }) => {
           <div className='input_fields'>
             {/* <label>Email</label> */}
             <input
-              type='text'
+              type='email'
               name='email'
+              required
               onChange={updateEmail}
               value={email}
+              maxLength='255'
               placeholder='email'
             ></input>
           </div>
@@ -113,6 +143,8 @@ const SignUpForm = ({ onClose, showModal, setShowModal }) => {
             <input
               type='password'
               name='password'
+              minLength='6'
+              required
               onChange={updatePassword}
               value={password}
               placeholder='New password'
@@ -123,6 +155,7 @@ const SignUpForm = ({ onClose, showModal, setShowModal }) => {
             <input
               type='password'
               name='repeat_password'
+              minLength='6'
               onChange={updateRepeatPassword}
               value={repeatPassword}
               required={true}
