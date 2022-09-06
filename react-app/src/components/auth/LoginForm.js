@@ -3,7 +3,9 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { login } from '../../store/session';
 import { NavLink } from 'react-router-dom';
-import "./LoginForm.css";
+import LandingPage from './LandingPage';
+import "./LoginSignupForm.css";
+import SignupFormModal from './SignUpModal';
 
 const LoginForm = () => {
   const [errors, setErrors] = useState([]);
@@ -42,16 +44,7 @@ const LoginForm = () => {
   return (
 
     <div className='log_in_page'>
-
-      <div className='left_container'>
-        <div className='Log_in_banner'>
-          <h3 className='app_title'>FaceTa</h3>
-        </div>
-        <div className='connect_p'>
-          <div>Connect with friends and the world around you on Facebook.</div>
-        </div>
-      </div>
-
+      <LandingPage />
 
       <div className='log_in_container'>
 
@@ -63,7 +56,7 @@ const LoginForm = () => {
           <div>You must log in to continue.</div>
         </div>
         <form onSubmit={onLogin}>
-          <div>
+          <div className='error_message'>
             {errors.map((error, ind) => (
               <div key={ind}>{error}</div>
             ))}
@@ -98,16 +91,17 @@ const LoginForm = () => {
           <div className='buttons_container'>
             <button className="log_in_button" type='submit'>Login</button>
           </div>
-          <div className='demo_buttons_container'>
+          <div className='buttons_container demo'>
             <button className="log_in_button" onClick={() => demoLogin()}>Demo</button>
           </div>
 
         </form>
-        <div>
-          <NavLink to='/sign-up' exact={true} activeClassName='active'>
+        {/* <div className='signup_button'> */}
+          {/* <NavLink className="signup_link" to='/sign-up' exact={true} activeClassName='active'>
             Create new account
-          </NavLink>
-        </div>
+          </NavLink> */}
+          <SignupFormModal />
+        {/* </div> */}
       </div>
 
     </div>
