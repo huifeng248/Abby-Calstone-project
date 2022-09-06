@@ -120,7 +120,7 @@ def update_post(id):
         return jsonify(result)
     if (post.user_id != current_user.id):
         result = {
-            "message": "cannot delete other's post",
+            "message": "cannot edit other's post",
             "statusCode": 403
             }
         return jsonify(result)

@@ -10,14 +10,16 @@ const PostByUser = () => {
     const dispatch = useDispatch()
     const [loaded, setLoaded] = useState(false)
     const user = useSelector(state => state.session.user)
-    const posts = useSelector(state => state.Posts)
-    const post_arr = Object.values(posts)
-
+    console.log("$$$$$$$", user.id, user.first_name)
+    
     useEffect(() => {
         dispatch(GetPostByUser(user.id))
-            .then(() => (setLoaded(true)))
+        .then(() => (setLoaded(true)))
     }, [dispatch, user])
-
+    
+    // This need to be after the useEffect. AS the result would be filtered by the user id
+    const posts = useSelector(state => state.Posts)
+    const post_arr = Object.values(posts)
     return (
         <div className="outer_container">
             <PostCreateBox user={user} />
