@@ -1,17 +1,20 @@
 import { EditComment, Delete_comment } from '../store/post'
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react"
+import CommentForm from './PicCard/CommentForm'
 
 
 
 
-function CommentAction({ PostId, CommentId, comment, setShowEditInput, showEditInput }) {
+
+function CommentAction({ post, comment }) {
+    const current_user = useSelector(state => state.session.user)
     const dispatch = useDispatch()
     const [showCommentAction, setShowCommentAction] = useState(false)
     const [errors, setErrors] = useState([]);
     const user = useSelector(state => state.session.user)
     const [commentDesc, setCommentDesc] = useState()
-    // const [showEditInput, setShowEditInput] = useState(false)
+    const [showEditInput, setShowEditInput] = useState(false)
 
 
     const deleteCommentOnclick = async (post_id, comment_id) => {
@@ -65,20 +68,52 @@ function CommentAction({ PostId, CommentId, comment, setShowEditInput, showEditI
 
     return (
         <div>
-            <div className="dot_div"
-                onClick={() => {
-                    // console.log(index)
-                    setShowCommentAction(!showCommentAction)
-                }}>
-                <i className="fa-solid fa-ellipsis"></i>
-                {showCommentAction &&
-                    <div className="comment_buttons">
-                        <button onClick={() => setShowEditInput(!showEditInput)}>Edit</button>
-                        
-                        <button onClick={() => deleteCommentOnclick(PostId, CommentId)} >Delete</button>
-                    </div>}
+
+            <div className="comment_info_box">
+                {!showEditInput&&<div className='wrapper_comment'>
+                <div>
+                    <img className="user_profile_image" src={post.user.profile_img}></img>
+                </div>
+                <div className="comment_and_user_name">
+                    <div>{comment.user.first_name} {comment.user.last_name}</div>
+                    <div>{comment.comment}</div>
+                </div> 
+                {
+                    current_user.id === comment.user.id &&
+                    <div className="dot_div_container"
+                    onClick={() => {
+                        // console.log(index)
+                        setShowCommentAction(!showCommentAction)
+                    }}>
+                        <i className="fa-solid fa-ellipsis"></i>
+                        {showCommentAction &&
+                            <div className="comment_buttons_container">
+                                <div className='button-wrapper'>
+                                <button className="comment_edit_delete_buttons" onClick={() => setShowEditInput(!showEditInput)}>Edit</button>
+                                </div>
+                                <div className='button-wrapper'>
+                                <button className="comment_edit_delete_buttons" 
+                                onClick={() => deleteCommentOnclick(post.id, comment.id)} >Delete</button>
+                                </div>
+                            </div>}
+
+                    </div>
+
+                }
+                </div>}
+                {showEditInput &&
+                <CommentForm comment={comment} post={post} setShowEditInput={setShowEditInput} showEditInput={showEditInput} />}
             </div>
-            
+
+
+
+
+
+
+
+
+
+
             {/* {errors.length > 0 && <ul>
                 {errors.map((error, index) => (
                     <li key={index}>{error}</li>

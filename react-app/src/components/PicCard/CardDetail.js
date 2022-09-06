@@ -172,23 +172,24 @@ function CardDetail({ user, post }) {
                     {
                         post.comments.length > 0 && post.comments.map((comment, index) => {
                             return <div className="comment_inner_container">
-                                <div className="comment_info_box">
-                                <div>
-                                    <img className="user_profile_image" src={post.user.profile_img}></img>
-                                </div>
-                                <div className="comment_and_user_name">
-                                    <div>{comment.user.first_name} {comment.user.last_name}</div>
-                                    <div key={index}>{comment.comment}</div>
-                                </div>
-                                {
-                                    current_user.id === comment.user.id &&
-                                    <CommentAction PostId={post.id} CommentId={comment.id} comment={comment} setShowEditInput={setShowEditInput} />
+                                <CommentAction post={post} comment={comment}/>
+                                {/* <div className="comment_info_box">
+                                    <div>
+                                        <img className="user_profile_image" src={post.user.profile_img}></img>
+                                    </div>
+                                    <div className="comment_and_user_name">
+                                        <div>{comment.user.first_name} {comment.user.last_name}</div>
+                                        <div key={index}>{comment.comment}</div>
+                                    </div>
+                                    {
+                                        current_user.id === comment.user.id &&
+                                        <CommentAction PostId={post.id} CommentId={comment.id} comment={comment} setShowEditInput={setShowEditInput} />
 
-                                }
-                                </div>
+                                    }
+                                </div> */}
 
 
-                                {showEditInput &&<CommentForm comment={comment} post={post} setShowEditInput={setShowEditInput} showEditInput={showEditInput}/>}
+                                {showEditInput && <CommentForm comment={comment} post={post} setShowEditInput={setShowEditInput} showEditInput={showEditInput} />}
                                 {/* {showEditInput && <form onSubmit={handleCommentSubmit}>
                                     <div className="comment_line_container">
                                         <div>
@@ -229,8 +230,8 @@ function CardDetail({ user, post }) {
                     <li key={index}>{error}</li>
                 ))}
             </ul>} */}
-            
-            <CommentForm comment={comment} post={post} setShowEditInput={setShowEditInput}/>
+
+            <CommentForm comment={comment} post={post} setShowEditInput={setShowEditInput} />
 
             {/* <form onSubmit={handleCreateCommentSubmit}>
                 <div className="comment_line_container">

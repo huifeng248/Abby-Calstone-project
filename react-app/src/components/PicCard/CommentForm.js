@@ -57,7 +57,7 @@ function CommentForm({ comment, post, setShowEditInput }) {
 
 
 
-        return <div>
+        return <div className='comment_form_container'>
             {errors.length > 0 && <ul>
                 {errors.map((error, index) => (
                     <li key={index}>{error}</li>
