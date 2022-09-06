@@ -32,6 +32,7 @@
 }
 .Comments_signs{
     display: flex;
+    cursor: pointer;
 }
 .below_post_line{
     display: flex;
@@ -78,5 +79,146 @@
     display: flex;
     gap: 10px;
     flex-direction: column;
+}
+
+.user_edit_line{
+    display: flex;
+    justify-content: space-between;
+    /* position: relative; */
+}
+
+.edit_icon{
+    display: flex;
+    align-items: center;
+}
+
+.action_div{
+    cursor: pointer
+}
+
+.dropdown{
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content{
+    position: absolute;
+    z-index: 1;
+    right: 0px;
+    top: 40px;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    width: 150px;
+    padding: 8px;
+}
+
+.dropdown-content div {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.counts_container{
+    display: flex;
+    justify-content: space-between;
+}
+
+.likecount{
+    color: #0070E3
+}
+
+.count_number{
+    color: #64676B;
+}
+
+.like_counts_container{
+    display: flex;
+}
+
+.comment_counts_container{
+    display: flex;
+    cursor: pointer;
+}
+
+.comment_inner_container{
+    display: flex;
+    flex-direction: column;
+}
+
+.comment_and_user_name{
+    display: flex;
+    flex-direction: column;
+    background-color: #F0F2F5;
+    border-radius: 20px;
+}
+
+.dot_div_container:hover{
+    background-color: #F0F2F5;
+    
+    
+}
+.dot_div_container{
+    cursor: pointer;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+
+.comment_info_box{
+    display: flex;
+    flex-direction: row;
+}
+
+.wrapper_comment{
+    display: flex;
+    flex-direction: row;
+}
+
+.comment_buttons_container{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    left: 10px;
+    top: 20px;
+    background-color: white;
+    width: 200px;
+    height: 90px;
+    align-items: flex-start;
+    padding: 8px 0px;
+    
+}
+
+.button-wrapper{
+    display: flex;
+    align-items: center;
+    height: 50%;
+    width: 100%;
+    padding: 12px 8px;
+}
+
+.comment_edit_delete_buttons{
+    background: none;
+	color: inherit;
+	border: none;
+	padding: 0;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
+
+}
+
+.button-wrapper:hover{
+    background-color: #F0F2F5;
+}
+
+.edit_comment_container{
+    display: flex;
 }
 
