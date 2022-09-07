@@ -33,16 +33,29 @@ function PostModal({ user, post, setShowPostModal, showPostModal }) {
         if (!description || description.trimEnd().length === 0) {
             errors_arr.push('Please provide a valid post')
         }
-        if (!url || url.trimEnd().length === 0) {
-            errors_arr.push('Please provide a valid image url')
-        }
         if (description && description.trimEnd().length > 3000) {
             errors_arr.push('Description must be within 3000 characters')
         }
+        if (!url || url.trimEnd().length === 0) {
+            errors_arr.push('Please provide a valid image url')
+        }
+        if (url.includes("File:")) {
+			errors_arr.push(
+				'URL must not include "File:", Please use original image address'
+			);
+            // setIsValid(false)
+		}
+		if (url.includes(' ')) {
+			errors_arr.push(
+				'Cannot have an empty space in the url!'
+			)
+            // setIsValid(false)
+		}
         if (!isValid) {
             errors_arr.push('Please provide a valid image url that ends with jpg, jpeg, png, webp, avif, gif, or svg')
         }
         if (errors_arr.length > 0) {
+            // setIsValid(false)
             return setErrors(errors_arr)
         }
         // create a post  
