@@ -1,6 +1,6 @@
 import { Modal } from '../../context/Modal'
 import { useEffect, useState } from 'react'
-import { useDispatch} from "react-redux";
+import { useDispatch } from "react-redux";
 import { CreatePost, EditPost } from '../../store/post'
 import './PostModal.css'
 
@@ -70,8 +70,13 @@ function PostModal({ user, post, setShowPostModal, showPostModal }) {
         <div>
             {showPostModal &&
                 <Modal onClose={() => setShowPostModal(false)}>
-                    <div className='create_post_container'>
-                        <div>{post ? "Edit post" : "Create post"}</div>
+                    <div className='create_post_form_container'>
+                        <div className='post_title_wrapper'>
+                            <div className='post_form_title'>{post ? "Edit post" : "Create post"}</div>
+                            <i onClick={() => { setShowPostModal(false) }}
+                                className="fa-solid fa-x cancel_post_button"></i>
+                        </div>
+
                         {errors.length > 0 && <ul>
                             {errors.map((error, index) => (
                                 <li key={index}>{error}</li>

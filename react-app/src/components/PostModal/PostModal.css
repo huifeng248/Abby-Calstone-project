@@ -1,4 +1,34 @@
-/* .create_post_container{
+.create_post_form_container{
     width: 500px;
-    height: 720px;
-} */
+    height: 450px;
+}
+
+.post_form_title{
+    display: flex;
+    font-size: 20px;
+    font-weight: bold;
+    width: 100%;
+    height: 60px;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box
+}
+
+
+.post_title_wrapper{
+    display: flex;
+    border-bottom: 0.5px solid #91969B;
+    justify-content: center;
+    align-items: center;
+}
+
+.cancel_post_button{
+  position: absolute;
+  right: 16px;
+  top: 20px;  
+  cursor: pointer;
+}
+.cancel_post_button:hover{
+    background-color: #F0F2F5;
+    border-radius: 50%;
+}
