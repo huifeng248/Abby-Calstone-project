@@ -1,5 +1,5 @@
 import { Modal } from '../../context/Modal'
-import { useEffect, useState } from 'react'
+import { useEffect, useLayoutEffect, useState } from 'react'
 import { useDispatch } from "react-redux";
 import { CreatePost, EditPost } from '../../store/post'
 import './PostModal.css'
@@ -9,6 +9,7 @@ function PostModal({ user, post, setShowPostModal, showPostModal }) {
     const [description, setDescription] = useState()
     const [url, setUrl] = useState()
     const [errors, setErrors] = useState([]);
+    const [isValid, setIsValid] = useState(false)
 
     const dispatch = useDispatch()
 
@@ -20,16 +21,23 @@ function PostModal({ user, post, setShowPostModal, showPostModal }) {
         }
     }, [post])
 
+    function checkImageUrl(post_url) {
+        return /\.(jpg|jpeg|png|webp|avif|gif|svg)$/.test(post_url);
+    }
+
 
     const handleSubmit = async (e) => {
         e.preventDefault()
         let errors_arr = []
 
-        if (!description) {
+        if (!description || description.trimEnd().length === 0) {
             errors_arr.push('Please provide a valid post')
         }
-        if (!url) {
+        if (!url || url.trimEnd().length === 0) {
             errors_arr.push('Please provide a valid image url')
+        }
+        if (description && description.trimEnd().length > 3000) {
+            errors_arr.push('Description must be within 3000 characters')
         }
         if (errors_arr.length > 0) {
             return setErrors(errors_arr)
@@ -96,7 +104,9 @@ function PostModal({ user, post, setShowPostModal, showPostModal }) {
                                 <div className='post_info_div'>
                                     <textarea className="post_description"
                                         placeholder="What's on your mind, Hui?"
-                                        onChange={(e) => setDescription(e.target.value)}
+                                        onChange={(e) => 
+                                            {setDescription(e.target.value)
+                                            setErrors([])}}
                                         value={description}
                                     >
                                     </textarea>
@@ -105,7 +115,11 @@ function PostModal({ user, post, setShowPostModal, showPostModal }) {
                                 <div className='post_info_div'>
                                     <textarea className="post_url"
                                         placeholder='Image url here...'
-                                        onChange={(e) => setUrl(e.target.value)}
+                                        onChange={(e) => {
+                                            setUrl(e.target.value)
+                                            setIsValid(checkImageUrl(e.target.value))
+                                            console.log("*******check image url",checkImageUrl(e.target.value) )
+                                            setErrors([])}}
                                         value={url}
                                         type="url"
                                     >
@@ -113,7 +127,9 @@ function PostModal({ user, post, setShowPostModal, showPostModal }) {
                                 </div>
 
                                 <div className="post_image_preview_container">
+                                    {isValid? 
                                     <img className='post_image_preview_holder' src={url}></img>
+                                    : <img className='post_image_preview_holder' src="https://community.clover.com/themes/base/admin/img/default-coverImage.png"></img>}
                                 </div>
                             </div>
                             <div className='button_container'>
