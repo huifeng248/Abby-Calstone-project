@@ -20,7 +20,8 @@ def get_posts_at_homepage():
     friend_arr_list = [friend.friend_id for friend in friend_obj_list]
     #append userid into that list
     friend_arr_list.append(id)
-    posts = Post.query.filter(Post.user_id.in_(friend_arr_list)).order_by(Post.createdAt.desc()).all()
+    posts = Post.query.filter(Post.user_id.in_(friend_arr_list)).order_by(
+        Post.createdAt.desc()).all()
     posts_to_json= [post.to_dict() for post in posts]
     post_userId = [post.user_id for post in posts]
     for post in posts_to_json:

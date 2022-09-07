@@ -10,7 +10,10 @@ function PicCard() {
     const [loaded, setLoaded] = useState(false)
     const user = useSelector(state => state.session.user)
     const posts = useSelector(state => state.Posts)
-    const post_arr = Object.values(posts)
+    const temp_arr = Object.values(posts)
+    const post_arr = temp_arr.sort(function (a, b) {
+        return new Date(b.createdAt) - new Date(a.createdAt)
+    })
 
 
     useEffect(() => {

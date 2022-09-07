@@ -77,7 +77,7 @@ function PostModal({ user, post, setShowPostModal, showPostModal }) {
                                 className="fa-solid fa-x cancel_post_button"></i>
                         </div>
 
-                        {errors.length > 0 && <ul>
+                        {errors.length > 0 && <ul className='Post_error_message_container'>
                             {errors.map((error, index) => (
                                 <li key={index}>{error}</li>
                             ))}
@@ -92,25 +92,34 @@ function PostModal({ user, post, setShowPostModal, showPostModal }) {
                         </div>
                         <form onSubmit={handleSubmit}>
 
+                            <div className='post_info_container'>
+                                <div className='post_info_div'>
+                                    <textarea className="post_description"
+                                        placeholder="What's on your mind, Hui?"
+                                        onChange={(e) => setDescription(e.target.value)}
+                                        value={description}
+                                    >
+                                    </textarea>
+                                </div>
 
-                            <input className="post_description"
-                                placeholder="What's on your mind, Hui?"
-                                onChange={(e) => setDescription(e.target.value)}
-                                value={description}
-                            >
-                            </input>
-                            <input className="post_url"
-                                placeholder='Image url here...'
-                                onChange={(e) => setUrl(e.target.value)}
-                                value={url}
-                            >
-                            </input>
-                            {/* <div> need to change the image size
-                                <img className='post_image_preview_holder' src={url}></img>
-                            </div> */}
-                            <button type='submit'
-                            // onClick={()=> setShowModal(false)}
+                                <div className='post_info_div'>
+                                    <textarea className="post_url"
+                                        placeholder='Image url here...'
+                                        onChange={(e) => setUrl(e.target.value)}
+                                        value={url}
+                                        type="url"
+                                    >
+                                    </textarea>
+                                </div>
+
+                                <div className="post_image_preview_container">
+                                    <img className='post_image_preview_holder' src={url}></img>
+                                </div>
+                            </div>
+                            <div className='button_container'>
+                            <button className="post_submit_button" type='submit'
                             > {post ? "Save" : "Post"}</button>
+                            </div>
                         </form>
                     </div>
                 </Modal>}

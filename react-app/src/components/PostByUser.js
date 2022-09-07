@@ -12,12 +12,13 @@ const PostByUser = () => {
     const dispatch = useDispatch()
     const [loaded, setLoaded] = useState(false)
     const user = useSelector(state => state.session.user)
-    console.log("$$$$$$$", user.id, user.first_name)
     const { userId } = useParams()
     const posts = useSelector(state => state.Posts)
     const post_arr = Object.values(posts)
-    console.log("******", post_arr)
-    const filtered_posts = post_arr.filter(post => post.user.user_id = userId)
+    const temp_posts = post_arr.filter(post => post.user.user_id = userId)
+    const filtered_posts = temp_posts.sort(function (a, b) {
+        return new Date(b.createdAt) - new Date(a.createdAt)
+    })
 
     // useEffect(() => {
     //     if(!userId) {
@@ -30,7 +31,6 @@ const PostByUser = () => {
     // },[dispatch,userId])
 
     useEffect(() => {
-        console.log("%%%%%%%%", userId)
         dispatch(GetPostByUser(userId))
             .then(() => (setLoaded(true)))
     }, [dispatch, userId])
@@ -38,8 +38,8 @@ const PostByUser = () => {
     // This need to be after the useEffect. AS the result would be filtered by the user id
     return (
         <div className="outer_container">
-            {console.log("current user Id", user.id)}
-            {console.log("user Params id", userId)}
+            {/* {console.log("current user Id", user.id)}
+            {console.log("user Params id", userId)} */}
             {Number(user.id) === Number(userId) && <PostCreateBox user={user} />}
             {loaded && filtered_posts.length ?
                 filtered_posts.map((post, index) => {
