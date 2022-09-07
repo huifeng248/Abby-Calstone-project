@@ -167,15 +167,17 @@ function CardDetail({ user, post }) {
                     <div> Comment</div>
                 </div>
             </div>
-            {showComments &&
+            {showComments && 
+            // need a tunary for commentslength ===0 
                 <div >
                     {
-                        post.comments.length > 0 && post.comments.map((comment, index) => {
+                        post.comments.length > 0 ? post.comments.map((comment, index) => {
                             return <div className="comment_inner_container">
                                 <CommentAction post={post} comment={comment} />
                                 {showEditInput && <CommentForm comment={comment} post={post} setShowEditInput={setShowEditInput} showEditInput={showEditInput} />}
                             </div>
                         })
+                        : <div> There is no comments yet. Be the first one to leave a comment. </div>
                     }
                 </div>
             }

@@ -1,6 +1,6 @@
 import { Modal } from '../../context/Modal'
 import { useEffect, useState } from 'react'
-import { useDispatch} from "react-redux";
+import { useDispatch } from "react-redux";
 import { CreatePost, EditPost } from '../../store/post'
 import './PostModal.css'
 
@@ -70,9 +70,14 @@ function PostModal({ user, post, setShowPostModal, showPostModal }) {
         <div>
             {showPostModal &&
                 <Modal onClose={() => setShowPostModal(false)}>
-                    <div className='create_post_container'>
-                        <div>{post ? "Edit post" : "Create post"}</div>
-                        {errors.length > 0 && <ul>
+                    <div className='create_post_form_container'>
+                        <div className='post_title_wrapper'>
+                            <div className='post_form_title'>{post ? "Edit post" : "Create post"}</div>
+                            <i onClick={() => { setShowPostModal(false) }}
+                                className="fa-solid fa-x cancel_post_button"></i>
+                        </div>
+
+                        {errors.length > 0 && <ul className='Post_error_message_container'>
                             {errors.map((error, index) => (
                                 <li key={index}>{error}</li>
                             ))}
@@ -87,25 +92,34 @@ function PostModal({ user, post, setShowPostModal, showPostModal }) {
                         </div>
                         <form onSubmit={handleSubmit}>
 
+                            <div className='post_info_container'>
+                                <div className='post_info_div'>
+                                    <textarea className="post_description"
+                                        placeholder="What's on your mind, Hui?"
+                                        onChange={(e) => setDescription(e.target.value)}
+                                        value={description}
+                                    >
+                                    </textarea>
+                                </div>
 
-                            <input className="post_description"
-                                placeholder="What's on your mind, Hui?"
-                                onChange={(e) => setDescription(e.target.value)}
-                                value={description}
-                            >
-                            </input>
-                            <input className="post_url"
-                                placeholder='Image url here...'
-                                onChange={(e) => setUrl(e.target.value)}
-                                value={url}
-                            >
-                            </input>
-                            {/* <div> need to change the image size
-                                <img className='post_image_preview_holder' src={url}></img>
-                            </div> */}
-                            <button type='submit'
-                            // onClick={()=> setShowModal(false)}
+                                <div className='post_info_div'>
+                                    <textarea className="post_url"
+                                        placeholder='Image url here...'
+                                        onChange={(e) => setUrl(e.target.value)}
+                                        value={url}
+                                        type="url"
+                                    >
+                                    </textarea>
+                                </div>
+
+                                <div className="post_image_preview_container">
+                                    <img className='post_image_preview_holder' src={url}></img>
+                                </div>
+                            </div>
+                            <div className='button_container'>
+                            <button className="post_submit_button" type='submit'
                             > {post ? "Save" : "Post"}</button>
+                            </div>
                         </form>
                     </div>
                 </Modal>}

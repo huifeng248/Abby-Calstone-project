@@ -1,6 +1,6 @@
 .signup_page{
     width: 430px;
-    height: 520px;
+    height: 530px;
     display: flex;
     flex-direction: column;
     /* align-items: flex-start; */
@@ -67,17 +67,35 @@
     width: 194px;
     height: 40px;
     color: white;
-    background-color: #15A400;
+    background-color: #24a400;
     border-radius: 5px;
 }
 
 .signUp_button:hover{
     background-color: #4da400;
+}
 
+.signup_link:hover{
+    background: none
 }
 
 .button_dev{
     margin-top: 20px;
     display: flex;
     justify-content: center;
+}
+
+.fa-x{
+    position: absolute;
+    right: 20px;
+    top:20px
+}
+
+.error_msg_box{
+    color: red;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* align-items: center; */
+    padding: 0px 20px 20px;
 }
