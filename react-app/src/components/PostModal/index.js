@@ -23,10 +23,10 @@ function PostModal({ user, post, setShowPostModal, showPostModal }) {
     }, [post])
 
     function checkImageUrl(post_url) {
-        if (!url || url.trimEnd().length === 0) return false
-        if (url && url.includes(' ')) return false
-        if (url && url.includes("File:")) return false
-        
+        if (!post_url || post_url.trimEnd().length === 0) return false
+        if (post_url && post_url.includes(' ')) return false
+        if (post_url && post_url.includes("File:")) return false
+
         return /\.(jpg|jpeg|png|webp|avif|gif|svg)$/.test(post_url);
     }
 
