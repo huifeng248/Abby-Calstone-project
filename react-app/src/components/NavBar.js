@@ -19,16 +19,16 @@ const NavBar = () => {
           <NavLink className="home_link" to='/' exact={true} activeClassName='active'>
             FaceTa
           </NavLink>
-        </div>
-        <div>
-          <i className="fa-solid fa-user"
-            onClick={() => setShowList(!showList)}></i>
+          <div>
+            <i className="fa-solid fa-user"
+              onClick={() => setShowList(!showList)}></i>
+          </div>
         </div>
         {showList &&
           <div className='drop_down_menu'>
             <div
-              onClick={() => setShowList(!showList)}> 
-              <Link to ={`/posts/users/${user.id}`}> 
+              onClick={() => setShowList(!showList)}>
+              <Link to={`/posts/users/${user.id}`}>
                 Profile page
               </Link>
             </div>

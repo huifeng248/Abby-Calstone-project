@@ -30,9 +30,10 @@ function PostModal({ user, post, setShowPostModal, showPostModal }) {
         return /\.(jpg|jpeg|png|webp|avif|gif|svg)$/.test(post_url);
     }
 
-    // function addDefaultSrc(e){
-    //     e.target.src = 'https://community.clover.com/themes/base/admin/img/default-coverImage.png'
-    // }
+    function addDefaultSrc(error){
+        const img = document.getElementById("preview_img")
+        img.src = 'https://community.clover.com/themes/base/admin/img/default-coverImage.png'
+    }
 
     // function checkUrlErrors(url_to_check) {
     //     let errors_arr = []
@@ -76,6 +77,9 @@ function PostModal({ user, post, setShowPostModal, showPostModal }) {
         if (!url || url.trimEnd().length === 0) {
             errors_arr.push('Please provide a valid image url')
         }
+        // if (!isValidUrl(url)) {
+        //     errors_arr.push('Please provide a valid url')
+        // }
         if (!isValid) {
             errors_arr.push('Please provide a valid image url that ends with jpg, jpeg, png, webp, avif, gif, or svg')
         }
@@ -165,7 +169,7 @@ function PostModal({ user, post, setShowPostModal, showPostModal }) {
                                 </div>
 
                                 <div className='post_info_div'>
-                                    <textarea className="post_url"
+                                    <input className="post_url"
                                         placeholder='Image url here...'
                                         onChange={(e) => {
                                             setUrl(e.target.value)
@@ -175,15 +179,18 @@ function PostModal({ user, post, setShowPostModal, showPostModal }) {
                                         value={url}
                                         type="url"
                                     >
-                                    </textarea>
+                                    </input>
                                 </div>
 
                                 <div className="post_image_preview_container">
-                                    {/* <img onerror={()=>addDefaultSrc()} className='post_image_preview_holder' src={url}></img> */}
+                                    <img id="preview_img" onError={({target}) => {
+                                        target.onError = null
+                                        target.src = "https://community.clover.com/themes/base/admin/img/default-coverImage.png"
+                                    }} className='post_image_preview_holder' src={url}></img>
 
-                                    {isValid? 
+                                    {/* {isValid? 
                                     <img className='post_image_preview_holder' src={url}></img>
-                                    : <img className='post_image_preview_holder' src="https://community.clover.com/themes/base/admin/img/default-coverImage.png"></img>}
+                                    : <img className='post_image_preview_holder' src="https://community.clover.com/themes/base/admin/img/default-coverImage.png"></img>} */}
                                 </div>
                             </div>
                             <div className='button_container'>
