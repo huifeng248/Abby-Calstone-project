@@ -15,9 +15,9 @@ const NavBar = () => {
   else return (
     <div>
       <nav className='nav_bar_container'>
-        <div>
-          <NavLink to='/' exact={true} activeClassName='active'>
-            Home
+        <div className="home_link_container">
+          <NavLink className="home_link" to='/' exact={true} activeClassName='active'>
+            FaceTa
           </NavLink>
         </div>
         <div>
