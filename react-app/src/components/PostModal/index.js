@@ -39,6 +39,9 @@ function PostModal({ user, post, setShowPostModal, showPostModal }) {
         if (description && description.trimEnd().length > 3000) {
             errors_arr.push('Description must be within 3000 characters')
         }
+        if (!isValid) {
+            errors_arr.push('Please provide a valid image url that ends with jpg, jpeg, png, webp, avif, gif, or svg')
+        }
         if (errors_arr.length > 0) {
             return setErrors(errors_arr)
         }
