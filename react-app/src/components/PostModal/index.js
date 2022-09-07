@@ -18,12 +18,49 @@ function PostModal({ user, post, setShowPostModal, showPostModal }) {
         if (post) {
             setDescription(post.description)
             setUrl(post.url)
+            setIsValid(true)
         }
     }, [post])
 
     function checkImageUrl(post_url) {
+        if (!post_url || post_url.trimEnd().length === 0) return false
+        if (post_url && post_url.includes(' ')) return false
+        if (post_url && post_url.includes("File:")) return false
+
         return /\.(jpg|jpeg|png|webp|avif|gif|svg)$/.test(post_url);
     }
+
+    // function addDefaultSrc(e){
+    //     e.target.src = 'https://community.clover.com/themes/base/admin/img/default-coverImage.png'
+    // }
+
+    // function checkUrlErrors(url_to_check) {
+    //     let errors_arr = []
+    
+
+    //     console.log("url to check", url_to_check)
+    //     if (!url_to_check) {
+    //         console.log("url*****", url_to_check)
+    //         errors_arr.push('Please provide a valid image url')
+    //     }
+    //     // if (!isValid) {
+    //     //     errors_arr.push('Please provide a valid image url that ends with jpg, jpeg, png, webp, avif, gif, or svg')
+    //     // }
+    //     if (url_to_check && url_to_check.indexOf(' ')>=0) {
+	// 		errors_arr.push(
+	// 			'Cannot have an empty space in the url!'
+	// 		)
+	// 	}
+    //     if (url_to_check && url_to_check.includes("File:")) {
+	// 		errors_arr.push(
+	// 			'Invalid URL: URL must not include "File:", Please use original image address'
+	// 		);
+	// 	}
+    //     // if (errors_arr.length > 0) setErrors(errors_arr)
+    //     console.log("error array", errors_arr)
+    //     return errors_arr
+        
+    // }
 
 
     const handleSubmit = async (e) => {
@@ -31,7 +68,7 @@ function PostModal({ user, post, setShowPostModal, showPostModal }) {
         let errors_arr = []
 
         if (!description || description.trimEnd().length === 0) {
-            errors_arr.push('Please provide a valid post')
+            errors_arr.push('Please provide a valid description')
         }
         if (description && description.trimEnd().length > 3000) {
             errors_arr.push('Description must be within 3000 characters')
@@ -52,10 +89,12 @@ function PostModal({ user, post, setShowPostModal, showPostModal }) {
 				'Invalid URL: URL must not include "File:", Please use original image address'
 			);
 		}
+        
         if (errors_arr.length > 0) {
             return setErrors(errors_arr)
         }
         // create a post  
+       
         if (!post) {
             const create_post_payload = {
                 description,
@@ -140,6 +179,8 @@ function PostModal({ user, post, setShowPostModal, showPostModal }) {
                                 </div>
 
                                 <div className="post_image_preview_container">
+                                    {/* <img onerror={()=>addDefaultSrc()} className='post_image_preview_holder' src={url}></img> */}
+
                                     {isValid? 
                                     <img className='post_image_preview_holder' src={url}></img>
                                     : <img className='post_image_preview_holder' src="https://community.clover.com/themes/base/admin/img/default-coverImage.png"></img>}
