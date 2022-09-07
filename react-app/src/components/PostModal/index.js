@@ -39,23 +39,20 @@ function PostModal({ user, post, setShowPostModal, showPostModal }) {
         if (!url || url.trimEnd().length === 0) {
             errors_arr.push('Please provide a valid image url')
         }
-        if (url.includes("File:")) {
-			errors_arr.push(
-				'URL must not include "File:", Please use original image address'
-			);
-            // setIsValid(false)
-		}
-		if (url.includes(' ')) {
-			errors_arr.push(
-				'Cannot have an empty space in the url!'
-			)
-            // setIsValid(false)
-		}
         if (!isValid) {
             errors_arr.push('Please provide a valid image url that ends with jpg, jpeg, png, webp, avif, gif, or svg')
         }
+        if (url.includes(' ')) {
+			errors_arr.push(
+				'Cannot have an empty space in the url!'
+			)
+		}
+        if (url.includes("File:")) {
+			errors_arr.push(
+				'Invalid URL: URL must not include "File:", Please use original image address'
+			);
+		}
         if (errors_arr.length > 0) {
-            // setIsValid(false)
             return setErrors(errors_arr)
         }
         // create a post  
