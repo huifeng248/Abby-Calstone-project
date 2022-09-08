@@ -1,12 +1,43 @@
 .sidebar_container{
-    padding-top: 20px;
+    margin-top: 20px;
+    width: 180px;
+    padding: 8px 20px;
+
     display: flex;
     flex-direction: column;
-    background-color: red;
+    /* background-color: red; */
 }
 
-.contact_info_link{
+.contact_info_link_div{
+    width: 100%;
+    height: 36px;
     display: flex;
     flex-direction: row;
-    background-color: red;
+    /* background-color: red; */
+    align-items: center;
+
+}
+
+.fa-github{
+    padding-right: 16px;
+    font-size: 24px;
+}
+.fa-linkedin{
+    padding-right: 16px;
+    font-size: 24px;
+}
+
+a{
+    text-decoration: none;
+}
+
+.fa-house{
+    padding-right: 16px;
+    font-size: 20px;
+}
+
+.user_profile_image_sidebar{
+    width: 24px;
+    height: 24px;
+    padding-right: 16px;
 }

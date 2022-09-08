@@ -16,10 +16,24 @@ const LoginForm = () => {
 
   const onLogin = async (e) => {
     e.preventDefault();
-    const data = await dispatch(login(email, password));
-    if (data) {
-      setErrors(data);
+    const error_list = []
+    if (email.trimEnd().length === 0) {
+      error_list.push("Email is required.")
+    } 
+    if (password.trimEnd().length === 0) {
+      error_list.push("Password is required.")
+    } 
+
+    if (error_list.length > 0){
+      setErrors(error_list)
+    } else {
+      const data = await dispatch(login(email, password));
+      if (data) {
+        setErrors(data);
+      }
+
     }
+
   };
 
   const demoLogin = async (e) => {

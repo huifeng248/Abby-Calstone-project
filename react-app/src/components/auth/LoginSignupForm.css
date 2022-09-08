@@ -135,6 +135,7 @@ body {
     align-items: center;
     justify-content: center;
     color: red;
+    /* padding: 0px 20px 20px; */
 }
 
 .above_signup_form{
