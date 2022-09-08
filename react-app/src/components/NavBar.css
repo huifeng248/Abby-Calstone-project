@@ -64,7 +64,18 @@
 
 .fa-user{
     padding: 0px 16px 0px 4px;
+    cursor: pointer;
 }
+
+/* .fa-user:hover{
+    position: absolute;
+    background-color: #F0F2F5;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+} */
+
+
 
 .user_profile_link:hover{
     /* margin-left: 0px; */
