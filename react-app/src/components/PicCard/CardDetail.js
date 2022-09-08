@@ -98,6 +98,9 @@ function CardDetail({ user, post }) {
     return (
         <div>
             <PostModal user={current_user} post={post} setShowPostModal={setShowPostModal} showPostModal={showPostModal} />
+            <div className="post_card_container_wrapper">
+
+           
             <div className="user_edit_line">
 
                 <div className="user_box">
@@ -133,33 +136,38 @@ function CardDetail({ user, post }) {
                 </div>
 
             </div>
-            <div> {post.description}</div>
+            <div className="Post_desc_container"> {post.description}</div>
             <div>
-                <img className='post_image' src={post.url}></img>
+                <img className='post_image'onError={({target})=> {
+                    target.onError = null
+                    target.src= "https://community.clover.com/themes/base/admin/img/default-coverImage.png"
+                }} src={post.url}></img>
             </div>
             <div className='counts_container'>
-                <div className='like_counts_container'>
+                {/* will implement this later on */}
+                {/* <div className='like_counts_container'>
                     <i className="fa-solid fa-thumbs-up likecount"></i>
                     <div className="count_number">
                         {post.user_post_likes ? post.user_post_likes : null}
                     </div>
-                </div>
+                </div> */}
                 <div onClick={() => SetShowComments(!showComments)}
                     className="comment_counts_container">
-                    <div className="count_number">{post.comments.length ? post.comments.length : null}</div>
-                    <div className="count_number">Comments</div>
+                    <div className="count_number">{post.comments.length ? `Show ${post.comments.length} comments` : "No comments yet"}</div>
+                    {/* <div className="count_number"> Comments</div> */}
                 </div>
 
             </div>
 
 
             <div className="below_post_line">
-                <div className="Image_likes">
+                {/* will implement this feature later on */}
+                {/* <div className="Image_likes">
                     <div>
                         <i className="fa-regular fa-thumbs-up"></i>
                     </div>
                     <div>Like</div>
-                </div>
+                </div> */}
                 <div className="Comments_signs" onClick={() => FocusEventListener()}>
                     <div>
                         <i className="fa-regular fa-comment"></i>
@@ -168,7 +176,7 @@ function CardDetail({ user, post }) {
                 </div>
             </div>
             {showComments && 
-            // need a tunary for commentslength ===0 
+          
                 <div >
                     {
                         post.comments.length > 0 ? post.comments.map((comment, index) => {
@@ -187,6 +195,7 @@ function CardDetail({ user, post }) {
             {/* <div>
                 Comments: {post.comments.length > 0 ? post.comments[(post.comments.length - 1)].comment : null}
             </div> */}
+             </div>
         </div>
     )
 

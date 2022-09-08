@@ -87,7 +87,7 @@
     max-height: 290px;
     width: 94%;
     height: 260px;
-    border: 0.5px solid black;
+    border: 1px solid rgba(208, 210, 213, 0.824);
     
     border-radius: 5px;
     box-sizing: border-box;

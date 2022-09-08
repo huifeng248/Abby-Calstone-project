@@ -65,6 +65,9 @@
 }
 
 .create_post_container{
+    margin-top: 20px;
+    margin-bottom: 10px;
+    border-radius: 5px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -74,7 +77,7 @@
 }
 
 .outer_container{
-    width: 526px;
+    width: 700px;
     /* height: 123px; */
     margin: auto;
     display: flex;
@@ -223,3 +226,19 @@
     display: flex;
 }
 
+.post_card_container_wrapper{
+    width: 100%;
+    max-width: 700px;
+    min-width: 700px;
+    border: 1px solid rgba(208, 210, 213, 0.824);
+    border-radius: 5px;
+}
+
+
+.Post_desc_container{
+    padding: 20px;
+    max-width: 660px;
+    overflow-y: scroll;
+    overflow-wrap: break-word;
+    max-height: 80px;
+}
