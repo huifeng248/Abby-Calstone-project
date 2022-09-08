@@ -3,10 +3,43 @@
     overflow-y: scroll;
     overflow-wrap: break-word;
     max-height: 50px;
+    display: flex;
+    flex-direction: column;
 }
 
 
 .cancel_edit_button{
     /* background-color: red; */
     /* margin-left: 15px; */
+}
+
+.comment_line_container{
+    /* background-color: rebeccapurple; */
+}
+
+.comment_line_container{
+    display: flex;
+    /* width: 578px; */
+    height: 44px;
+    width: 100%;
+    min-width: 640px;
+    padding: 6px 16px;
+    box-sizing: border-box;
+    align-items: center;
+}
+
+.edit_comment_container{
+    /* background-color: antiquewhite; */
+    margin-left: -16px;
+}
+
+.comment_input{
+    background-color: #F0F2F5;
+    border-radius: 20px;
+    width: 96%;
+    height: 36px;
+    padding: 8px 12px;
+    box-sizing: border-box;
+    border: none;
+
 }

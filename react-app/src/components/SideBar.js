@@ -21,7 +21,7 @@ function SideBar({ user }) {
             <a className="contact_info_link" href="https://www.linkedin.com/in/hui-abby-feng-cpa/">
                 <div className="contact_info_link_div">
                     <i className="fa-brands fa-linkedin"></i>
-                    <div>Abby Feng linkedin</div>
+                    <div>Abby Feng</div>
                 </div>
             </a>
 

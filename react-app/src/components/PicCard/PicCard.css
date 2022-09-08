@@ -45,22 +45,14 @@
     display: flex;
     justify-content: space-between;
 }
-.comment_input{
+/* .comment_input{
     background-color: #F0F2F5;
     border-radius: 20px;
     width: 96%;
     
 
-}
-.comment_line_container{
-    display: flex;
-    /* width: 578px; */
-    height: 44px;
-    width: 96%;
-    min-width: 640px;
-    padding: 4px 16px;
-    box-sizing: border-box;
-}
+} */
+
 .input_container{
     display: flex;
     align-items: center;
@@ -99,7 +91,7 @@
     height: 40px;
     display: flex;
     align-items: center;
-    padding: 12px 16px 10px;
+    padding: 12px 0px 10px;
     box-sizing: border-box;
     width: 100%;
     /* background-color: firebrick; */
@@ -117,8 +109,8 @@
 .user_edit_line{
     display: flex;
     justify-content: space-between;
-    margin: 0px 0px 12px;
-    padding: 12px 16px 0px;
+    /* margin: 0px 0px 12px; */
+    /* padding: 12px 16px 0px; */
     /* position: relative; */
 }
 
@@ -194,6 +186,8 @@
     flex-direction: column;
     background-color: #F0F2F5;
     border-radius: 20px;
+    padding: 8px 12px;
+    box-sizing: border-box;
 }
 
 .dot_div_container:hover{
@@ -216,7 +210,7 @@
 .comment_info_box{
     display: flex;
     flex-direction: row;
-    /* padding: 4px 16px; */
+    padding: 4px 16px;
 }
 
 .wrapper_comment{
@@ -282,7 +276,7 @@
 
 
 .Post_desc_container{
-    padding: 20px;
+    padding: 4px 16px 16px;
     max-width: 660px;
     overflow-y: scroll;
     overflow-wrap: break-word;
