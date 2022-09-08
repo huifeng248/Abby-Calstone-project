@@ -186,12 +186,20 @@
     flex-direction: column;
 }
 
+.wrapper_comment{
+    display: flex;
+    flex-direction: row;
+    padding: 4px 0px 16px;
+    box-sizing: border-box;
+}
+
 .comment_and_user_name{
     display: flex;
     flex-direction: column;
     background-color: #F0F2F5;
     border-radius: 20px;
     padding: 8px 12px;
+    width: 500px;
     box-sizing: border-box;
 }
 
@@ -218,10 +226,7 @@
     padding: 4px 16px;
 }
 
-.wrapper_comment{
-    display: flex;
-    flex-direction: row;
-}
+
 
 .comment_buttons_container{
     position: absolute;
