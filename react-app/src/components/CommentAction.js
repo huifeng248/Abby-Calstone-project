@@ -109,7 +109,7 @@ function CommentAction({ post, comment }) {
                 {showEditInput &&
                     <div className='edit_comment_container'>
                         <CommentForm comment={comment} post={post} setShowEditInput={setShowEditInput} showEditInput={showEditInput} />
-                        <button onClick={() => setShowEditInput(false)}>Cancel</button>
+                        <button className="cancel_edit_button" onClick={() => setShowEditInput(false)}>Cancel</button>
                     </div>}
             </div>
 

@@ -79,7 +79,7 @@ function CommentForm({ comment, post, setShowEditInput }) {
                             value={commentDesc}
                         ></input>
                     </div>
-                    <button type='submit'>Comment</button>
+                     <button type='submit'>{comment? "Save": "Comment"}</button>
                 </div>
             </form>
         </div>

@@ -114,7 +114,7 @@ function CardDetail({ user, post }) {
                 <div className='dropdown'> {/* dropdown   */}
                     <div className="edit_icon"> {/* dropbtn   */}
                         {current_user.id === post.user.id ?
-                            <i className="fa-solid fa-ellipsis"
+                            <i className="fa-solid fa-ellipsis post_edit_dot"
                                 onClick={() => { setShowDiv(!showDiv) }}
                             ></i> : null}
                     </div>
