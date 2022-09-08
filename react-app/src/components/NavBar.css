@@ -46,6 +46,7 @@
 .home_link_container{
     width: 100%;
     height: 56px;
+    padding-left: 20px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -62,5 +63,5 @@
 }
 
 .fa-user{
-    padding: 16px 16px 4px 4px;
+    padding: 0px 16px 0px 4px;
 }

@@ -1,11 +1,11 @@
 .sidebar_container{
-    margin-top: 20px;
+    padding-top: 20px;
     display: flex;
     flex-direction: column;
     background-color: red;
 }
 
-.contact_info_link_div{
+.contact_info_link{
     display: flex;
     flex-direction: row;
     background-color: red;
