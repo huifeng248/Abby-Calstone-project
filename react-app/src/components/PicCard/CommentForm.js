@@ -58,13 +58,16 @@ function CommentForm({ comment, post, setShowEditInput }) {
 
 
         return <div className='comment_form_container'>
-            {errors.length > 0 && <ul>
+            {errors.length > 0 && <div className='comment_error_message_ul'>
                 {errors.map((error, index) => (
-                    <li key={index}>{error}</li>
+                    <div key={index}>{error}</div>
                 ))}
-            </ul>}
+            </div>}
 
             <form onSubmit={handleCommentSubmit}>
+                {/* <div className='comment_line_container_wrapper'> */}
+
+                
                 <div className="comment_line_container">
                     <div>
                         <img className="user_profile_image" src={user.profile_img}></img>
@@ -79,6 +82,7 @@ function CommentForm({ comment, post, setShowEditInput }) {
                             value={commentDesc}
                         ></input>
                     </div>
+                    {/* </div> */}
                      <button type='submit'>{comment? "Save": "Comment"}</button>
                 </div>
             </form>

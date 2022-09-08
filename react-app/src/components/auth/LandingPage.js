@@ -6,7 +6,7 @@ function LandingPage() {
                     <h3 className='app_title'>FaceTa</h3>
                 </div>
                 <div className='connect_p'>
-                    <div>Connect with friends and the world around you on Facebook.</div>
+                    <div>Connect with friends and the world around you on FaceTa.</div>
                 </div>
             </div>
     

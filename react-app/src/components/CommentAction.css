@@ -17,6 +17,12 @@
     /* background-color: rebeccapurple; */
 }
 
+/* .comment_line_container_wrapper{
+    background-color: aqua;
+    display: flex;
+    margin: 0px 0px 4px;
+} */
+
 .comment_line_container{
     display: flex;
     /* width: 578px; */
@@ -26,6 +32,10 @@
     padding: 6px 16px;
     box-sizing: border-box;
     align-items: center;
+    /* background: green; */
+    margin-top: 4px;
+    margin-bottom: 8px;
+    /* margin: 0px 0px 4px; */
 }
 
 .edit_comment_container{

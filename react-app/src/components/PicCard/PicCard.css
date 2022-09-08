@@ -40,6 +40,9 @@
 .Comments_signs{
     display: flex;
     cursor: pointer;
+    /* padding-bottom: 10px; */
+    /* background-color: rebeccapurple; */
+    box-sizing: border-box;
 }
 .below_post_line{
     display: flex;
@@ -301,4 +304,11 @@
 .fa-ellipsis{
     padding-left: 5px;
     box-sizing: border-box;
+}
+
+.comment_error_message_ul{
+    /* background-color: #64676B; */
+    padding: 4px 16px 16px;
+    text-decoration: none;
+    color: red;
 }
