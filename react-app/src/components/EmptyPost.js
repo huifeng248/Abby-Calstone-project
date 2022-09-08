@@ -1,5 +1,5 @@
 function EmptyPost(){
-    return (<div> this user does not has any post yet </div>)
+    return (<div> This user does not has any post yet. </div>)
 }
 
 export default EmptyPost

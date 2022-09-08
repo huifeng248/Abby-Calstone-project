@@ -2,7 +2,7 @@ import { EditComment, Delete_comment } from '../store/post'
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react"
 import CommentForm from './PicCard/CommentForm'
-
+import "./CommentAction.css"
 
 
 
@@ -76,7 +76,7 @@ function CommentAction({ post, comment }) {
                     </div>
                     <div className="comment_and_user_name">
                         <div>{comment.user.first_name} {comment.user.last_name}</div>
-                        <div>{comment.comment}</div>
+                        <div className='comment_disc_container'>{comment.comment}</div>
                     </div>
                     {
                         current_user.id === comment.user.id &&
@@ -109,7 +109,7 @@ function CommentAction({ post, comment }) {
                 {showEditInput &&
                     <div className='edit_comment_container'>
                         <CommentForm comment={comment} post={post} setShowEditInput={setShowEditInput} showEditInput={showEditInput} />
-                        <button onClick={() => setShowEditInput(false)}>Cancel</button>
+                        <button className="cancel_edit_button" onClick={() => setShowEditInput(false)}>Cancel</button>
                     </div>}
             </div>
 
