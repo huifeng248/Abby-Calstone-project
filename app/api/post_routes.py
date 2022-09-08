@@ -9,19 +9,12 @@ from app.forms.comment_form import CommentForm
 # from app.models import Imageslikes
 
 post_routes = Blueprint('posts', __name__)
-
-# homepage get posts
+# homepage get all post including no friends
 @post_routes.route('')
 @login_required
-def get_posts_at_homepage():
+def get_posts_at_homepage_all_post():
     id = current_user.id
-    #get the friends for the current user by filtering userId
-    friend_obj_list = Friends.query.filter(Friends.user_id == id).all()
-    friend_arr_list = [friend.friend_id for friend in friend_obj_list]
-    #append userid into that list
-    friend_arr_list.append(id)
-    posts = Post.query.filter(Post.user_id.in_(friend_arr_list)).order_by(
-        Post.createdAt.desc()).all()
+    posts= Post.query.all()
     posts_to_json= [post.to_dict() for post in posts]
     post_userId = [post.user_id for post in posts]
     for post in posts_to_json:
@@ -33,6 +26,31 @@ def get_posts_at_homepage():
             else:
                 post['current_user_like'] = False
     return jsonify(posts_to_json)
+
+
+# homepage get posts
+# @post_routes.route('')
+# @login_required
+# def get_posts_at_homepage():
+#     id = current_user.id
+#     #get the friends for the current user by filtering userId
+#     friend_obj_list = Friends.query.filter(Friends.user_id == id).all()
+#     friend_arr_list = [friend.friend_id for friend in friend_obj_list]
+#     #append userid into that list
+#     friend_arr_list.append(id)
+#     posts = Post.query.filter(Post.user_id.in_(friend_arr_list)).order_by(
+#         Post.createdAt.desc()).all()
+#     posts_to_json= [post.to_dict() for post in posts]
+#     post_userId = [post.user_id for post in posts]
+#     for post in posts_to_json:
+#         # for every post, include the post user info
+#         post['user'] = User.query.get(post['user_id']).to_dict()
+#         for user in post["liked_user_ids"]:
+#             if user['id'] == current_user.id:
+#                 post['current_user_like'] = True
+#             else:
+#                 post['current_user_like'] = False
+#     return jsonify(posts_to_json)
 
 
 # get post by post id
