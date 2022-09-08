@@ -70,7 +70,7 @@ function CommentForm({ comment, post, setShowEditInput }) {
                         <img className="user_profile_image" src={user.profile_img}></img>
                     </div>
                     <div className="input_container">
-                        <input id="text"
+                        <input id={`${post.id}text`}
                             className="comment_input"
                             onChange={(e) => {
                                 setCommentDesc(e.target.value)

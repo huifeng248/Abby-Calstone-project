@@ -28,7 +28,7 @@ function CardDetail({ user, post }) {
 
 
     function FocusEventListener() {
-        document.getElementById("text").focus();
+        document.getElementById(`${post.id}text`).focus();
     }
 
 
