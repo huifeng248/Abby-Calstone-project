@@ -70,15 +70,18 @@
 .post_input{
     background-color: #F0F2F5;
     width: 90%;
-    height: 30px;
+    height: 40px;
     border-radius: 30px;
     padding: 8px 12px;
+    box-sizing: border-box;
+    /* background-color: rebeccapurple; */
 
 }
 
 .create_post_container{
     margin-top: 20px;
     margin-bottom: 10px;
+    height: 60px;
     padding: 12px 16px 10px;
     box-sizing: border-box;
     border-radius: 5px;
@@ -87,7 +90,18 @@
     justify-content: space-between;
     background-color: white;
     width: 100%;
+    align-items: center;
 
+}
+
+.create_post_inside_container_wrapper {
+    height: 40px;
+    display: flex;
+    align-items: center;
+    padding: 12px 16px 10px;
+    box-sizing: border-box;
+    width: 100%;
+    /* background-color: firebrick; */
 }
 
 .outer_container{
