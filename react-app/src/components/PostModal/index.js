@@ -143,7 +143,7 @@ function PostModal({ user, post, setShowPostModal, showPostModal }) {
 
                         {errors.length > 0 && <ul className='Post_error_message_container'>
                             {errors.map((error, index) => (
-                                <li key={index}>{error}</li>
+                                <div key={index}>{error}</div>
                             ))}
                         </ul>}
                         <div className="user_box">

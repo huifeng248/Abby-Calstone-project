@@ -1,6 +1,6 @@
 .create_post_form_container{
     width: 500px;
-    height: 620px;
+    height: 660px;
 }
 
 .post_form_title{
@@ -17,7 +17,7 @@
 
 .post_title_wrapper{
     display: flex;
-    border-bottom: 0.5px solid #91969B;
+    border-bottom: 0.5px solid #F0F2F5;
     justify-content: center;
     align-items: center;
 }
@@ -73,6 +73,8 @@
     border-radius: 5px;
     padding: 5px;
     font: inherit;
+    background-color: #F0F2F5;
+    border: none;
 }
 
 .post_url{
@@ -81,6 +83,10 @@
     margin-bottom: 10px;
     border-radius: 5px;
     padding: 5px;
+    font-size: inherit;
+    background-color: #F0F2F5;
+    border: none;
+
 }
 
 .post_image_preview_container{
@@ -88,10 +94,16 @@
     max-height: 290px;
     width: 94%;
     height: 260px;
-    border: 1px solid rgba(208, 210, 213, 0.824);
+    border: 0.5px #F0F2F5 solid;
     
+
+    /* border: 1px solid rgba(208, 210, 213, 0.824); */
     border-radius: 5px;
     box-sizing: border-box;
+}
+
+.preview_img{
+    border-radius: 5px;
 }
 
 .button_container{
@@ -118,6 +130,7 @@
 
 .Post_error_message_container{
     color: red;
+    padding: 8px 16px;
 }
 
 
