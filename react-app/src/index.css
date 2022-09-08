@@ -7,6 +7,7 @@ button{
 	font: inherit;
 	cursor: pointer;
 	outline: inherit;
+	
 
 }
 
@@ -17,4 +18,9 @@ button:hover{
 
 body{
     font-family: 'Roboto', sans-serif;
+}
+
+*{
+	margin: 0px;
+	padding: 0px;
 }

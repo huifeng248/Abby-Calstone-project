@@ -1,3 +1,5 @@
+import "./SideBar.css"
+
 function SideBar() {
     return (
 
