@@ -28,11 +28,11 @@ const NavBar = () => {
           <div className='drop_down_menu'>
             <div
               onClick={() => setShowList(!showList)}>
-              <Link to={`/posts/users/${user.id}`}>
+              <Link className="user_profile_link" to={`/posts/users/${user.id}`}>
                 Profile page
               </Link>
             </div>
-            <div
+            <div className='user_log_out_button'
               onClick={() => setShowList(!showList)}>
               <LogoutButton />
             </div>
