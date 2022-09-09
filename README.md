@@ -144,24 +144,6 @@ FaceTa is an online social media application inspired by FaceBook. You can share
 3. Once a Delete is clicked, the comments would be deleted, and the comfirmation message would be shown. 
 ![image](https://user-images.githubusercontent.com/91226395/189418646-e9e01cd4-b56d-4f73-ac0c-9acaecf6f19a.png)
 
-### Technologies used 
-* [<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" width="50" height="50" />](https://www.javascript.com/) [JavaScript](https://www.javascript.com/)
- 
- * [<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" width="50" height="50" />](#) CSS 
-
- * <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" width="50" height="50" /> https://reactjs.org/ [React](https://reactjs.org/)
-
- * <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redux/redux-original.svg" width="50" height="50" /> https://redux.js.org/ [Redux](https://redux.js.org/)
-
- * <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flask/flask-original.svg" width="50" height="50" />https://flask.palletsprojects.com/en/2.2.x/ [Flask](https://flask.palletsprojects.com/en/2.2.x/)
-
- * [<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" width="50" height="50" 
-/>](https://www.python.org/) [Python](https://www.python.org/)
-
- * [<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sqlalchemy/sqlalchemy-original.svg" width="50" height="50" />](https://www.sqlalchemy.org/) [SQLAlchemy](https://www.sqlalchemy.org/)
- 
-* [<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" width="50" height="50" />](#) HTML
-
 ## Feature list
 ### Demo User Login
 * Guest Users have the ability to log in as a demo user to test site functionality
@@ -182,6 +164,14 @@ FaceTa is an online social media application inspired by FaceBook. You can share
 
 ### Link to WIKI and additional information
 
+[Wiki](https://github.com/huifeng248/Abby-Calstone-project/wiki)
+
+[Feature List](https://github.com/huifeng248/Abby-Calstone-project/wiki/Feature-list)
+
+[Database Schema](https://github.com/huifeng248/Abby-Calstone-project/wiki/Database-Schema)
+
+[User Stories](https://github.com/huifeng248/Abby-Calstone-project/wiki/User-stories)
+
 
 ### To-dos/future features
 * Post likes
@@ -190,4 +180,28 @@ FaceTa is an online social media application inspired by FaceBook. You can share
 * Search
 * Messaging
 
+ * [JavaScript](https://www.javascript.com/)
+[<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" width="50" height="50" />](https://www.javascript.com/)
+ 
+ * CSS
+ [<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" width="50" height="50" />](#)
+
+ * [React](https://reactjs.org/)
+ [<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" width="50" height="50" />](https://reactjs.org/)
+
+ * [Redux](https://redux.js.org/)
+ [<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redux/redux-original.svg" width="50" height="50" />](https://redux.js.org/)
+
+ * [Flask](https://flask.palletsprojects.com/en/2.2.x/)
+[<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flask/flask-original.svg" width="50" height="50" />](https://flask.palletsprojects.com/en/2.2.x/)
+
+ * [Python](https://www.python.org/)
+[<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" width="50" height="50" 
+/>](https://www.python.org/)
+
+ * [SQLAlchemy](https://www.sqlalchemy.org/)
+[<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sqlalchemy/sqlalchemy-original.svg" width="50" height="50" />](https://www.sqlalchemy.org/)
+ 
+* HTML
+[<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" width="50" height="50" />](#)
 
