@@ -1,6 +1,6 @@
 .comment_disc_container{
     max-width: 600px;
-    overflow-y: scroll;
+    /* overflow-y: scroll; */
     overflow-wrap: break-word;
     /* max-height: 50px; */
     display: flex;
