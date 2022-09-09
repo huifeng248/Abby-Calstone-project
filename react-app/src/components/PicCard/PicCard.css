@@ -293,7 +293,7 @@
 .Post_desc_container{
     padding: 4px 16px 16px;
     max-width: 660px;
-    overflow-y: scroll;
+    /* overflow-y: scroll; */
     overflow-wrap: break-word;
     /* max-height: 80px; */
 }

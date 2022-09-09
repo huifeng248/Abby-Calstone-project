@@ -153,7 +153,9 @@ function CardDetail({ user, post }) {
                 </div> */}
                 <div onClick={() => SetShowComments(!showComments)}
                     className="comment_counts_container">
-                    <div className="count_number">{post.comments.length ? `Show ${post.comments.length} comments` : "No comments yet"}</div>
+                    {showComments? <div className="count_number">{post.comments.length ? `Hide ${post.comments.length} comments` : "No comments yet"}</div>
+                        : <div className="count_number">{post.comments.length ? `Show ${post.comments.length} comments` : "No comments yet"}</div>}
+
                     {/* <div className="count_number"> Comments</div> */}
                 </div>
 
