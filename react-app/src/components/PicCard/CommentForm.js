@@ -1,6 +1,8 @@
 import { CreateComment, EditComment, Delete_comment } from '../../store/post'
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react"
+import "./PicCard.css"
+
 function CommentForm({ comment, post, setShowEditInput }) {
     const [errors, setErrors] = useState([])
     const [commentDesc, setCommentDesc] = useState()
@@ -57,36 +59,39 @@ function CommentForm({ comment, post, setShowEditInput }) {
 
 
 
-        return <div className='comment_form_container'>
-            {errors.length > 0 && <div className='comment_error_message_ul'>
-                {errors.map((error, index) => (
-                    <div key={index}>{error}</div>
-                ))}
-            </div>}
+    return <div className='comment_form_container'>
+        {errors.length > 0 && <div className='comment_error_message_ul'>
+            {errors.map((error, index) => (
+                <div key={index}>{error}</div>
+            ))}
+        </div>}
 
-            <form onSubmit={handleCommentSubmit}>
-                {/* <div className='comment_line_container_wrapper'> */}
+        <form onSubmit={handleCommentSubmit}>
+            {/* <div className='comment_line_container_wrapper'> */}
 
-                
-                <div className="comment_line_container">
-                    <div>
-                        <img className="user_profile_image" src={user.profile_img}></img>
-                    </div>
-                    <div className="input_container">
-                        <input id={`${post.id}text`}
-                            className="comment_input"
-                            onChange={(e) => {
-                                setCommentDesc(e.target.value)
-                                setErrors([])
-                            }}
-                            value={commentDesc}
-                        ></input>
-                    </div>
-                    {/* </div> */}
-                     <button type='submit'>{comment? "Save": "Comment"}</button>
+
+            <div className="comment_line_container">
+                <div>
+                    <img className="user_profile_image" src={user.profile_img}></img>
                 </div>
-            </form>
-        </div>
+                <div className="input_container">
+                    <input id={`${post.id}text`}
+                        className="comment_input"
+                        onChange={(e) => {
+                            setCommentDesc(e.target.value)
+                            setErrors([])
+                        }}
+                        value={commentDesc}
+                    ></input>
+                </div>
+                {/* </div> */}
+                <div className='button_wrapper'>
+                    <button className="save_button" type='submit'>{comment ? "Save" : "Comment"}</button>
+                    {comment && <button className="cancel_edit_button" onClick={() => setShowEditInput(false)}>Cancel</button>}
+                </div>
+            </div>
+        </form>
+    </div>
 }
 
 export default CommentForm

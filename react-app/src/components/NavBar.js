@@ -26,7 +26,7 @@ const NavBar = () => {
         </div>
         {showList &&
           <div className='drop_down_menu'>
-            <div
+            <div className='profile_link_wrapper'
               onClick={() => setShowList(!showList)}>
               <Link className="user_profile_link" to={`/posts/users/${user.id}`}>
                 Profile page
