@@ -92,6 +92,32 @@ Welcome to FaceTa!
 
 FaceTa is an online social media application inspired by FaceBook. You can share post and socialzie on FaceTa. The live side is available at https://faceta.herokuapp.com/. 
 
+## Technologies used
+ * [JavaScript](https://www.javascript.com/)
+[<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" width="50" height="50" />](https://www.javascript.com/)
+ 
+ * CSS
+![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
+
+ * [React](https://reactjs.org/)
+ [<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" width="50" height="50" />](https://reactjs.org/)
+
+ * [Redux](https://redux.js.org/)
+ [<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redux/redux-original.svg" width="50" height="50" />](https://redux.js.org/)
+
+ * [Flask](https://flask.palletsprojects.com/en/2.2.x/)
+[<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flask/flask-original.svg" width="50" height="50" />](https://flask.palletsprojects.com/en/2.2.x/)
+
+ * [Python](https://www.python.org/)
+[<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" width="50" height="50" 
+/>](https://www.python.org/)
+
+ * [SQLAlchemy](https://www.sqlalchemy.org/)
+[<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sqlalchemy/sqlalchemy-original.svg" width="50" height="50" />](https://www.sqlalchemy.org/)
+ 
+* HTML
+![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
+
 ## Feature 
 
 ### login and signup
@@ -180,28 +206,5 @@ FaceTa is an online social media application inspired by FaceBook. You can share
 * Search
 * Messaging
 
- * [JavaScript](https://www.javascript.com/)
-[<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" width="50" height="50" />](https://www.javascript.com/)
- 
- * CSS
- [<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" width="50" height="50" />](#)
 
- * [React](https://reactjs.org/)
- [<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" width="50" height="50" />](https://reactjs.org/)
-
- * [Redux](https://redux.js.org/)
- [<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redux/redux-original.svg" width="50" height="50" />](https://redux.js.org/)
-
- * [Flask](https://flask.palletsprojects.com/en/2.2.x/)
-[<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flask/flask-original.svg" width="50" height="50" />](https://flask.palletsprojects.com/en/2.2.x/)
-
- * [Python](https://www.python.org/)
-[<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" width="50" height="50" 
-/>](https://www.python.org/)
-
- * [SQLAlchemy](https://www.sqlalchemy.org/)
-[<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sqlalchemy/sqlalchemy-original.svg" width="50" height="50" />](https://www.sqlalchemy.org/)
- 
-* HTML
-[<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" width="50" height="50" />](#)
 
