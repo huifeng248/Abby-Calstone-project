@@ -18,21 +18,24 @@ function SideBar({ user }) {
             </NavLink>
 
 
-            <a className="contact_info_link" href="https://www.linkedin.com/in/hui-abby-feng-cpa/">
+            <a className="contact_info_link" href="https://www.linkedin.com/in/hui-abby-feng-cpa/"
+                target='_blank' rel='noreferrer'>
                 <div className="contact_info_link_div">
                     <i className="fa-brands fa-linkedin"></i>
                     <div>Abby Feng</div>
                 </div>
             </a>
 
-            <a className="contact_info_link" href="https://github.com/huifeng248">
+            <a className="contact_info_link" href="https://github.com/huifeng248"
+                target='_blank' rel='noreferrer'>
                 <div className="contact_info_link_div">
                     <i class="fa-brands fa-github"></i>
                     <div>Github</div>
                 </div>
             </a>
 
-            <a className="contact_info_link" href="https://github.com/huifeng248/Abby-Calstone-project">
+            <a className="contact_info_link" href="https://github.com/huifeng248/Abby-Calstone-project"
+                target='_blank' rel='noreferrer'>
                 <div className="contact_info_link_div">
                     <i class="fa-brands fa-github"></i>
                     <div>About FaceTa</div>
