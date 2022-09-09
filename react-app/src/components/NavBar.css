@@ -22,14 +22,15 @@
     color: black;
     /* padding: 10px 5px; */
     text-decoration: none;
-    display: block;
 }
 
 .drop_down_menu div a{
     color: black;
     padding: 12px 16px;
     text-decoration: none;
-    display: block;
+    display: flex;
+    justify-content: flex-start;
+
 
 }
 
@@ -37,7 +38,9 @@
     color: black;
     padding: 12px 16px;
     text-decoration: none;
-    display: block;
+    display: flex;
+    justify-content: flex-start;
+
 
 }
 
@@ -86,5 +89,16 @@
 }
 
 .profile_link_wrapper{
-    text-align: center;
+    /* text-align: center; */
 }
+
+.user_log_out_button{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+/* .user_log_out_button:hover{
+    border-radius: 0px;
+
+} */

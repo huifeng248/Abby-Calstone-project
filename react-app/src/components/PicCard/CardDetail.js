@@ -185,7 +185,7 @@ function CardDetail({ user, post }) {
                                 {showEditInput && <CommentForm comment={comment} post={post} setShowEditInput={setShowEditInput} showEditInput={showEditInput} />}
                             </div>
                         })
-                        : <div> There is no comments yet. Be the first one to leave a comment. </div>
+                        : <div className="no_comment_desc"> There is no comments yet. Be the first one to leave a comment. </div>
                     }
                 </div>
             }
