@@ -143,3 +143,9 @@ body {
     flex-direction: column;
     align-items: flex-start;
 }
+
+.log_out_button{
+    /* background-color: red; */
+    width: 100%;
+    
+}

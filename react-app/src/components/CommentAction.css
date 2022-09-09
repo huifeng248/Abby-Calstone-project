@@ -2,26 +2,13 @@
     max-width: 600px;
     overflow-y: scroll;
     overflow-wrap: break-word;
-    max-height: 50px;
+    /* max-height: 50px; */
     display: flex;
     flex-direction: column;
 }
 
 
-.cancel_edit_button{
-    /* background-color: red; */
-    /* margin-left: 15px; */
-}
 
-.comment_line_container{
-    /* background-color: rebeccapurple; */
-}
-
-/* .comment_line_container_wrapper{
-    background-color: aqua;
-    display: flex;
-    margin: 0px 0px 4px;
-} */
 
 .comment_line_container{
     display: flex;
@@ -35,7 +22,14 @@
     /* background: green; */
     margin-top: 4px;
     margin-bottom: 8px;
+    justify-content: space-between;
     /* margin: 0px 0px 4px; */
+}
+
+.button_wrapper{
+    display: flex;
+    margin-right: 16px;
+    margin: 0px 10px 0px 16px;
 }
 
 .edit_comment_container{
@@ -46,7 +40,7 @@
 .comment_input{
     background-color: #F0F2F5;
     border-radius: 20px;
-    width: 96%;
+    width: 97%;
     height: 36px;
     padding: 8px 12px;
     box-sizing: border-box;

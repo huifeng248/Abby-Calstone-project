@@ -224,6 +224,8 @@
     display: flex;
     flex-direction: row;
     padding: 4px 16px;
+    /* background-color: red; */
+    align-items: center;
 }
 
 
@@ -293,7 +295,7 @@
     max-width: 660px;
     overflow-y: scroll;
     overflow-wrap: break-word;
-    max-height: 80px;
+    /* max-height: 80px; */
 }
 
 .Comments_signs{
@@ -307,7 +309,6 @@
 }
 
 .fa-ellipsis{
-    padding-left: 5px;
     box-sizing: border-box;
 }
 
@@ -316,4 +317,9 @@
     padding: 4px 16px 16px;
     text-decoration: none;
     color: red;
+}
+
+.cancel_edit_button{
+    margin-left: 20px;
+    /* background-color: #0070E3; */
 }
