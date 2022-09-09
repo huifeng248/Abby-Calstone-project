@@ -1,4 +1,4 @@
-# Flask React Project
+<!-- # Flask React Project
 
 This is the starter for the Flask React project.
 
@@ -85,4 +85,49 @@ each of the following variables:
 | `heroku run -a <app name>` | Run a command from within the deployed container on Heroku |
 
 
-heroku restart --app faceta && heroku pg:reset DATABASE --confirm faceta --app faceta && heroku run flask db migrate --app faceta && heroku run flask db upgrade --app faceta && heroku run flask seed all --app faceta
+heroku restart --app faceta && heroku pg:reset DATABASE --confirm faceta --app faceta && heroku run flask db migrate --app faceta && heroku run flask db upgrade --app faceta && heroku run flask seed all --app faceta -->
+
+
+Welcome to FaceTa!
+
+FaceTa is an online social media application inspired by FaceBook. The live side is available at https://faceta.herokuapp.com/. 
+
+### Technologies used 
+* [<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" width="50" height="50" />](https://www.javascript.com/) [JavaScript](https://www.javascript.com/)
+ 
+ * [<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" width="50" height="50" />](#) CSS 
+
+ * [<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" width="50" height="50" />](https://reactjs.org/ [React](https://reactjs.org/)
+
+ * [<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redux/redux-original.svg" width="50" height="50" />](https://redux.js.org/ [Redux](https://redux.js.org/)
+
+ * [<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flask/flask-original.svg" width="50" height="50" />](https://flask.palletsprojects.com/en/2.2.x/ [Flask](https://flask.palletsprojects.com/en/2.2.x/)
+
+ * [<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" width="50" height="50" 
+/>](https://www.python.org/) [Python](https://www.python.org/)
+
+ * [<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sqlalchemy/sqlalchemy-original.svg" width="50" height="50" />](https://www.sqlalchemy.org/) [SQLAlchemy](https://www.sqlalchemy.org/)
+ 
+* [<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" width="50" height="50" />](#) HTML
+
+## Feature list
+### Demo User Login
+* Guest Users have the ability to log in as a demo user to test site functionality
+
+### Posts - Full CRUD
+* Logged in user can create posts
+* Logged in user can edit posts
+* Logged in user can delete posts
+* Logged in user can see other users posts
+* Logged in user cannot see, edit, create or delete other's posts
+
+###Commenting on Post - Full CRUD
+* Logged in user can create comments on posts
+* Logged in user can edit their comments on posts
+* Logged in user can edit their comments
+* Logged in user can see other users comments on posts
+* Logged in user cannot see, edit, create or delete others' comments
+
+
+
+
