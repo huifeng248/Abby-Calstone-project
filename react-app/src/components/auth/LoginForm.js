@@ -38,9 +38,9 @@ const LoginForm = () => {
 
   const demoLogin = async (e) => {
     const data = await dispatch(login("demo@aa.io", "password"))
-    if (data) {
-      setErrors(data)
-    }
+    // if (data) {
+    //   setErrors(data)
+    // }
   }
 
   const updateEmail = (e) => {
