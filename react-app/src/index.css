@@ -15,7 +15,6 @@ button{
 button:hover{
     background-color: #F0F2F5;
 	border-radius: 10px;
-	
 	box-sizing: border-box;
 }
 
