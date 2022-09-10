@@ -159,7 +159,7 @@ function PostModal({ user, post, setShowPostModal, showPostModal }) {
                             <div className='post_info_container'>
                                 <div className='post_info_div'>
                                     <textarea className="post_description"
-                                        placeholder="What's on your mind, Hui?"
+                                        placeholder={`What's on your mind, ${user.first_name}?`}
                                         onChange={(e) => 
                                             {setDescription(e.target.value)
                                             setErrors([])}}

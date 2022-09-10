@@ -328,3 +328,7 @@
     padding: 4px 16px;
     color: #050505;
 }
+
+.post_edit_dot{
+    cursor: pointer;
+}
