@@ -1,5 +1,5 @@
 import { Modal } from '../../context/Modal'
-import { useEffect, useLayoutEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useDispatch } from "react-redux";
 import { CreatePost, EditPost } from '../../store/post'
 import './PostModal.css'
@@ -30,10 +30,7 @@ function PostModal({ user, post, setShowPostModal, showPostModal }) {
         return /\.(jpg|jpeg|png|webp|avif|gif|svg)$/.test(post_url);
     }
 
-    function addDefaultSrc(error){
-        const img = document.getElementById("preview_img")
-        img.src = 'https://community.clover.com/themes/base/admin/img/default-coverImage.png'
-    }
+
 
     // function checkUrlErrors(url_to_check) {
     //     let errors_arr = []

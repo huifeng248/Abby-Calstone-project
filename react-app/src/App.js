@@ -10,6 +10,7 @@ import User from './components/User';
 import { authenticate } from './store/session';
 import PostByUser from './components/PostByUser';
 import PicCard from './components/PicCard';
+import PageNotFound from "./components/PageNotFound"
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -48,6 +49,9 @@ function App() {
         <ProtectedRoute path='/' exact={true} >
           <PicCard />
         </ProtectedRoute>
+        <Route>
+          <PageNotFound />
+        </Route>
       </Switch>
     </BrowserRouter>
   );

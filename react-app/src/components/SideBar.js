@@ -1,12 +1,12 @@
 import "./SideBar.css"
-import { NavLink, Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 function SideBar({ user }) {
     return (
 
         <div className="sidebar_container">
             <NavLink className="contact_info_link" to='/' exact={true} activeClassName='active'>
                 <div className="contact_info_link_div">
-                    <i class="fa-solid fa-house"></i>
+                    <i className="fa-solid fa-house"></i>
                     <div>Home</div>
                 </div>
             </NavLink>
@@ -29,7 +29,7 @@ function SideBar({ user }) {
             <a className="contact_info_link" href="https://github.com/huifeng248"
                 target='_blank' rel='noreferrer'>
                 <div className="contact_info_link_div">
-                    <i class="fa-brands fa-github"></i>
+                    <i className="fa-brands fa-github"></i>
                     <div>Github</div>
                 </div>
             </a>
@@ -37,7 +37,7 @@ function SideBar({ user }) {
             <a className="contact_info_link" href="https://github.com/huifeng248/Abby-Calstone-project"
                 target='_blank' rel='noreferrer'>
                 <div className="contact_info_link_div">
-                    <i class="fa-brands fa-github"></i>
+                    <i className="fa-brands fa-github"></i>
                     <div>About FaceTa</div>
                 </div>
             </a>
