@@ -204,7 +204,6 @@ const Posts = (state = {}, action) => {
             return newState
         case UPDATE_COMMENT:
             newState = {...state}
-            console.log("!!!!!!!!!!" ,action.comment)
             newState[action.comment.post_id].comments.forEach((comment, index) => {
                 if (comment.id === action.comment.id) {
                     // need to revisit the data structure and see if the update one has the user info
@@ -213,7 +212,6 @@ const Posts = (state = {}, action) => {
             })
             return newState
         case DELETE_COMMENT:
-            console.log("^^^^^^hit delete")
             newState = {...state}
             newState[action.post_id].comments.forEach((comment, index)=> {
                 if (comment.id === action.comment_id) {

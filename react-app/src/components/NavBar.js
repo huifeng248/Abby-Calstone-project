@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { NavLink, Link } from 'react-router-dom';
@@ -10,6 +10,14 @@ const NavBar = () => {
 
   const user = useSelector((state) => state.session.user)
   const [showList, setShowList] = useState(false);
+
+  useEffect(()=> {
+    if (!showList) return
+    const closeDropDownMenu = () => setShowList(false)
+    document.addEventListener("click", closeDropDownMenu)
+    return () => document.removeEventListener("click", closeDropDownMenu)
+  }, [showList])
+
   if (!user) return null;
   else return (
     <div>
