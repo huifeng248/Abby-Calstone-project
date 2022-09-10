@@ -1,4 +1,4 @@
-import { EditComment, Delete_comment } from '../store/post'
+import { Delete_comment } from '../store/post'
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react"
 import CommentForm from './PicCard/CommentForm'
@@ -11,9 +11,9 @@ function CommentAction({ post, comment }) {
     const current_user = useSelector(state => state.session.user)
     const dispatch = useDispatch()
     const [showCommentAction, setShowCommentAction] = useState(false)
-    const [errors, setErrors] = useState([]);
-    const user = useSelector(state => state.session.user)
-    const [commentDesc, setCommentDesc] = useState()
+    // const [errors, setErrors] = useState([]);
+    // const user = useSelector(state => state.session.user)
+    // const [commentDesc, setCommentDesc] = useState()
     const [showEditInput, setShowEditInput] = useState(false)
 
 
@@ -72,7 +72,7 @@ function CommentAction({ post, comment }) {
             <div className="comment_info_box">
                 {!showEditInput && <div className='wrapper_comment'>
                     <div>
-                        <img className="user_profile_image" src={post.user.profile_img}></img>
+                        <img className="user_profile_image" src={post.user.profile_img} alt="profile_image"></img>
                     </div>
                     <div className="comment_and_user_name">
                         <div>{comment.user.first_name} {comment.user.last_name}</div>

@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { login } from '../../store/session';
-import { NavLink } from 'react-router-dom';
 import LandingPage from './LandingPage';
 import "./LoginSignupForm.css";
 import SignupFormModal from './SignUpModal';
@@ -37,7 +36,7 @@ const LoginForm = () => {
   };
 
   const demoLogin = async (e) => {
-    const data = await dispatch(login("demo@aa.io", "password"))
+    await dispatch(login("demo@aa.io", "password"))
     // if (data) {
     //   setErrors(data)
     // }

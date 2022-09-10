@@ -5,7 +5,6 @@ import { useSelector } from 'react-redux';
 import { NavLink, Link } from 'react-router-dom';
 import LogoutButton from './auth/LogoutButton';
 import './NavBar.css'
-import PostByUser from './PostByUser';
 
 const NavBar = () => {
 

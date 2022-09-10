@@ -1,4 +1,4 @@
-import { CreateComment, EditComment, Delete_comment } from '../../store/post'
+import { CreateComment, EditComment } from '../../store/post'
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react"
 import "./PicCard.css"

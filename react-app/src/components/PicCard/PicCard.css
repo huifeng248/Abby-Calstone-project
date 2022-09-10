@@ -74,6 +74,10 @@
 
 }
 
+/* .post_input:focus{
+    background-color: white;
+} */
+
 .create_post_container{
     margin-top: 20px;
     margin-bottom: 10px;
