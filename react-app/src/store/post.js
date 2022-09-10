@@ -159,7 +159,6 @@ export const Delete_comment = (post_id, comment_id) => async (dispatch) => {
 
 //thunk: get all posts for a user
 export const GetPostByUser = (id) => async(dispatch) =>{
-    console.log("::::::::", "this is inside the thunk")
     const response = await fetch(`/api/posts/users/${id}`)
     if (response.ok) {
         const data = await response.json()
@@ -184,7 +183,6 @@ const Posts = (state = {}, action) => {
             newState[action.post.id] = action.post
             return newState
         case Get_POST_UserProfile:
-            console.log("go inside the reducer")
             // newState = {...state} // this one just adding more post to the state
             newState={} //this would clear the state and have a new stare by the data fetch back
             action.posts.length && action.posts.forEach(post => {
