@@ -89,14 +89,14 @@ function PostModal({ user, post, setShowPostModal, showPostModal }) {
 			);
 		}
 
-        try {
-            let url_fetch_result = await fetch(url)
-            // if (url_fetch_result.status)
-        } catch (e){
-            errors_arr.push(
-                'Invalid URL or non-CORS compliant: please validate the url and make sure CORS policy compliant'
-            )
-        }
+        // try {
+        //     let url_fetch_result = await fetch(url)
+        //     // if (url_fetch_result.status)
+        // } catch (e){
+        //     errors_arr.push(
+        //         'Invalid URL or non-CORS compliant: please validate the url and make sure CORS policy compliant'
+        //     )
+        // }
         
         if (errors_arr.length > 0) {
             return setErrors(errors_arr)
