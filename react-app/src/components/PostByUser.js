@@ -19,7 +19,7 @@ const PostByUser = () => {
     const filtered_posts = temp_posts.sort(function (a, b) {
         return new Date(b.createdAt) - new Date(a.createdAt)
     })
-    console.log("FFFFFFFFFFFFFF", post_arr)
+    // console.log("FFFFFFFFFFFFFF", post_arr)
 
     // useEffect(() => {
     //     if(!userId) {
