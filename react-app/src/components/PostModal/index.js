@@ -80,12 +80,12 @@ function PostModal({ user, post, setShowPostModal, showPostModal }) {
         }
         if (url && url.includes(' ')) {
 			errors_arr.push(
-				'Cannot have an empty space in the url!'
+				'Cannot have an empty space in the url'
 			)
 		}
         if (url && url.includes("File:")) {
 			errors_arr.push(
-				'Invalid URL: URL must not include "File:", Please use original image address'
+				'Invalid URL: URL must not include "File:", please use original image address'
 			);
 		}
 
@@ -94,7 +94,7 @@ function PostModal({ user, post, setShowPostModal, showPostModal }) {
             // if (url_fetch_result.status)
         } catch (e){
             errors_arr.push(
-                'Invalid URL: Please validate the url and try again'
+                'Invalid URL or non-CORS compliant: please validate the url and make sure CORS policy compliant'
             )
         }
         
