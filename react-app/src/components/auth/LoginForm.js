@@ -16,10 +16,10 @@ const LoginForm = () => {
   const onLogin = async (e) => {
     e.preventDefault();
     const error_list = []
-    if (email.trimEnd().length === 0) {
+    if (email.trim().length === 0) {
       error_list.push("Email is required.")
     } 
-    if (password.trimEnd().length === 0) {
+    if (password.trim().length === 0) {
       error_list.push("Password is required.")
     } 
 

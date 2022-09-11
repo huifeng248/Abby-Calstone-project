@@ -22,17 +22,23 @@ const SignUpForm = ({ onClose }) => {
   const onSignUp = async (e) => {
     e.preventDefault();
     const error_list = []
-    if (first_name.trimEnd().length === 0) {
+    if (first_name.trim().length === 0) {
       error_list.push("First Name is required")
     } 
-    if (last_name.trimEnd().length === 0) {
+    if (last_name.trim().length === 0) {
       error_list.push("Last name is required")
     } 
-    if (username.trimEnd().length <4 || username.length >20) {
+    if (username.trim().length <4 || username.length >20) {
       error_list.push("Username must between 4 to 20 characters")
     }
+    if (password.trim().length === 0) {
+      error_list.push("Password cannot be all space")
+    }
+    if (repeatPassword.trim().length === 0) {
+      error_list.push("RepeatPassword cannot be all space")
+    }
     if (password !== repeatPassword) {
-      error_list.push("Repeat password must be the same as  password")
+      error_list.push("Repeat password must be the same as password")
     }
 
 
