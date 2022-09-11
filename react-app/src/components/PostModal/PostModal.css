@@ -11,7 +11,8 @@
     height: 60px;
     justify-content: center;
     align-items: center;
-    box-sizing: border-box
+    box-sizing: border-box;
+    color: #050505;
 }
 
 
