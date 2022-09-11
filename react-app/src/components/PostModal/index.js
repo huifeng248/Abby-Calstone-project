@@ -30,10 +30,6 @@ function PostModal({ user, post, setShowPostModal, showPostModal }) {
         return /\.(jpg|jpeg|png|webp|avif|gif|svg)$/.test(post_url);
     }
 
-    function addDefaultSrc(error){
-        const img = document.getElementById("preview_img")
-        img.src = 'https://community.clover.com/themes/base/admin/img/default-coverImage.png'
-    }
 
     // function checkUrlErrors(url_to_check) {
     //     let errors_arr = []
@@ -93,6 +89,15 @@ function PostModal({ user, post, setShowPostModal, showPostModal }) {
 				'Invalid URL: URL must not include "File:", Please use original image address'
 			);
 		}
+
+        try {
+            let url_fetch_result = await fetch(url)
+            // if (url_fetch_result.status)
+        } catch (e){
+            errors_arr.push(
+                'Invalid URL: Please validate the url and try again'
+            )
+        }
         
         if (errors_arr.length > 0) {
             return setErrors(errors_arr)
