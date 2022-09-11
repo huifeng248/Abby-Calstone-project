@@ -15,7 +15,7 @@ const PostByUser = () => {
     const { userId } = useParams()
     const posts = useSelector(state => state.Posts)
     const post_arr = Object.values(posts)
-    const temp_posts = post_arr.filter(post =>  post.user.id === Number(userId))
+    const temp_posts = post_arr.filter(post => post.user.id === Number(userId))
     const filtered_posts = temp_posts.sort(function (a, b) {
         return new Date(b.createdAt) - new Date(a.createdAt)
     })
