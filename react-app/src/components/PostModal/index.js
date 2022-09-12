@@ -22,6 +22,13 @@ function PostModal({ user, post, setShowPostModal, showPostModal }) {
         }
     }, [post])
 
+    useEffect(()=>{
+        if (!showPostModal) return
+        const focusEvent = ()=> document.getElementById('post_description_id').focus()
+        return focusEvent()
+        
+    },[showPostModal])
+
     function checkImageUrl(post_url) {
         if (!post_url || post_url.trimEnd().length === 0) return false
         if (post_url && post_url.includes(' ')) return false
@@ -163,6 +170,7 @@ function PostModal({ user, post, setShowPostModal, showPostModal }) {
                             <div className='post_info_container'>
                                 <div className='post_info_div'>
                                     <textarea className="post_description"
+                                        id="post_description_id"
                                         placeholder={`What's on your mind, ${user.first_name}?`}
                                         onChange={(e) => 
                                             {setDescription(e.target.value)
