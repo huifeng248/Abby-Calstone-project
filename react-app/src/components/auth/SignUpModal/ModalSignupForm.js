@@ -114,7 +114,7 @@ const SignUpForm = ({ onClose }) => {
               onChange={(e) => set_first_name(e.target.value)}
               value={first_name}
               placeholder='First name'
-              maxLength='100'
+              maxLength='20'
             ></input>
           </div>
 
@@ -127,7 +127,7 @@ const SignUpForm = ({ onClose }) => {
               onChange={(e) => set_last_name(e.target.value)}
               value={last_name}
               placeholder='Last name'
-              maxLength='100'
+              maxLength='20'
             ></input>
           </div>
 
