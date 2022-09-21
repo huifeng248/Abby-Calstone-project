@@ -8,20 +8,20 @@ const ADD_COMMENT = "ADD_Comment"
 const UPDATE_COMMENT = "UPDATE_Comment"
 const DELETE_COMMENT = "DELETE_Comment"
 
-const TOGGLE_POSTLIKE = "TOGGLE_Postlike"
-const TOGGLE_COMMENTLIKE = "TOGGLE_Commentlike"
+// const TOGGLE_POSTLIKE = "TOGGLE_Postlike"
+// const TOGGLE_COMMENTLIKE = "TOGGLE_Commentlike"
 
-//action post like
-const toggle_postlike_action = (post) => ({
-    type: TOGGLE_POSTLIKE,
-    post
-})
+// //action post like
+// const toggle_postlike_action = (post) => ({
+//     type: TOGGLE_POSTLIKE,
+//     post
+// })
 
-// action comment like
-const toggle_commentlike_action = (comment) => ({
-    type: TOGGLE_COMMENTLIKE,
-    comment
-})
+// // action comment like
+// const toggle_commentlike_action = (comment) => ({
+//     type: TOGGLE_COMMENTLIKE,
+//     comment
+// })
 
 // action: get all post in home page
 const get_posts_action = (posts) =>({
@@ -121,7 +121,6 @@ export const EditPost = (post) => async (dispatch) => {
             "Content-Type": "application/json"
 		},
 		body: JSON.stringify(post)
-
     })
     if (response.ok) {
         const updated_image = await response.json()
@@ -146,8 +145,27 @@ export const TogglePostLike = (post) => async (dispatch) => {
         dispatch(edit_post(updated_image_with_likes))
         return updated_image_with_likes
     }
-
 }
+
+// thunk: toggle a comment like 
+export const ToggleCommentLike = (comment) => async (dispatch) => {
+    const response = await fetch(`/api/comments/${comment.id}/likes`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(comment)
+    })
+    if (response.ok) {
+        const updated_post_with_likes = await response.json()
+        // IMPORTANT!!!!
+        // dispatch is sent via edit comment, as like is embeded in the post slice of state
+        dispatch(edit_comment(updated_post_with_likes))
+        return updated_post_with_likes
+    }
+}
+
+
 
 //thunk update a comment 
 export const EditComment = (comment) => async (dispatch) => {

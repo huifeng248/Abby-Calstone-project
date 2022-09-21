@@ -172,31 +172,26 @@ function CardDetail({ user, post }) {
 
                 <div className="below_post_line">
                     {/* will implement this feature later on */}
-                    <div className="Image_likes">
+                    <div className="Image_likes"
+                    onClick={() => {
+                        console.log("yes")
+                        setLikePost(!likePost)
+                        toggleAPostLike(post)
+                    }}>
                         <div>
                             {likePost ?
-                                <i className="fa-regular fa-thumbs-up"
-                                    onClick={() => {
-                                        console.log("yes")
-                                        setLikePost(!likePost)
-                                        toggleAPostLike(post)
-                                    }}>
+                                <i className="fa-regular fa-thumbs-up">
                                 </i>
-                                : <i className="fa-solid fa-thumbs-up likecount"
-                                    onClick={() => {
-                                        console.log("no")
-                                        setLikePost(!likePost)
-                                        toggleAPostLike(post)
-                                    }}>
+                                : <i className="fa-solid fa-thumbs-up likecount">
                                 </i>}
                         </div>
-                        <div>Like</div>
+                        <div className="like_character">Like</div>
                     </div>
                     <div className="Comments_signs" onClick={() => FocusEventListener()}>
                         <div>
                             <i className="fa-regular fa-comment"></i>
                         </div>
-                        <div> Comment</div>
+                        <div className="comment_charater"> Comment</div>
                     </div>
                 </div>
                 {showComments &&
