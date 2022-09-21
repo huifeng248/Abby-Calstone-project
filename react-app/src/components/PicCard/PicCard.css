@@ -342,6 +342,12 @@
     color: #64676B;
 }
 
+.like_character_pointer{
+    padding-left: 0.5rem;
+    color: #64676B;
+    cursor: pointer; 
+}
+
 .comment_charater{
     padding-left: 0.5rem;
     color: #64676B;
@@ -357,4 +363,32 @@
 
 .Image_likes{
     cursor: pointer;
+}
+
+.comment_like_wrapper{
+    /* background-color: aqua; */
+    display: flex;
+    flex-direction: column;
+}
+
+.like-wrapper{
+    display: flex;
+    justify-content: space-between;
+}
+
+.margin-top{
+    margin-top: -0.6rem;
+    font-size: 18px;
+    /* background-color: #2C6FE3; */
+    /* z-index: 200; */
+}
+
+.thumbs_up_wrapper{
+    /* background-color: #2C6FE3; */
+    margin-top: -0.6rem;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    box-sizing: border-box;
+    /* z-index: -1; */
 }
