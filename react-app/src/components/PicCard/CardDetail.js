@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
 import PostActionModal from "../PostActionModal"
-import { DeletePost } from '../../store/post'
+import { DeletePost, TogglePostLike } from '../../store/post'
 import { useDispatch, useSelector } from "react-redux";
 import PostModal from '../PostModal'
 import { CreateComment, EditComment, Delete_comment } from '../../store/post'
@@ -18,6 +18,7 @@ function CardDetail({ user, post }) {
     const [showComments, SetShowComments] = useState(false)
     const [showEditInput, setShowEditInput] = useState(false)
     const [commentDesc, setCommentDesc] = useState()
+    const [likePost, setLikePost] = useState(post.current_user_like)
 
     useEffect(() => {
         if (!showDiv) return;
@@ -39,6 +40,9 @@ function CardDetail({ user, post }) {
         }
     }
 
+    const toggleAPostLike = async (post) => {
+        await dispatch(TogglePostLike(post))
+    }
 
     const handleCreateCommentSubmit = async (e) => {
         e.preventDefault();
@@ -100,104 +104,122 @@ function CardDetail({ user, post }) {
             <PostModal user={current_user} post={post} setShowPostModal={setShowPostModal} showPostModal={showPostModal} />
             <div className="post_card_container_wrapper">
 
-           
-            <div className="user_edit_line">
 
-                <div className="user_box">
-                    <div>
-                        <img className="user_profile_image" src={post.user.profile_img}></img>
-                    </div>
-                    <div className="user_name">
-                        {post.user.first_name} {post.user.last_name}
-                    </div>
-                </div>
-                <div className='dropdown'> {/* dropdown   */}
-                    <div className="edit_icon"> {/* dropbtn   */}
-                        {current_user.id === post.user.id ?
-                            <i className="fa-solid fa-ellipsis post_edit_dot"
-                                onClick={() => { setShowDiv(!showDiv) }}
-                            ></i> : null}
-                    </div>
-                    {showDiv && <div className='dropdown-content'>
-                        <div className='action_div'
-                            onClick={() => setShowPostModal(true)}
-                        > Edit post
+                <div className="user_edit_line">
+
+                    <div className="user_box">
+                        <div>
+                            <img className="user_profile_image" src={post.user.profile_img}></img>
                         </div>
-                        <div className='action_div'
-                            onClick={() => deletePostOnclick(post.id)}
-                        > Delete Post
+                        <div className="user_name">
+                            {post.user.first_name} {post.user.last_name}
                         </div>
-                        <div className='action_div'
-                            onClick={() => { setShowDiv(false) }}
-                        > Cancel
+                    </div>
+                    <div className='dropdown'> {/* dropdown   */}
+                        <div className="edit_icon"> {/* dropbtn   */}
+                            {current_user.id === post.user.id ?
+                                <i className="fa-solid fa-ellipsis post_edit_dot"
+                                    onClick={() => { setShowDiv(!showDiv) }}
+                                ></i> : null}
                         </div>
-
-                    </div>}
-                </div>
-
-            </div>
-            <div className="Post_desc_container"> {post.description}</div>
-            <div>
-                <img className='post_image'onError={({target})=> {
-                    target.onError = null
-                    target.src= "https://community.clover.com/themes/base/admin/img/default-coverImage.png"
-                }} src={post.url}></img>
-            </div>
-            <div className='counts_container'>
-                {/* will implement this later on */}
-                {/* <div className='like_counts_container'>
-                    <i className="fa-solid fa-thumbs-up likecount"></i>
-                    <div className="count_number">
-                        {post.user_post_likes ? post.user_post_likes : null}
-                    </div>
-                </div> */}
-                <div onClick={() => SetShowComments(!showComments)}
-                    className="comment_counts_container">
-                    {showComments? <div className="count_number">{post.comments.length ? `Hide ${post.comments.length} comments` : "No comments yet"}</div>
-                        : <div className="count_number">{post.comments.length ? `Show ${post.comments.length} comments` : "No comments yet"}</div>}
-
-                    {/* <div className="count_number"> Comments</div> */}
-                </div>
-
-            </div>
-
-
-            <div className="below_post_line">
-                {/* will implement this feature later on */}
-                {/* <div className="Image_likes">
-                    <div>
-                        <i className="fa-regular fa-thumbs-up"></i>
-                    </div>
-                    <div>Like</div>
-                </div> */}
-                <div className="Comments_signs" onClick={() => FocusEventListener()}>
-                    <div>
-                        <i className="fa-regular fa-comment"></i>
-                    </div>
-                    <div> Comment</div>
-                </div>
-            </div>
-            {showComments && 
-          
-                <div >
-                    {
-                        post.comments.length > 0 ? post.comments.map((comment, index) => {
-                            return <div className="comment_inner_container">
-                                <CommentAction post={post} comment={comment} />
-                                {showEditInput && <CommentForm comment={comment} post={post} setShowEditInput={setShowEditInput} showEditInput={showEditInput} />}
+                        {showDiv && <div className='dropdown-content'>
+                            <div className='action_div'
+                                onClick={() => setShowPostModal(true)}
+                            > Edit post
                             </div>
-                        })
-                        : <div className="no_comment_desc"> There is no comments yet. Be the first one to leave a comment. </div>
-                    }
+                            <div className='action_div'
+                                onClick={() => deletePostOnclick(post.id)}
+                            > Delete Post
+                            </div>
+                            <div className='action_div'
+                                onClick={() => { setShowDiv(false) }}
+                            > Cancel
+                            </div>
+
+                        </div>}
+                    </div>
+
                 </div>
-            }
+                <div className="Post_desc_container"> {post.description}</div>
+                <div>
+                    <img className='post_image' onError={({ target }) => {
+                        target.onError = null
+                        target.src = "https://community.clover.com/themes/base/admin/img/default-coverImage.png"
+                    }} src={post.url}></img>
+                </div>
+                <div className='counts_container'>
+                    {/* will implement this later on */}
+                    <div className='like_counts_container'>
+                        {   post.liked_user_ids.length ?
+                            <i className="fa-solid fa-thumbs-up likecount"></i>
+                            :
+                            <i className="fa-regular fa-thumbs-up"></i>
+                        }
+                        <div className="count_number">
+                            {post.user_post_likes ? post.user_post_likes : null}
+                        </div>
+                    </div>
+                    <div onClick={() => SetShowComments(!showComments)}
+                        className="comment_counts_container">
+                        {showComments ? <div className="count_number">{post.comments.length ? `Hide ${post.comments.length} comments` : "No comments yet"}</div>
+                            : <div className="count_number">{post.comments.length ? `Show ${post.comments.length} comments` : "No comments yet"}</div>}
 
-            <CommentForm comment={comment} post={post} setShowEditInput={setShowEditInput} />
+                        {/* <div className="count_number"> Comments</div> */}
+                    </div>
 
-            {/* <div>
+                </div>
+
+
+                <div className="below_post_line">
+                    {/* will implement this feature later on */}
+                    <div className="Image_likes">
+                        <div>
+                            {likePost ?
+                                <i className="fa-regular fa-thumbs-up"
+                                    onClick={() => {
+                                        console.log("yes")
+                                        setLikePost(!likePost)
+                                        toggleAPostLike(post)
+                                    }}>
+                                </i>
+                                : <i className="fa-solid fa-thumbs-up likecount"
+                                    onClick={() => {
+                                        console.log("no")
+                                        setLikePost(!likePost)
+                                        toggleAPostLike(post)
+                                    }}>
+                                </i>}
+                        </div>
+                        <div>Like</div>
+                    </div>
+                    <div className="Comments_signs" onClick={() => FocusEventListener()}>
+                        <div>
+                            <i className="fa-regular fa-comment"></i>
+                        </div>
+                        <div> Comment</div>
+                    </div>
+                </div>
+                {showComments &&
+
+                    <div >
+                        {
+                            post.comments.length > 0 ? post.comments.map((comment, index) => {
+                                return <div className="comment_inner_container">
+                                    <CommentAction post={post} comment={comment} />
+                                    {showEditInput && <CommentForm comment={comment} post={post} setShowEditInput={setShowEditInput} showEditInput={showEditInput} />}
+                                </div>
+                            })
+                                : <div className="no_comment_desc"> There is no comments yet. Be the first one to leave a comment. </div>
+                        }
+                    </div>
+                }
+
+                <CommentForm comment={comment} post={post} setShowEditInput={setShowEditInput} />
+
+                {/* <div>
                 Comments: {post.comments.length > 0 ? post.comments[(post.comments.length - 1)].comment : null}
             </div> */}
-             </div>
+            </div>
         </div>
     )
 

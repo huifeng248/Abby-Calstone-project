@@ -88,7 +88,6 @@ def add_remove_comment_like(id):
         current_user_id = current_user.id
         ## if current user likes the post, delete the likes
         for user in comment['user_comment_likes']:
-            # print("_______", post['liked_user_ids'])
             if user['id'] == current_user_id:
                 delete_comment_like = delete(CommentsLikes).where(
                     CommentsLikes.c.user_id == current_user_id,
