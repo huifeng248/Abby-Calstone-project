@@ -1,8 +1,9 @@
 
 
+from crypt import methods
 from sqlalchemy import delete
-from flask import Blueprint, jsonify, session, request, redirect, url_for
-from app.models import User, db, Post, Comment, Friends
+from flask import Blueprint, jsonify, session, request
+from app.models import User, db, Post, Comment, Friends, Postslikes
 from flask_login import current_user, login_user, logout_user, login_required
 from app.forms.post_form import PostForm, FormValidation
 from app.forms.comment_form import CommentForm
@@ -218,4 +219,48 @@ def create_comment(id):
 
 
 
+# like and unlike a post
+@post_routes.route('/<int:id>/likes', methods=['POST'])
+@login_required
+def add_remove_post_like(id):
+    form = FormValidation()
+    form['csrf_token'].data = request.cookies['csrf_token']
+
+    if form.validate_on_submit():
+        post = Post.query.get(id)
+        # if post not exist
+        if (not post):
+            result = {
+            "message": "post does not exist",
+            "statusCode": 404
+            }
+            return jsonify(result)
+        # if post exist
+        post = post.to_dict()
+        # post['user'] = User.query.get(post['user_id']).to_dict()
+        current_user_id = current_user.id
+        ## if current user likes the post, delete the likes
+        for user in post['liked_user_ids']:
+            print("!!!!!!!", user)
+            # print("_______", post['liked_user_ids'])
+            if user['id'] == current_user_id:
+                delete_post_like = delete(Postslikes).where(
+                    Postslikes.c.user_id == current_user_id,
+                    Postslikes.c.post_id == id
+                )
+                db.engine.execute(delete_post_like)
+                new_post = Post.query.get(id).to_dict()
+                new_post['user'] = User.query.get(post['user_id']).to_dict()
+                return jsonify(new_post)
+        
+        ## if no likes, need to add the likes
+        add_like = Postslikes.insert().values((current_user_id, id))
+        db.engine.execute(add_like)
+        new_post = Post.query.get(id).to_dict()
+        new_post['user'] = User.query.get(post['user_id']).to_dict()
+        return jsonify(new_post)
     
+    else:
+        return jsonify(form.errors)
+
+        

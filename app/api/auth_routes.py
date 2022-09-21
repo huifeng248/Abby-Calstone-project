@@ -104,6 +104,8 @@ def authenticate():
     if current_user.is_authenticated:
         return current_user.to_dict()
     return {'errors': ['Unauthorized']}
+
+## http://localhost:5000/api/auth/login log into the postman
 @auth_routes.route('/login', methods=['POST'])
 def login():
     """
