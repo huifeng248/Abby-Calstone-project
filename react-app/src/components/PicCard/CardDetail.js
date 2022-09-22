@@ -180,9 +180,9 @@ function CardDetail({ user, post }) {
                     }}>
                         <div>
                             {likePost ?
-                                <i className="fa-regular fa-thumbs-up likecount">
+                                <i className="fa-solid fa-thumbs-up likecount">  
                                 </i>
-                                : <i className="fa-solid fa-thumbs-up">
+                                : <i className="fa-regular fa-thumbs-up">
                                 </i>}
                         </div>
                         <div className="like_character">Like</div>

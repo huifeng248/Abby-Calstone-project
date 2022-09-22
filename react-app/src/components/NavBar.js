@@ -11,7 +11,7 @@ const NavBar = () => {
   const user = useSelector((state) => state.session.user)
   const [showList, setShowList] = useState(false);
 
-  useEffect(()=> {
+  useEffect(() => {
     if (!showList) return
     const closeDropDownMenu = () => setShowList(false)
     document.addEventListener("click", closeDropDownMenu)
@@ -26,6 +26,10 @@ const NavBar = () => {
           <NavLink className="home_link" to='/' exact={true} activeClassName='active'>
             FaceTa
           </NavLink>
+          <div className='search_bar_container'>
+            <i className="fa-solid fa-magnifying-glass"></i>
+            <input className="search_input" placeholder='Search Friends'></input>
+          </div>
           <div>
             <i className="fa-solid fa-user"
               onClick={() => setShowList(!showList)}></i>
