@@ -23,7 +23,8 @@ const NavBar = () => {
     <div>
       <nav className='nav_bar_container'>
         <div className="home_link_container">
-          <NavLink className="home_link" to='/' exact={true} activeClassName='active'>
+          <NavLink onClick={()=> window.scroll(0,0)}
+          className="home_link" to='/' exact={true} activeClassName='active'>
             FaceTa
           </NavLink>
           <div className='search_bar_container'>

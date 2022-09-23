@@ -19,17 +19,6 @@ const PostByUser = () => {
     const filtered_posts = temp_posts.sort(function (a, b) {
         return new Date(b.createdAt) - new Date(a.createdAt)
     })
-    // console.log("FFFFFFFFFFFFFF", post_arr)
-
-    // useEffect(() => {
-    //     if(!userId) {
-    //         return 
-    //     }
-    //     (async ()=> {
-    //         await dispatch(GetPostByUser(userId))
-    //         .then(() => (setLoaded(true)))
-    //     })();
-    // },[dispatch,userId])
 
     useEffect(() => {
         dispatch(GetPostByUser(userId))

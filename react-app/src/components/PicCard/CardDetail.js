@@ -6,6 +6,7 @@ import PostModal from '../PostModal'
 import { CreateComment, EditComment, Delete_comment } from '../../store/post'
 import CommentAction from "../CommentAction";
 import CommentForm from './CommentForm'
+import { NavLink, Link } from 'react-router-dom';
 
 
 function CardDetail({ user, post }) {
@@ -109,10 +110,15 @@ function CardDetail({ user, post }) {
 
                     <div className="user_box">
                         <div>
+                            <Link className="user_post_link" to={`/posts/users/${post.user_id}`} exact="true" onClick={()=> window.scroll(0,0)}>
                             <img className="user_profile_image" src={post.user.profile_img}></img>
+                            </Link>
                         </div>
                         <div className="user_name">
+                            <Link className="user_post_link" to={`/posts/users/${post.user_id}`} exact="true" onClick={()=> window.scroll(0,0)}>
                             {post.user.first_name} {post.user.last_name}
+                            </Link>
+
                         </div>
                     </div>
                     <div className='dropdown'> {/* dropdown   */}

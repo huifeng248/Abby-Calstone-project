@@ -17,10 +17,31 @@ friend3 = Friends(
     accepted_status=True
     )
 
+friend4 = Friends(
+    user_id=1, 
+    friend_id=4,
+    accepted_status=False
+    )
+
+friend5 = Friends(
+    user_id=1, 
+    friend_id=5,
+    accepted_status=False
+    )
+
+friend6 = Friends(
+    user_id=2, 
+    friend_id=6
+    )
+
+
 def seed_friends():
     db.session.add(friend1)
     db.session.add(friend2)
     db.session.add(friend3)
+    db.session.add(friend4)
+    db.session.add(friend5)
+    db.session.add(friend6)
 
     db.session.commit()
 
