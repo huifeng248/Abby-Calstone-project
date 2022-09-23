@@ -47,6 +47,7 @@
 .below_post_line{
     display: flex;
     justify-content: space-between;
+     padding: 4px 16px;
 }
 /* .comment_input{
     background-color: #F0F2F5;
@@ -79,7 +80,7 @@
 } */
 
 .create_post_container{
-    margin-top: 20px;
+    /* margin-top: 20px; */
     margin-bottom: 10px;
     height: 60px;
     padding: 12px 16px 10px;
@@ -159,14 +160,22 @@
 .counts_container{
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    /* background-color: red; */
+    padding: 4px 16px;
+    box-sizing: border-box;
 }
 
 .likecount{
     color: #0070E3
 }
+.fa-thumbs-up{
+    color: #0070E3
+}
 
 .count_number{
     color: #64676B;
+    padding-left: 0.5rem;
     /* padding: 16px 0px;
     box-sizing: border-box; */
     /* background-color: red; */
@@ -179,10 +188,10 @@
 .comment_counts_container{
     display: flex;
     cursor: pointer;
-    padding: 4px 16px;
+    /* padding: 4px 16px; */
     box-sizing: border-box;
     /* background-color: rebeccapurple; */
-    width: 100%;
+    /* width: 100%; */
 }
 
 .comment_inner_container{
@@ -302,15 +311,6 @@
     /* max-height: 80px; */
 }
 
-.Comments_signs{
-    padding: 4px 16px;
-    /* background-color: red; */
-}
-
-
-.fa-comment{
-    padding-right: 5px;
-}
 
 .fa-ellipsis{
     box-sizing: border-box;
@@ -335,4 +335,61 @@
 
 .post_edit_dot{
     cursor: pointer;
+}
+
+.like_character{
+    padding-left: 0.5rem;
+    color: #64676B;
+}
+
+.like_character_pointer{
+    padding-left: 0.5rem;
+    color: #64676B;
+    cursor: pointer; 
+    cursor: pointer;
+}
+
+.comment_charater{
+    padding-left: 0.5rem;
+    color: #64676B;
+}
+
+.fa-comment{
+    color: #64676B;
+}
+
+.save_button{
+    color: #64676B;
+}
+
+.Image_likes{
+    cursor: pointer;
+}
+
+.comment_like_wrapper{
+    /* background-color: aqua; */
+    display: flex;
+    flex-direction: column;
+}
+
+.like-wrapper{
+    display: flex;
+    justify-content: space-between;
+}
+
+.margin-top{
+    margin-top: -0.6rem;
+    font-size: 18px;
+    /* background-color: #2C6FE3; */
+    /* z-index: 200; */
+}
+
+.thumbs_up_wrapper{
+    /* background-color: #2C6FE3; */
+    margin-top: -0.6rem;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    box-sizing: border-box;
+    /* z-index: -1; */
 }

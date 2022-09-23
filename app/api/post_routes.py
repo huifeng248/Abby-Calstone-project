@@ -1,8 +1,9 @@
 
 
+from crypt import methods
 from sqlalchemy import delete
-from flask import Blueprint, jsonify, session, request, redirect, url_for
-from app.models import User, db, Post, Comment, Friends
+from flask import Blueprint, jsonify, session, request
+from app.models import User, db, Post, Comment, Friends, Postslikes
 from flask_login import current_user, login_user, logout_user, login_required
 from app.forms.post_form import PostForm, FormValidation
 from app.forms.comment_form import CommentForm
@@ -10,38 +11,14 @@ from app.forms.comment_form import CommentForm
 
 post_routes = Blueprint('posts', __name__)
 # homepage get all post including no friends
-@post_routes.route('')
-@login_required
-def get_posts_at_homepage_all_post():
-    id = current_user.id
-    posts= Post.query.all()
-    posts_to_json= [post.to_dict() for post in posts]
-    post_userId = [post.user_id for post in posts]
-    for post in posts_to_json:
-        # for every post, include the post user info
-        post['user'] = User.query.get(post['user_id']).to_dict()
-        for user in post["liked_user_ids"]:
-            if user['id'] == current_user.id:
-                post['current_user_like'] = True
-            else:
-                post['current_user_like'] = False
-    return jsonify(posts_to_json)
-
-
-# homepage get posts
 # @post_routes.route('')
 # @login_required
-# def get_posts_at_homepage():
+# def get_posts_at_homepage_all_post():
 #     id = current_user.id
-#     #get the friends for the current user by filtering userId
-#     friend_obj_list = Friends.query.filter(Friends.user_id == id).all()
-#     friend_arr_list = [friend.friend_id for friend in friend_obj_list]
-#     #append userid into that list
-#     friend_arr_list.append(id)
-#     posts = Post.query.filter(Post.user_id.in_(friend_arr_list)).order_by(
-#         Post.createdAt.desc()).all()
+#     posts= Post.query.all()
 #     posts_to_json= [post.to_dict() for post in posts]
-#     post_userId = [post.user_id for post in posts]
+#     print("11111111111111111", posts_to_json)
+#     # post_userId = [post.user_id for post in posts]
 #     for post in posts_to_json:
 #         # for every post, include the post user info
 #         post['user'] = User.query.get(post['user_id']).to_dict()
@@ -51,6 +28,31 @@ def get_posts_at_homepage_all_post():
 #             else:
 #                 post['current_user_like'] = False
 #     return jsonify(posts_to_json)
+
+
+# homepage get posts
+@post_routes.route('')
+@login_required
+def get_posts_at_homepage():
+    id = current_user.id
+    #get the friends for the current user by filtering userId
+    friend_obj_list = Friends.query.filter(Friends.user_id == id).all()
+    friend_arr_list = [friend.friend_id for friend in friend_obj_list]
+    #append userid into that list
+    friend_arr_list.append(id)
+    posts = Post.query.filter(Post.user_id.in_(friend_arr_list)).order_by(
+        Post.createdAt.desc()).all()
+    posts_to_json= [post.to_dict() for post in posts]
+    # post_userId = [post.user_id for post in posts]
+    for post in posts_to_json:
+        # for every post, include the post user info
+        post['user'] = User.query.get(post['user_id']).to_dict()
+        for user in post["liked_user_ids"]:
+            if user['id'] == current_user.id:
+                post['current_user_like'] = True
+            else:
+                post['current_user_like'] = False
+    return jsonify(posts_to_json)
 
 
 # get post by post id
@@ -218,4 +220,46 @@ def create_comment(id):
 
 
 
+# like and unlike a post
+@post_routes.route('/<int:id>/likes', methods=['POST'])
+@login_required
+def add_remove_post_like(id):
+    form = FormValidation()
+    form['csrf_token'].data = request.cookies['csrf_token']
+
+    if form.validate_on_submit():
+        post = Post.query.get(id)
+        # if post not exist
+        if (not post):
+            result = {
+            "message": "post does not exist",
+            "statusCode": 404
+            }
+            return jsonify(result)
+        # if post exist
+        post = post.to_dict()
+        # post['user'] = User.query.get(post['user_id']).to_dict()
+        current_user_id = current_user.id
+        ## if current user likes the post, delete the likes
+        for user in post['liked_user_ids']:
+            if user['id'] == current_user_id:
+                delete_post_like = delete(Postslikes).where(
+                    Postslikes.c.user_id == current_user_id,
+                    Postslikes.c.post_id == id
+                )
+                db.engine.execute(delete_post_like)
+                new_post = Post.query.get(id).to_dict()
+                new_post['user'] = User.query.get(post['user_id']).to_dict()
+                return jsonify(new_post)
+        
+        ## if no likes, need to add the likes
+        add_like = Postslikes.insert().values((current_user_id, id))
+        db.engine.execute(add_like)
+        new_post = Post.query.get(id).to_dict()
+        new_post['user'] = User.query.get(post['user_id']).to_dict()
+        return jsonify(new_post)
     
+    else:
+        return jsonify(form.errors)
+
+        

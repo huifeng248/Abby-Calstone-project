@@ -1,4 +1,4 @@
-import { Delete_comment } from '../store/post'
+import { Delete_comment, ToggleCommentLike } from '../store/post'
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react"
 import CommentForm from './PicCard/CommentForm'
@@ -11,10 +11,17 @@ function CommentAction({ post, comment }) {
     const current_user = useSelector(state => state.session.user)
     const dispatch = useDispatch()
     const [showCommentAction, setShowCommentAction] = useState(false)
-    // const [errors, setErrors] = useState([]);
-    // const user = useSelector(state => state.session.user)
-    // const [commentDesc, setCommentDesc] = useState()
+    const [commentLikeStatus, setCommentLikeStatus] = useState(false)
     const [showEditInput, setShowEditInput] = useState(false)
+
+
+    useEffect(()=>{
+        comment.user_comment_likes.forEach(user_ele => {
+            if (user_ele.id === current_user.id){
+                setCommentLikeStatus(true)
+            } 
+        }) 
+    }, [])
 
 
     const deleteCommentOnclick = async (post_id, comment_id) => {
@@ -24,11 +31,11 @@ function CommentAction({ post, comment }) {
         }
     }
 
-    // useEffect(() => {
-    //     if (comment) {
-    //         setCommentDesc(comment.comment)
-    //     }
-    // }, [comment])
+    const toggleACommentLike = async (comment) => {
+        await dispatch(ToggleCommentLike(comment))
+    }
+
+
 
     useEffect(() => {
         if (!showCommentAction) return;
@@ -36,33 +43,6 @@ function CommentAction({ post, comment }) {
         document.addEventListener("click", closeCommentDivMenu);
         return () => document.removeEventListener("click", closeCommentDivMenu);
     }, [showCommentAction]);
-
-    // const handleCommentSubmit = async (e) => {
-    //     e.preventDefault()
-    //     let error_arr = []
-    //     if (!commentDesc || commentDesc.trimEnd().length === 0) {
-    //         error_arr.push('Please provide a valid comment')
-    //         setErrors(error_arr)
-    //     } else if (commentDesc.trimEnd().length > 1000) {
-    //         error_arr.push('Comment must be within 1000 characters')
-    //         setErrors(error_arr)
-    //     } else {
-
-    //         const edit_comment_payload = {
-    //             user_id: user.id,
-    //             id: CommentId,
-    //             post_id: PostId,
-    //             comment: commentDesc
-    //         }
-    //         dispatch(EditComment(edit_comment_payload))
-    //             .catch(async (data) => {
-    //                 if (data && data.errors) {
-    //                     setErrors(data.errors)
-    //                 }
-    //             })
-    //         setShowEditInput(false)
-    //     }
-    // }
 
 
 
@@ -74,10 +54,29 @@ function CommentAction({ post, comment }) {
                     <div>
                         <img className="user_profile_image" src={post.user.profile_img} alt="profile_image"></img>
                     </div>
-                    <div className="comment_and_user_name">
-                        <div>{comment.user.first_name} {comment.user.last_name}</div>
-                        <div className='comment_disc_container'>{comment.comment}</div>
+                    <div className='comment_like_wrapper'>
+                        <div className="comment_and_user_name">
+                            <div>{comment.user.first_name} {comment.user.last_name}</div>
+                            <div className='comment_disc_container'>{comment.comment}</div>
+                        </div>
+                        <div className='like-wrapper'>
+                            <div className='like_character_pointer'
+                                onClick={()=>{
+                                    toggleACommentLike(comment)
+                                    setCommentLikeStatus(!commentLikeStatus)
+                                }}>{comment.total_comment_likes} Like</div>
+
+                            {/* {commentLikeStatus? 
+                                    <i className="fa-solid fa-thumbs-up margin-top"></i>
+                                :
+                                <i className="fa-regular fa-thumbs-up likecount margin-top"></i>
+                            } */}
+                            {commentLikeStatus &&
+                                    <i className="fa-solid fa-thumbs-up margin-top"></i>}
+                           
+                        </div>
                     </div>
+
                     {
                         current_user.id === comment.user.id &&
                         <div className="dot_div_container"

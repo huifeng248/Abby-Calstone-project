@@ -25,10 +25,15 @@ class Friends(db.Model):
         foreign_keys=[friend_id],
         back_populates="request_user")
 
+    # friend_id is the requster who send the friend request
+    # user_id is who will accept the request
+
     def to_dict(self):
         return {
             "id": self.id,
             "user_id": self.user_id,
             "friend_id": self.friend_id,
-            "accepted_status": self.accepted_status
+            "accepted_status": self.accepted_status,
+            "accepter": self.accepter.to_dict(),
+            "requester": self.requester.to_dict()
         }

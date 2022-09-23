@@ -6,6 +6,7 @@
     width: 100%;
     height: 56px;
     background-color: white;
+    margin-bottom: 20px;
 }
 
 .drop_down_menu{
@@ -50,10 +51,14 @@
     width: 100%;
     height: 56px;
     padding-left: 20px;
+    padding-right: 20px;
+    box-sizing: border-box;
     display: flex;
     align-items: center;
     justify-content: space-between;
     align-items: center;
+    position:fixed;
+    background-color: white;
 }
 
 .home_link{
@@ -102,3 +107,17 @@
     border-radius: 0px;
 
 } */
+
+.search_bar_container{
+    width: 700px;
+    min-width: 700px;
+    /* border: 1px solid rgba(208, 210, 213, 0.824); */
+    border-radius: 5px;
+    /* padding: 16px 0px; */
+    /* background-color: #64676B; */
+    background-color: #F0F2F5;
+}
+
+.user_post_link{
+    color: black;
+}

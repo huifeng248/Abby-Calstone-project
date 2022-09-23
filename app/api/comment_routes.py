@@ -1,6 +1,7 @@
 import json
 from flask import Blueprint, jsonify, session, request, redirect, url_for
-from app.models import User, db, Post, Comment, Friends
+from sqlalchemy import delete
+from app.models import User, db, Post, Comment, Friends, CommentsLikes
 from flask_login import current_user, login_user, logout_user, login_required
 from app.forms.comment_form import CommentForm, FormValidation
 
@@ -63,3 +64,44 @@ def delete_comment(id):
             "message": "Successfully deleted!"
         }
     return jsonify(result)
+
+
+# like and unlike a post
+@comment_routes.route('/<int:id>/likes', methods=['POST'])
+@login_required
+def add_remove_comment_like(id):
+    form = FormValidation()
+    form['csrf_token'].data = request.cookies['csrf_token']
+
+    if form.validate_on_submit():
+        comment = Comment.query.get(id)
+        # if comment does not exit     
+        if (not comment):
+            result = {
+            "message": "comment does not exist",
+            "statusCode": 404
+            }
+            return jsonify(result)
+        # if comment exit 
+        comment = comment.to_dict()
+        # post['user'] = User.query.get(post['user_id']).to_dict()
+        current_user_id = current_user.id
+        ## if current user likes the post, delete the likes
+        for user in comment['user_comment_likes']:
+            if user['id'] == current_user_id:
+                delete_comment_like = delete(CommentsLikes).where(
+                    CommentsLikes.c.user_id == current_user_id,
+                    CommentsLikes.c.comment_id == id
+                )
+                db.engine.execute(delete_comment_like)
+                new_comment = Comment.query.get(id).to_dict()
+                return jsonify(new_comment)
+        
+        ## if no likes, need to add the likes
+        add_like = CommentsLikes.insert().values((current_user_id, id))
+        db.engine.execute(add_like)
+        new_comment = Comment.query.get(id).to_dict()
+        return jsonify(new_comment)
+    
+    else:
+        return jsonify(form.errors)

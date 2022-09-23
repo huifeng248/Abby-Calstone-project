@@ -28,10 +28,41 @@ user3 = User(
     # friends=[user1, user2]
     )
 
+user4 = User(
+    username='David', 
+    email='david@aa.io', 
+    password='password',
+    first_name="David",
+    last_name="Wong",
+    # friends=[user1, user2]
+    )
+
+user5 = User(
+    username='Jenny', 
+    email='jenny@aa.io', 
+    password='password',
+    first_name="Jenny",
+    last_name="Guo",
+    # friends=[user1, user2]
+    )
+
+user6 = User(
+    username='Emmely', 
+    email='emmely@aa.io', 
+    password='password',
+    first_name="Emmely",
+    last_name="Fan",
+    # friends=[user1, user2]
+    )
+
+
 def seed_users():
     db.session.add(user1)
     db.session.add(user2)
     db.session.add(user3)
+    db.session.add(user4)
+    db.session.add(user5)
+    db.session.add(user6)
 
     db.session.commit()
 
