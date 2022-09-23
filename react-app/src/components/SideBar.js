@@ -41,13 +41,13 @@ function SideBar({ user }) {
                     <div>About FaceTa</div>
                 </div>
             </a>
-
+{/* 
             <NavLink className="contact_info_link" to={`/`} activeClassName='active'>
                 <div className="contact_info_link_div">
                     <i className="fa-solid fa-user-group"></i>
                     <div>Friends</div>
                 </div>
-            </NavLink>
+            </NavLink> */}
 
         </div>
     )
