@@ -51,7 +51,7 @@ def send_friend_request(id):
     form['csrf_token'].data = request.cookies['csrf_token']
 
     friend = User.query.get(id)
-    
+
     # this check if they are already friend or a friend request is already send
     request_friends = Friends.query.filter(or_(and_(Friends.user_id == id, Friends.friend_id == current_user.id),
         and_(Friends.friend_id == id, Friends.user_id == current_user.id))).all()
@@ -88,6 +88,8 @@ def send_friend_request(id):
         else:
             return jsonify(form.errors)
 
+
+# delete friend
 # 1) reject friend request and 2) un-friend a friend and 3) cancel the sending request
 # this need fix tomorrow need to seperate the senarios: as the direction is multiple
 

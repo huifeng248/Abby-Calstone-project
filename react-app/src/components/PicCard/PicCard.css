@@ -393,3 +393,7 @@
     box-sizing: border-box;
     /* z-index: -1; */
 }
+
+.side_bar_profile_page_container{
+    display: flex;
+}

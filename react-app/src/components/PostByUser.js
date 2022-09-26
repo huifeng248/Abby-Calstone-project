@@ -7,6 +7,7 @@ import CardDetail from "./PicCard/CardDetail";
 import './PicCard/PicCard.css'
 import { useParams } from 'react-router-dom';
 import EmptyPost from './EmptyPost'
+import SideBar from "./SideBar";
 
 const PostByUser = () => {
     const dispatch = useDispatch()
@@ -27,17 +28,20 @@ const PostByUser = () => {
 
     // This need to be after the useEffect. AS the result would be filtered by the user id
     return (
-        <div className="outer_container">
-            {/* {console.log("current user Id", user.id)}
+        <div className="side_bar_profile_page_container">
+            <SideBar />
+            <div className="outer_container">
+                {/* {console.log("current user Id", user.id)}
             {console.log("user Params id", userId)} */}
-            {Number(user.id) === Number(userId) && <PostCreateBox user={user} />}
-            {loaded && filtered_posts.length ?
-                filtered_posts.map((post, index) => {
-                    return <div key={index} className="post_card_container">
-                        <CardDetail user={user} post={post} />
-                    </div>
-                })
-            : <EmptyPost />}
+                {Number(user.id) === Number(userId) && <PostCreateBox user={user} />}
+                {loaded && filtered_posts.length ?
+                    filtered_posts.map((post, index) => {
+                        return <div key={index} className="post_card_container">
+                            <CardDetail user={user} post={post} />
+                        </div>
+                    })
+                    : <EmptyPost />}
+            </div>
         </div>
     )
 }

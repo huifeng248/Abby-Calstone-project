@@ -1,11 +1,16 @@
 .sidebar_container{
     margin-top: 20px;
-    width: 180px;
-    padding: 8px 20px;
+    /* width: 180px; */
+    /* padding: 8px 20px; */
+    /* padding-left: 20px; */
 
     display: flex;
     flex-direction: column;
-    /* background-color: red; */
+    background-color: red;
+}
+
+.left{
+    padding-left: 20px;
 }
 
 .contact_info_link_div{
@@ -54,4 +59,9 @@ a{
     padding-right: 16px;
     font-size: 20px;
     color: #43B8DB;
+}
+
+.sidebar_outside_container{
+    display: flex;
+    justify-content: flex-start;
 }

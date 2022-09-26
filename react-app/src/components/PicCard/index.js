@@ -26,7 +26,7 @@ function PicCard() {
     // return "this is homepage"
     return (
         <div className="main_page_container">
-            <SideBar user={user}/>
+            <SideBar />
 
             <div className="outer_container">
                 <PostCreateBox user={user} />
