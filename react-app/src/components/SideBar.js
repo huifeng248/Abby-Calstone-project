@@ -48,7 +48,7 @@ function SideBar() {
                     </div>
                 </a>
 
-                <NavLink className="contact_info_link" to={`/`} activeClassName='active'>
+                <NavLink className="contact_info_link" to={`/friends`} activeClassName='active'>
                     <div className="contact_info_link_div">
                         <i className="fa-solid fa-user-group"></i>
                         {/* <div>Friends</div> */}
@@ -56,7 +56,7 @@ function SideBar() {
                 </NavLink>
 
             </div>
-            <div className="sidebar_word_container sidebar_container">
+            {/* <div className="sidebar_word_container sidebar_container">
                 <NavLink className="contact_info_link" to='/' exact={true} activeClassName='active'>
                     <div className="contact_info_link_div">
                         <div>Home</div>
@@ -90,7 +90,7 @@ function SideBar() {
                         <div>Friends</div>
                     </div>
                 </NavLink>
-            </div>
+            </div> */}
 
         </div>
     )

@@ -12,6 +12,7 @@ import { authenticate } from './store/session';
 import PostByUser from './components/PostByUser';
 import PicCard from './components/PicCard';
 import PageNotFound from "./components/PageNotFound"
+import FriendPage from "./components/Friends/FriendPage"
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -50,6 +51,9 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute path='/' exact={true} >
           <PicCard />
+        </ProtectedRoute>
+        <ProtectedRoute path='/friends' exact={true} >
+          <FriendPage />
         </ProtectedRoute>
         <Route>
           <PageNotFound />

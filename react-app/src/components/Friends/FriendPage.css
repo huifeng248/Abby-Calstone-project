@@ -1,0 +1,36 @@
+.friends_outter_container{
+    display: flex;
+    /* background-color: aquamarine; */
+    height: 100vh;
+}
+
+.friend_option_container{
+    /* margin-top: 20px; */
+    display: flex;
+    flex-direction: column;
+    /* height: 100%; */
+    border-right: 1px solid rgba(208, 210, 213, 0.824);
+    background-color: white;
+
+
+}
+
+.friend_option{
+    width: 240px;
+    height: 36px;
+    display: flex;
+    flex-direction: row;
+    /* background-color: red; */
+    align-items: center;
+    color: #050505;
+    /* border-right: 1px solid rgba(208, 210, 213, 0.824); */
+    padding-left: 20px;
+    cursor: pointer;
+    
+
+
+}
+
+.friend_option:hover{
+    background-color: #F0F2F5;
+}
