@@ -28,7 +28,23 @@ def get_all_requested_friends():
         friend_pair['friend_detail'] = User.query.get(friend_pair['friend_id']).to_dict()
     return jsonify(friends_to_json)
 
-
+# get suggested friends
+@friend_routes.route('/suggest')
+@login_required
+def get_suggested_friends():
+    current_user_id = current_user.id
+    print("+++++++++", current_user_id)
+    friends_list = Friends.query.filter(or_(Friends.friend_id == current_user_id, Friends.user_id == current_user_id))
+    friends_list_to_json = []
+    for friend in friends_list:
+        friends_list_to_json.append(friend.friend_id)
+        friends_list_to_json.append(friend.user_id)
+    
+    result_list = list(set(friends_list_to_json))
+    suggest_list = User.query.filter(User.id.not_in(result_list))
+    suggest_list_to_json = [friend.to_dict() for friend in suggest_list]
+    # return str(result_list)
+    return jsonify(suggest_list_to_json)
 
 
 # get mutual friends
@@ -134,38 +150,56 @@ def delete_friend_request(id):
 
 
 # accept friend request: change the status to true
-# the id is the friend id.
-@friend_routes.route('/<id>', methods=['PUT'])
+# the id is the friend id.?? what about friend id
+@friend_routes.route('/<int:id>', methods=['PUT'])
 @login_required
 def accept_friend_request(id):
-    form = FormValidation()
-    form['csrf_token'].data = request.cookies['csrf_token']
+    print("++++++++++++++++++", id)
+    # form = FormValidation()
+    # form['csrf_token'].data = request.cookies['csrf_token']
+    print("----------------", id)
 
-    friend = User.query.get(id)
-    request_friends = Friends.query.filter(Friends.user_id == current_user.id, Friends.friend_id == id)
-    request_friends_to_json = [friend.to_dict() for friend in request_friends]
+    # friend = User.query.get(id)
+    # request_friends = Friends.query.filter(Friends.user_id == current_user.id, Friends.friend_id == id)
+    # request_friends_to_json = [friend.to_dict() for friend in request_friends]
+    request_friend = Friends.query.get(id)
 
-    if (not friend):
-        result = {
-            "message": "user does not exist",
-            "statusCode": 404
-            }
-        return jsonify(result)
-    elif (not len(request_friends_to_json)):
+    # if (not friend):
+    #     result = {
+    #         "message": "user does not exist",
+    #         "statusCode": 404
+    #         }
+    #     return jsonify(result)
+    # elif (not len(request_friends_to_json)):
+    #     result = {
+    #         "message": "friendship does not exit",
+    #         "statusCode": 403
+    #         }
+    #     return jsonify(result)
+    # else: 
+    #     if form.validate_on_submit():
+    #         friendship_id = request_friends_to_json[0]["id"]
+    #         friendship = Friends.query.get(friendship_id)
+    #         friendship.accepted_status = True
+    #         db.session.commit()
+    #         friendship = friendship.to_dict()
+    #         return jsonify(friendship)
+    #     else:
+    #         return jsonify(form.errors)
+    
+    if (not request_friend):
         result = {
             "message": "friendship does not exit",
             "statusCode": 403
             }
         return jsonify(result)
     else: 
-        if form.validate_on_submit():
-            friendship_id = request_friends_to_json[0]["id"]
-            friendship = Friends.query.get(friendship_id)
-            friendship.accepted_status = True
+        # if form.validate_on_submit():
+            request_friend.accepted_status = True
             db.session.commit()
-            friendship = friendship.to_dict()
-            return jsonify(friendship)
-        else:
-            return jsonify(form.errors)
+            request_friend = request_friend.to_dict()
+            return jsonify(request_friend)
+        # else:
+        #     return jsonify(form.errors)
 
 

@@ -1,7 +1,8 @@
 .friends_outter_container{
     display: flex;
-    /* background-color: aquamarine; */
+    background-color: aquamarine;
     height: 100vh;
+    overflow-y: hidden;
 }
 
 .friend_option_container{
@@ -11,6 +12,8 @@
     /* height: 100%; */
     border-right: 1px solid rgba(208, 210, 213, 0.824);
     background-color: white;
+
+
 
 
 }
@@ -26,9 +29,11 @@
     /* border-right: 1px solid rgba(208, 210, 213, 0.824); */
     padding-left: 20px;
     cursor: pointer;
+   
     
-
-
+}
+.grey{
+    background-color: #F0F2F5;
 }
 
 .friend_option:hover{
@@ -36,9 +41,11 @@
 }
 
 .friend_profile_image{
-    width: 240px;
-    height: 240px;
-    background-color: aqua;
+    width: 12.6rem;
+    height: 15rem;
+    /* background-color: aqua; */
+    border-radius: 5px;
+
 
 }
 
@@ -51,12 +58,43 @@
     background-color: white;
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
+    gap: 1rem;
+    border-radius: 5px;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-content: flex-start;
+    width: 100%;
+    height: 100%;
+    padding: 30px;
+    box-sizing: border-box;
 
+    /* display: block;
+display: inline;
+display: inline-block;
+display: flex;
+display: inline-flex;
+display: grid;
+display: inline-grid; */
+/* display: flow-root; */
+
+}
+/* .friend_detail_wrapper{
+    border-radius: 10px;
+
+} */
+.friend_card_detail{
+    box-sizing: border-box;
+    border: 1px solid rgba(208, 210, 213, 0.824);
+    border-radius: 5px;
 }
 
 .accept_button{
     background-color: #2D74E4;
     border-radius: 5px;
+}
+.accept_button:hover{
+    background-color: #2D74E4;
 }
 
 .reject_button{
