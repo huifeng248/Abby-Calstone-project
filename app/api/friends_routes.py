@@ -101,7 +101,8 @@ def delete_friend_request(id):
     form['csrf_token'].data = request.cookies['csrf_token']
     
     friend = User.query.get(id)
-    request_friends = Friends.query.filter(Friends.friend_id == id, Friends.user_id == current_user.id)
+    request_friends = Friends.query.filter(or_(and_(Friends.friend_id == id, Friends.user_id == current_user.id), 
+        and_(Friends.friend_id == current_user.id, Friends.user_id == id)))
     request_friends_to_json = [friend.to_dict() for friend in request_friends]
 
     if (not friend):

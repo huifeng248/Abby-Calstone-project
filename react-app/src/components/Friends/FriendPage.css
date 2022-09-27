@@ -34,3 +34,34 @@
 .friend_option:hover{
     background-color: #F0F2F5;
 }
+
+.friend_profile_image{
+    width: 240px;
+    height: 240px;
+    background-color: aqua;
+
+}
+
+.friends_button_container{
+    display: flex;
+    flex-direction: column;
+}
+
+.friend_card_detail_container{
+    background-color: white;
+    display: flex;
+    flex-direction: row;
+
+}
+
+.accept_button{
+    background-color: #2D74E4;
+    border-radius: 5px;
+}
+
+.reject_button{
+    background-color: #E4E6EB;
+    border-radius: 5px;
+
+}
+
