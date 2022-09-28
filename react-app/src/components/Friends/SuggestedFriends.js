@@ -1,4 +1,4 @@
-import { get_suggested_friends} from '../../store/friend'
+import { get_suggested_friends, send_add_friend_request} from '../../store/friend'
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 
@@ -15,6 +15,9 @@ function SuggestedFriends() {
 
     }, [])
     
+    const AddFriendOnclick = async (friendId) => {
+        await dispatch(send_add_friend_request(friendId))
+    }
     return (
         <div className="friend_card_detail_container">
         {loaded && suggested_friends.length && suggested_friends.map((user, index) => {
@@ -26,8 +29,8 @@ function SuggestedFriends() {
                         <div className='friends_button_container'>
                             <button className='accept_button'
                                 onClick={() => {
-                                    console.log("yes");
-                                    // acceptRequestOnclick(friend.friend_id)
+                                    console.log("add");
+                                    AddFriendOnclick(user.id)
                                     // acceptRequestOnclick(friend.id)
 
                                 }

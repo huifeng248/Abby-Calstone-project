@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify,request
 from flask_login import login_required, current_user
 from app.models import Friends, User, db
-from app.forms.post_form import FormValidation
+from app.forms.friend_form import FormValidation, FriendForm
 from sqlalchemy import and_, or_
 
 friend_routes = Blueprint('friends', __name__)
@@ -58,15 +58,19 @@ def get_all_friends():
         friend_pair['friend_detail'] = User.query.get(friend_pair['friend_id']).to_dict()
     return jsonify(friends_to_json)
 
-# send friend request 
+# ADD friend: send friend request
 # parameter id is friend_id  ## requester is friend_id, accepter is the user_id
-@friend_routes.route('/<id>', methods=['POST'])
+@friend_routes.route('/<int:id>', methods=['POST'])
 @login_required
 def send_friend_request(id):
-    form = FormValidation()
-    form['csrf_token'].data = request.cookies['csrf_token']
-
+    print("****************", id)
+    # form = FriendForm()
+    # form['csrf_token'].data = request.cookies['csrf_token']
+    print("+++++++++++++++", id)
     friend = User.query.get(id)
+    print("______________", id)
+
+
 
     # this check if they are already friend or a friend request is already send
     request_friends = Friends.query.filter(or_(and_(Friends.user_id == id, Friends.friend_id == current_user.id),
@@ -88,7 +92,7 @@ def send_friend_request(id):
             }
         return jsonify(result)
     else: 
-        if form.validate_on_submit():
+        # if form.validate_on_submit():
             friendship = Friends(
                 # the one send the request is the friend id
                 friend_id = current_user.id,
@@ -101,8 +105,8 @@ def send_friend_request(id):
             friendship = friendship.to_dict()
             friendship['friend_detail'] = User.query.get(friendship['friend_id']).to_dict()
             return jsonify(friendship)
-        else:
-            return jsonify(form.errors)
+        # else:
+        #     return jsonify(form.errors)
 
 
 # delete friend

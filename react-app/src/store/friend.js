@@ -5,6 +5,7 @@ const GET_Friends_Suggestions = "GET_Friends_suggestions"
 const GET_Mutual_Friends = "GET_Mutual_Friends"
 const ACCEPT_Request = "ACCEPT_Friend_Request"
 const REJECT_Request = "REJECT_Request"
+const SEND_ADD_Friend_Request = "SEND_ADD_Friend_Request"
 
 
 const load_friends_action = (friends) => ({
@@ -14,6 +15,11 @@ const load_friends_action = (friends) => ({
 
 const accept_friend_request_action = (friend) =>({
     type: ACCEPT_Request,
+    friend
+})
+
+const add_friend_action = (friend) =>({
+    type: SEND_ADD_Friend_Request,
     friend
 })
 
@@ -56,6 +62,23 @@ export const accept_friend_request = (id) => async(dispatch) =>{
     }
 }
 
+//thunk: add friends: from suggestion tab
+export const send_add_friend_request = (friendId) => async(dispatch) =>{
+    
+    const response = await fetch(`/api/friends/${friendId}`, {
+        method: 'POST',
+        headers:{
+			"Content-Type": "application/json"
+        },
+    })
+    if (response.ok) {
+        const new_friend = await response.json()
+        console.log("FFFFFID", friendId)
+        dispatch(add_friend_action(new_friend))
+    }
+}
+
+
 // thunk: get all mutual friends
 export const get_all_friends = () => async(dispatch) => {
     const response = await fetch('/api/friends')
@@ -85,6 +108,8 @@ export const view_sent_request = () => async(dispatch) => {
     }
 }
 
+
+
 const Friends = ( state ={}, action) => {
     let newState = {}
     switch(action.type) {
@@ -98,8 +123,16 @@ const Friends = ( state ={}, action) => {
         }
         case ACCEPT_Request: {
             // newState[action.friend.friend_id] = action.friend
-            newState[action.friend.id] = action.friend
+            newState = { ...state };
+            console.log("*******", action.friend.friend_id, "Friendship+++++ID", action.friend.id)
+            delete newState[action.friend.id]
 
+            return newState
+        }
+        case SEND_ADD_Friend_Request: {
+            newState = { ...state };
+            // console.log("*******", action.friend.friend_id, "+++++ID", action.friend.id)
+            delete newState[action.friend.user_id]
             return newState
         }
 
