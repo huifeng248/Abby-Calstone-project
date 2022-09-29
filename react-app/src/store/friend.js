@@ -4,6 +4,7 @@ const LOAD_Friends = "LOAD_Friends"
 const GET_Friends_Suggestions = "GET_Friends_suggestions"
 const GET_Mutual_Friends = "GET_Mutual_Friends"
 const ACCEPT_Request = "ACCEPT_Friend_Request"
+const DELETE_Request_and_Friend = "DELETE_Request_and_Friend"
 const REJECT_Request = "REJECT_Request"
 const SEND_ADD_Friend_Request = "SEND_ADD_Friend_Request"
 
@@ -21,6 +22,11 @@ const accept_friend_request_action = (friend) =>({
 const add_friend_action = (friend) =>({
     type: SEND_ADD_Friend_Request,
     friend
+})
+
+const delete_friends_action = (friendshipId) => ({
+    type: DELETE_Request_and_Friend,
+    friendshipId
 })
 
 
@@ -108,6 +114,25 @@ export const view_sent_request = () => async(dispatch) => {
     }
 }
 
+// thunk: delete: cancel send request 
+
+export const delete_request_and_friend = (friendshipId) => async(dispatch) => {
+    console.log("friendshipId++++++++++", friendshipId)
+    
+    const response = await fetch(`/api/friends/${friendshipId}`, {
+        method: 'DELETE',
+        headers:{
+        "Content-Type": "application/json"
+        },
+    }  
+    )
+    console.log("friendshipId -----------", friendshipId)
+    if (response.ok) {
+        const data = await response.json()
+        dispatch(delete_friends_action(friendshipId))
+        return data
+    }
+}
 
 
 const Friends = ( state ={}, action) => {
@@ -133,6 +158,12 @@ const Friends = ( state ={}, action) => {
             newState = { ...state };
             // console.log("*******", action.friend.friend_id, "+++++ID", action.friend.id)
             delete newState[action.friend.user_id]
+            return newState
+        }
+        case DELETE_Request_and_Friend: {
+            newState = {...state}
+            console.log("~~~~~~~~~", action.friendshipId)
+            delete newState[action.friendshipId]
             return newState
         }
 

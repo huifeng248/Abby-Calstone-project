@@ -1,4 +1,4 @@
-import { view_sent_request} from '../../store/friend'
+import { view_sent_request, delete_request_and_friend} from '../../store/friend'
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 
@@ -14,6 +14,10 @@ function ViewSentRequest() {
             .then(() => setLoaded(true))
 
     }, [])
+
+    const deleteOnClick = async (frienshipId) => {
+        await dispatch(delete_request_and_friend(frienshipId))
+    }
     
     return (
         <div className="friend_card_detail_container">
@@ -26,8 +30,8 @@ function ViewSentRequest() {
                         <div className='friends_button_container'>
                             <button className="reject_button"
                                 onClick={() => {
-                                    console.log("yes");
-                                    // acceptRequestOnclick(friend.friend_id)
+                                    console.log("delete", friend.id);
+                                    deleteOnClick(friend.id)
                                     // acceptRequestOnclick(friend.id)
 
                                 }

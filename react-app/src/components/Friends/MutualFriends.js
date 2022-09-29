@@ -1,4 +1,4 @@
-import { get_all_friends } from '../../store/friend'
+import { get_all_friends, delete_request_and_friend } from '../../store/friend'
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 
@@ -16,6 +16,10 @@ function MutualFriends() {
             .then(() => setLoaded(true))
 
     }, [])
+
+    const deleteOnClick = async (frienshipId) => {
+        await dispatch(delete_request_and_friend(frienshipId))
+    }
 
     return (
         <div className="friend_card_detail_container">
@@ -43,7 +47,12 @@ function MutualFriends() {
 
                                 }
                                 }>Confirm</button> */}
-                                <button className="reject_button">Delete</button>
+                                <button className="reject_button"
+                                onClick={()=>{
+                                    console.log("DELEte friend---------", friend.id)
+                                    deleteOnClick(friend.id)
+                                }}
+                                >Delete</button>
                             </div>
                         </div>
                     </div>

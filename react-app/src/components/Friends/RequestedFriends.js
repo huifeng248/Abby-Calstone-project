@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import { get_friends_requested, accept_friend_request } from '../../store/friend'
+import { get_friends_requested, accept_friend_request, delete_request_and_friend } from '../../store/friend'
 
 function RequestedFriends() {
     const current_user = useSelector(state => state.session.user)
@@ -14,6 +14,10 @@ function RequestedFriends() {
             .then(() => setLoaded(true))
 
     }, [])
+
+    const deleteOnClick = async (frienshipId) => {
+        await dispatch(delete_request_and_friend(frienshipId))
+    }
 
     const acceptRequestOnclick = async (id) => {
         await dispatch(accept_friend_request(id))
@@ -37,7 +41,11 @@ function RequestedFriends() {
 
                                     }
                                     }>Confirm</button>
-                                <button className="reject_button">Delete</button>
+                                <button className="reject_button"
+                                    onClick={()=>{
+                                        console.log("reject request--------", friend.id)
+                                        deleteOnClick(friend.id)
+                                    }}>Delete</button>
                             </div>
                         </div>
                     </div>

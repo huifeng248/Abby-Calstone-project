@@ -41,6 +41,8 @@ def get_suggested_friends():
         friends_list_to_json.append(friend.user_id)
     
     result_list = list(set(friends_list_to_json))
+    result_list.append(current_user_id)
+    # print("66666666666666", result_list)
     suggest_list = User.query.filter(User.id.not_in(result_list))
     suggest_list_to_json = [friend.to_dict() for friend in suggest_list]
     # return str(result_list)
@@ -116,45 +118,69 @@ def send_friend_request(id):
 # the id is the friend id.
 @friend_routes.route('/<id>', methods=['DELETE'])
 @login_required
-def delete_friend_request(id):
-    form = FormValidation()
-    form['csrf_token'].data = request.cookies['csrf_token']
+def delete_friendship(id):
+    # form = FormValidation()
+    # form['csrf_token'].data = request.cookies['csrf_token']
     
-    friend = User.query.get(id)
-    request_friends = Friends.query.filter(or_(and_(Friends.friend_id == id, Friends.user_id == current_user.id), 
-        and_(Friends.friend_id == current_user.id, Friends.user_id == id)))
-    request_friends_to_json = [friend.to_dict() for friend in request_friends]
+    friend = Friends.query.get(id)
 
     if (not friend):
         result = {
-            "message": "user does not exist",
+            "message": "friendship does not exist",
             "statusCode": 404
             }
         return jsonify(result)
-    elif (not len(request_friends_to_json)):
-        result = {
-            "message": "friendship does not exit",
-            "statusCode": 403
-            }
-        return jsonify(result)
     else: 
-        if form.validate_on_submit():
-            # query to get the frienship id and get the specific one to delete it.
-            friendship_id = request_friends_to_json[0]["id"]
-            friendship = Friends.query.get(friendship_id)
-
-            db.session.delete(friendship)
+        # if form.validate_on_submit():
+            db.session.delete(friend)
             db.session.commit()
             result = {
                 "message": "Successfully deleted!"
             }
             return jsonify(result)
-        else:
-            return jsonify(form.errors)
+        # else:
+        #     return jsonify(form.errors)
+
+
+# def delete_friend_request(id):
+    # form = FormValidation()
+    # form['csrf_token'].data = request.cookies['csrf_token']
+    
+    # friend = User.query.get(id)
+    # request_friends = Friends.query.filter(or_(and_(Friends.friend_id == id, Friends.user_id == current_user.id), 
+    #     and_(Friends.friend_id == current_user.id, Friends.user_id == id)))
+    # request_friends_to_json = [friend.to_dict() for friend in request_friends]
+
+    # if (not friend):
+    #     result = {
+    #         "message": "user does not exist",
+    #         "statusCode": 404
+    #         }
+    #     return jsonify(result)
+    # elif (not len(request_friends_to_json)):
+    #     result = {
+    #         "message": "friendship does not exit",
+    #         "statusCode": 403
+    #         }
+    #     return jsonify(result)
+    # else: 
+    #     if form.validate_on_submit():
+    #         # query to get the frienship id and get the specific one to delete it.
+    #         friendship_id = request_friends_to_json[0]["id"]
+    #         friendship = Friends.query.get(friendship_id)
+
+    #         db.session.delete(friendship)
+    #         db.session.commit()
+    #         result = {
+    #             "message": "Successfully deleted!"
+    #         }
+    #         return jsonify(result)
+    #     else:
+    #         return jsonify(form.errors)
 
 
 # accept friend request: change the status to true
-# the id is the friend id.?? what about friend id
+# the id is the friendship id
 @friend_routes.route('/<int:id>', methods=['PUT'])
 @login_required
 def accept_friend_request(id):
