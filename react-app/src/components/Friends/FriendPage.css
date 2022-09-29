@@ -1,6 +1,6 @@
 .friends_outter_container{
     display: flex;
-    background-color: aquamarine;
+    /* background-color: aquamarine; */
     height: 100vh;
     overflow-y: hidden;
 }
