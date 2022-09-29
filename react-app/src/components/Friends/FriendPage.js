@@ -6,6 +6,7 @@ import RequestedFriends from "./RequestedFriends"
 import MutualFriends from "./MutualFriends"
 import SuggestedFriends from "./SuggestedFriends"
 import ViewSentRequest from "./ViewSentRequest"
+import NoFriend from './no_friend'
 
 function FriendPage() {
     const [showFriendRequested, setShowFriendRequested] = useState(true)

@@ -162,7 +162,7 @@ const Friends = ( state ={}, action) => {
         }
         case DELETE_Request_and_Friend: {
             newState = {...state}
-            console.log("~~~~~~~~~", action.friendshipId)
+            // console.log("~~~~~~~~~", action.friendshipId)
             delete newState[action.friendshipId]
             return newState
         }

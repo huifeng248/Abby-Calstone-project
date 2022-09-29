@@ -13,9 +13,11 @@
     border-right: 1px solid rgba(208, 210, 213, 0.824);
     background-color: white;
 
+}
 
-
-
+.no_friend_avaialble{
+    height: 112px;
+    width: 112px;
 }
 
 .friend_option{
@@ -101,5 +103,23 @@ display: inline-grid; */
     background-color: #E4E6EB;
     border-radius: 5px;
 
+}
+
+.no_friend_container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #F0F2F5;
+    width: 100%;
+}
+
+.no_friend_words{
+    padding: 24px;
+    font-size: 1.25rem;
+    word-break: break-word;
+    color: #65676B;
+    display: flex;
+    justify-content: center;
 }
 

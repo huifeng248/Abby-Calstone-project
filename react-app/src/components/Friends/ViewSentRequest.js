@@ -18,6 +18,18 @@ function ViewSentRequest() {
     const deleteOnClick = async (frienshipId) => {
         await dispatch(delete_request_and_friend(frienshipId))
     }
+
+    if (!sent_requested_friends.length) {
+        return (
+            <div className='no_friend_container'>
+                <img className="no_friend_avaialble" src="asset/image/no_friend.png" alt="no friend image"></img>
+                <div className='no_friend_words'>
+                    There is no sent friend request. Go to Suggestions to send request to friends.
+                </div>
+            </div>
+        )
+    }
+    
     
     return (
         <div className="friend_card_detail_container">

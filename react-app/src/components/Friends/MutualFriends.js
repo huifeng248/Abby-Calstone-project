@@ -21,6 +21,17 @@ function MutualFriends() {
         await dispatch(delete_request_and_friend(frienshipId))
     }
 
+    if (!all_friends.length) {
+        return (
+            <div className='no_friend_container'>
+                <img className="no_friend_avaialble" src="asset/image/no_friend.png" alt="no friend image"></img>
+                <div className='no_friend_words'>
+                    There is no friend yet. Go to Suggestions to send request to friends.
+                </div>
+            </div>
+        )
+    }
+
     return (
         <div className="friend_card_detail_container">
             {loaded && all_friends.length && all_friends.map((friend, index) => {
@@ -49,7 +60,7 @@ function MutualFriends() {
                                 }>Confirm</button> */}
                                 <button className="reject_button"
                                 onClick={()=>{
-                                    console.log("DELEte friend---------", friend.id)
+                                    // console.log("DELEte friend---------", friend.id)
                                     deleteOnClick(friend.id)
                                 }}
                                 >Delete</button>
