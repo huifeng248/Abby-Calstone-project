@@ -1,5 +1,3 @@
-
-
 from crypt import methods
 from sqlalchemy import delete
 from flask import Blueprint, jsonify, session, request
@@ -9,6 +7,10 @@ from app.forms.post_form import PostForm, FormValidation
 from app.forms.comment_form import CommentForm
 # from app.models import Imageslikes
 
+from app.s3_helpers import (
+    upload_file_to_s3, allowed_file, get_unique_filename)
+
+
 post_routes = Blueprint('posts', __name__)
 # homepage get all post including no friends
 @post_routes.route('')
@@ -17,7 +19,6 @@ def get_posts_at_homepage_all_post():
     id = current_user.id
     posts= Post.query.all()
     posts_to_json= [post.to_dict() for post in posts]
-    print("11111111111111111", posts_to_json)
     # post_userId = [post.user_id for post in posts]
     for post in posts_to_json:
         # for every post, include the post user info
