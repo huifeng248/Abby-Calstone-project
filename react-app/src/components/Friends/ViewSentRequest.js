@@ -22,7 +22,8 @@ function ViewSentRequest() {
     if (!sent_requested_friends.length) {
         return (
             <div className='no_friend_container'>
-                <img className="no_friend_avaialble" src="asset/image/no_friend.png" alt="no friend image"></img>
+                {/* <img className="no_friend_avaialble" src="asset/image/no_friend.png" alt="no friend image"></img> */}
+                <img className="no_friend_avaialble" src={process.env.PUBLIC_URL+"asset/image/no_friend.png"} alt="no friend image"></img>
                 <div className='no_friend_words'>
                     There is no sent friend request. Go to Suggestions to send request to friends.
                 </div>
