@@ -65,12 +65,10 @@ def get_all_friends():
 @friend_routes.route('/<int:id>', methods=['POST'])
 @login_required
 def send_friend_request(id):
-    print("****************", id)
     # form = FriendForm()
     # form['csrf_token'].data = request.cookies['csrf_token']
-    print("+++++++++++++++", id)
     friend = User.query.get(id)
-    print("______________", id)
+
 
 
 

@@ -149,7 +149,6 @@ const Friends = ( state ={}, action) => {
         case ACCEPT_Request: {
             // newState[action.friend.friend_id] = action.friend
             newState = { ...state };
-            console.log("*******", action.friend.friend_id, "Friendship+++++ID", action.friend.id)
             delete newState[action.friend.id]
 
             return newState
