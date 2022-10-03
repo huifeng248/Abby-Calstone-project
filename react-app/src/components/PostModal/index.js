@@ -151,7 +151,7 @@ function PostModal({ user, post, setShowPostModal, showPostModal }) {
                                     </textarea>
                                 </div>
 
-                                <div className='post_info_div'>
+                                {!post && <div className='post_info_div'>
                                     {/* <input className="post_url"
                                         placeholder='Image url here...'
                                         onChange={(e) => {
@@ -163,12 +163,13 @@ function PostModal({ user, post, setShowPostModal, showPostModal }) {
                                         type="url"
                                     >
                                     </input> */}
-                                    <input
+                                    <label htmlFor="file_input" className="post_url">Click to upload image</label>
+                                    <input id="file_input"
                                         type="file"
                                         accept="image/*"
                                         onChange={updateImage}
                                     />
-                                </div>
+                                </div>}
 
                                 <div className="post_image_preview_container">
                                     {
