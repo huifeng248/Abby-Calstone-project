@@ -22,7 +22,8 @@ function SuggestedFriends() {
     if (!suggested_friends.length) {
         return (
             <div className='no_friend_container'>
-                <img className="no_friend_avaialble" src="asset/image/no_friend.png" alt="no friend image"></img>
+                {/* <img className="no_friend_avaialble" src="asset/image/no_friend.png" alt="no friend image"></img> */}
+                <img className="no_friend_avaialble" src={process.env.PUBLIC_URL+"asset/image/no_friend.png"} alt="no friend image"></img>
                 <div className='no_friend_words'>
                     Current there is no friend suggestions. You may go to Fiends Request to accept friend's request.
                 </div>
