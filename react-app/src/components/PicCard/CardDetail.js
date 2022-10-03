@@ -101,7 +101,7 @@ function CardDetail({ user, post }) {
 
 
     return (
-        <div>
+        <div className="per_card_container">
             <PostModal user={current_user} post={post} setShowPostModal={setShowPostModal} showPostModal={showPostModal} />
             <div className="post_card_container_wrapper">
 

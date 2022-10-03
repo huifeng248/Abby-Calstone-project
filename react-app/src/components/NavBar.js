@@ -27,10 +27,10 @@ const NavBar = () => {
           className="home_link" to='/' exact={true} activeClassName='active'>
             FaceTa
           </NavLink>
-          {/* <div className='search_bar_container'>
+          <div className='search_bar_container'>
             <i className="fa-solid fa-magnifying-glass"></i>
             <input className="search_input" placeholder='Search Friends'></input>
-          </div> */}
+          </div>
           <div>
             <i className="fa-solid fa-user"
               onClick={() => setShowList(!showList)}></i>

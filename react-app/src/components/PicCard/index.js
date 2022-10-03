@@ -5,6 +5,7 @@ import PostCreateBox from './PostCreateBox'
 import CardDetail from './CardDetail'
 import './PicCard.css'
 import SideBar from "../SideBar";
+import SideBarWhole from '../SideBarWhole'
 
 
 function PicCard() {
@@ -26,7 +27,7 @@ function PicCard() {
     // return "this is homepage"
     return (
         <div className="main_page_container">
-            <SideBar user={user}/>
+            <SideBarWhole />
 
             <div className="outer_container">
                 <PostCreateBox user={user} />

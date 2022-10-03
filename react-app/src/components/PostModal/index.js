@@ -10,24 +10,24 @@ function PostModal({ user, post, setShowPostModal, showPostModal }) {
     const [url, setUrl] = useState()
     const [errors, setErrors] = useState([]);
     const [isValid, setIsValid] = useState(false)
-
+    const [uploadImage, setUploadImage] = useState(null);
     const dispatch = useDispatch()
-
     // this will populate the data for the edit
     useEffect(() => {
         if (post) {
             setDescription(post.description)
             setUrl(post.url)
             setIsValid(true)
+            // setUploadImage(post.url)
         }
     }, [post])
 
-    useEffect(()=>{
+    useEffect(() => {
         if (!showPostModal) return
-        const focusEvent = ()=> document.getElementById('post_description_id').focus()
+        const focusEvent = () => document.getElementById('post_description_id').focus()
         return focusEvent()
-        
-    },[showPostModal])
+
+    }, [showPostModal])
 
     function checkImageUrl(post_url) {
         if (!post_url || post_url.trimEnd().length === 0) return false
@@ -37,33 +37,10 @@ function PostModal({ user, post, setShowPostModal, showPostModal }) {
         return /\.(jpg|jpeg|png|webp|avif|gif|svg)$/.test(post_url);
     }
 
-    // function checkUrlErrors(url_to_check) {
-    //     let errors_arr = []
-    
-
-    //     console.log("url to check", url_to_check)
-    //     if (!url_to_check) {
-    //         console.log("url*****", url_to_check)
-    //         errors_arr.push('Please provide a valid image url')
-    //     }
-    //     // if (!isValid) {
-    //     //     errors_arr.push('Please provide a valid image url that ends with jpg, jpeg, png, webp, avif, gif, or svg')
-    //     // }
-    //     if (url_to_check && url_to_check.indexOf(' ')>=0) {
-	// 		errors_arr.push(
-	// 			'Cannot have an empty space in the url!'
-	// 		)
-	// 	}
-    //     if (url_to_check && url_to_check.includes("File:")) {
-	// 		errors_arr.push(
-	// 			'Invalid URL: URL must not include "File:", Please use original image address'
-	// 		);
-	// 	}
-    //     // if (errors_arr.length > 0) setErrors(errors_arr)
-    //     console.log("error array", errors_arr)
-    //     return errors_arr
-        
-    // }
+    const updateImage = (e) => {
+        const file = e.target.files[0];
+        setUploadImage(file);
+    }
 
 
     const handleSubmit = async (e) => {
@@ -76,44 +53,36 @@ function PostModal({ user, post, setShowPostModal, showPostModal }) {
         if (description && description.trimEnd().length > 3000) {
             errors_arr.push('Description must be within 3000 characters')
         }
-        if (!url || url.trimEnd().length === 0) {
-            errors_arr.push('Please provide a valid image url')
-        }
-        // if (!isValidUrl(url)) {
-        //     errors_arr.push('Please provide a valid url')
+        // if (!url || url.trimEnd().length === 0) {
+        //     errors_arr.push('Please provide a valid image url')
         // }
-        if (!isValid) {
-            errors_arr.push('Please provide a valid image url that ends with jpg, jpeg, png, webp, avif, gif, or svg')
-        }
-        if (url && url.includes(' ')) {
-			errors_arr.push(
-				'Cannot have an empty space in the url'
-			)
-		}
-        if (url && url.includes("File:")) {
-			errors_arr.push(
-				'Invalid URL: URL must not include "File:", please use original image address'
-			);
-		}
 
-        // try {
-        //     let url_fetch_result = await fetch(url)
-        //     // if (url_fetch_result.status)
-        // } catch (e){
+        // if (!isValid) {
+        //     errors_arr.push('Please provide a valid image url that ends with jpg, jpeg, png, webp, avif, gif, or svg')
+        // }
+        // if (url && url.includes(' ')) {
         //     errors_arr.push(
-        //         'Invalid URL or non-CORS compliant: please validate the url and make sure CORS policy compliant'
+        //         'Cannot have an empty space in the url'
         //     )
         // }
-        
+        // if (url && url.includes("File:")) {
+        //     errors_arr.push(
+        //         'Invalid URL: URL must not include "File:", please use original image address'
+        //     );
+        // }
+
+
+
         if (errors_arr.length > 0) {
             return setErrors(errors_arr)
         }
         // create a post  
-       
+
         if (!post) {
             const create_post_payload = {
                 description,
-                url
+                // url
+                uploadImage
             }
 
             dispatch(CreatePost(create_post_payload))
@@ -128,7 +97,8 @@ function PostModal({ user, post, setShowPostModal, showPostModal }) {
             const edit_post_payload = {
                 id: post.id,
                 description,
-                url
+                url,
+                // uploadImage
             }
             dispatch(EditPost(edit_post_payload))
                 // .then(() => onClose())
@@ -172,16 +142,17 @@ function PostModal({ user, post, setShowPostModal, showPostModal }) {
                                     <textarea className="post_description"
                                         id="post_description_id"
                                         placeholder={`What's on your mind, ${user.first_name}?`}
-                                        onChange={(e) => 
-                                            {setDescription(e.target.value)
-                                            setErrors([])}}
+                                        onChange={(e) => {
+                                            setDescription(e.target.value)
+                                            setErrors([])
+                                        }}
                                         value={description}
                                     >
                                     </textarea>
                                 </div>
 
-                                <div className='post_info_div'>
-                                    <input className="post_url"
+                                {!post && <div className='post_info_div'>
+                                    {/* <input className="post_url"
                                         placeholder='Image url here...'
                                         onChange={(e) => {
                                             setUrl(e.target.value)
@@ -191,14 +162,34 @@ function PostModal({ user, post, setShowPostModal, showPostModal }) {
                                         value={url}
                                         type="url"
                                     >
-                                    </input>
-                                </div>
+                                    </input> */}
+                                    <label htmlFor="file_input" className="post_url">Click to upload image</label>
+                                    <input id="file_input"
+                                        type="file"
+                                        accept="image/*"
+                                        onChange={updateImage}
+                                    />
+                                </div>}
 
                                 <div className="post_image_preview_container">
-                                    <img id="preview_img" onError={({target}) => {
-                                        target.onError = null
-                                        target.src = "https://community.clover.com/themes/base/admin/img/default-coverImage.png"
-                                    }} className='post_image_preview_holder' src={url}></img>
+                                    {
+                                        post && (
+                                            <img
+                                                className='post_image_preview_holder'
+                                                src={post.url}
+                                                alt="existing image"
+                                            ></img>
+                                        )
+                                    }
+
+                                    {uploadImage && (<img id="preview_img"
+                                        // onError={({ target }) => {
+                                        //     target.onError = null
+                                        //     target.src = "https://community.clover.com/themes/base/admin/img/default-coverImage.png"
+                                        // }}
+                                        className='post_image_preview_holder'
+                                        src={URL.createObjectURL(uploadImage)}
+                                    ></img>)}
 
                                     {/* {isValid? 
                                     <img className='post_image_preview_holder' src={url}></img>
@@ -206,8 +197,8 @@ function PostModal({ user, post, setShowPostModal, showPostModal }) {
                                 </div>
                             </div>
                             <div className='button_container'>
-                            <button className="post_submit_button" type='submit'
-                            > {post ? "Save" : "Post"}</button>
+                                <button className="post_submit_button" type='submit'
+                                > {post ? "Save" : "Post"}</button>
                             </div>
                         </form>
                     </div>

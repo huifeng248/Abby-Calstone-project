@@ -1,11 +1,19 @@
 .sidebar_container{
-    margin-top: 20px;
-    width: 180px;
-    padding: 8px 20px;
+    /* margin-top: 20px; */
+    /* width: 180px; */
+    /* padding: 8px 20px; */
+    /* padding-left: 20px; */
 
     display: flex;
     flex-direction: column;
     /* background-color: red; */
+    /* background-color: white; */
+    
+}
+
+.left{
+    padding-left: 20px;
+    border-right: 1px solid rgba(208, 210, 213, 0.824)
 }
 
 .contact_info_link_div{
@@ -16,6 +24,7 @@
     /* background-color: red; */
     align-items: center;
     color: #050505;
+   
 
 }
 
@@ -54,4 +63,15 @@ a{
     padding-right: 16px;
     font-size: 20px;
     color: #43B8DB;
+}
+
+.sidebar_outside_container{
+    display: flex;
+    justify-content: flex-start;
+}
+
+.sidebar_word_container{
+    /* background-color: red; */
+    padding-left: 20px;
+    box-sizing: border-box;
 }

@@ -1,5 +1,3 @@
-
-
 from crypt import methods
 from sqlalchemy import delete
 from flask import Blueprint, jsonify, session, request
@@ -9,6 +7,10 @@ from app.forms.post_form import PostForm, FormValidation
 from app.forms.comment_form import CommentForm
 # from app.models import Imageslikes
 
+from app.s3_helpers import (
+    upload_file_to_s3, allowed_file, get_unique_filename)
+
+
 post_routes = Blueprint('posts', __name__)
 # homepage get all post including no friends
 @post_routes.route('')
@@ -17,7 +19,6 @@ def get_posts_at_homepage_all_post():
     id = current_user.id
     posts= Post.query.all()
     posts_to_json= [post.to_dict() for post in posts]
-    print("11111111111111111", posts_to_json)
     # post_userId = [post.user_id for post in posts]
     for post in posts_to_json:
         # for every post, include the post user info
@@ -103,20 +104,76 @@ def get_all_posts_by_userid(id):
     return jsonify(posts_to_json)
 
 # create a post 
+# using image url
+# @post_routes.route('/new', methods=['POST'])
+# @login_required
+# def add_post():
+#     form = PostForm()
+#     form['csrf_token'].data = request.cookies['csrf_token']
+
+#     if form.validate_on_submit():
+#         post = Post(
+#             user_id = current_user.id,
+#             url = form.data['url'],
+#             description = form.data['description'],
+#             location = form.data['location'],
+#             show_stats = form.data['show_stats']
+#         )
+#         db.session.add(post)
+#         db.session.commit()
+#         post = post.to_dict()
+#         post['user'] = User.query.get(current_user.id).to_dict()
+#         return post
+#     else:
+#         return jsonify(form.errors)
+#create a post 
+# using aws s3 upload
 @post_routes.route('/new', methods=['POST'])
 @login_required
 def add_post():
+    print("4444444444444444444444444444")
     form = PostForm()
     form['csrf_token'].data = request.cookies['csrf_token']
 
     if form.validate_on_submit():
+    # aws
+        print ("APIIIIIIIIIIIIIII", request.files["uploadImage"])
+        if "uploadImage" not in request.files:
+            return {"errors": "image required"}, 401
+
+        image = request.files["uploadImage"]
+
+        if not allowed_file(image.filename):
+            return {"errors": "file type not permitted"}, 402
+
+        image.filename = get_unique_filename(image.filename)
+
+        upload = upload_file_to_s3(image)
+
+        if "url" not in upload:
+            # if the dictionary doesn't have a url key
+            # it means that there was an error when we tried to upload
+            # so we send back that error message
+            return upload, 403
+
+        url = upload["url"]
+
+        # # flask_login allows us to get the current user from the request
+        # new_image = Image(user=current_user, url=url)
+        # db.session.add(new_image)
+        # db.session.commit()
+        # return {"url": url}
+
+        print("come hererererererer")
         post = Post(
             user_id = current_user.id,
-            url = form.data['url'],
+            # url = form.data['url'],
+            url = url,
             description = form.data['description'],
             location = form.data['location'],
-            show_stats = form.data['show_stats']
+            show_stats = bool(form.data['show_stats'])
         )
+
         db.session.add(post)
         db.session.commit()
         post = post.to_dict()
@@ -124,6 +181,7 @@ def add_post():
         return post
     else:
         return jsonify(form.errors)
+
 
 #update a post 
 @post_routes.route('/<id>', methods=['PUT'])
@@ -146,7 +204,7 @@ def update_post(id):
             }
         return jsonify(result)
     if form.validate_on_submit():
-        post.url = form.data['url']
+        # post.url = form.data['url']
         post.description = form.data['description']
         post.location = form.data['location']
         post.show_stats = form.data['show_stats']

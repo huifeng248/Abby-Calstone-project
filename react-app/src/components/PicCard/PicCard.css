@@ -17,8 +17,8 @@
     /* width: 680px;
     height: 545px; */
     width: 100%;
-    /* padding: 16px 0px;
-    box-sizing: border-box; */
+    /* padding: 16px 0px; */
+    box-sizing: border-box; 
 }
 
 .user_name{
@@ -30,8 +30,15 @@
     display: flex;
     justify-content: center;
     background-color: white;
+    /* background-color: aquamarine; */
+    width: 100%;
+    /* width: 50%; */
     /* width: 578px; */
+    
+}
 
+.per_card_container{
+    width: 100%;
 }
 
 .Image_likes{
@@ -65,7 +72,7 @@
 
 .post_input{
     background-color: #F0F2F5;
-    width: 90%;
+    width: 95%;
     height: 40px;
     border-radius: 30px;
     padding: 8px 12px;
@@ -92,6 +99,8 @@
     background-color: white;
     width: 100%;
     align-items: center;
+    /* background-color: #0070E3; */
+    box-sizing: border-box;
 
 }
 
@@ -106,19 +115,23 @@
 }
 
 .outer_container{
-    width: 700px;
+    /* width: 700px; */
+    width: 50%;
     /* height: 123px; */
     margin: auto;
     display: flex;
     gap: 10px;
     flex-direction: column;
+    /* background-color: aqua; */
 }
 
 .user_edit_line{
+    width: 100%;
     display: flex;
     justify-content: space-between;
     /* margin: 0px 0px 12px; */
     padding: 0px 16px 0px 0px;
+    box-sizing: border-box;
     /* position: relative; */
     /* background-color: beige; */
     align-items: center;
@@ -293,11 +306,13 @@
 }
 
 .post_card_container_wrapper{
+    /* width: 60%; */
     width: 100%;
-    max-width: 700px;
-    min-width: 700px;
+    /* max-width: 700px; */
+    /* min-width: 700px; */
     /* border: 1px solid rgba(208, 210, 213, 0.824); */
     border-radius: 5px;
+    box-sizing: border-box;
     /* padding: 16px 0px; */
     /* background-color: #64676B; */
 }
@@ -308,6 +323,8 @@
     max-width: 660px;
     /* overflow-y: scroll; */
     overflow-wrap: break-word;
+    width: 100%;
+    box-sizing: border-box;
     /* max-height: 80px; */
 }
 
@@ -392,4 +409,9 @@
     border-radius: 50%;
     box-sizing: border-box;
     /* z-index: -1; */
+}
+
+.side_bar_profile_page_container{
+    display: flex;
+    width: 100%;
 }

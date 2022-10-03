@@ -78,14 +78,29 @@ export const Load_Posts_Homepage = () => async(dispatch) => {
 }
 
 // thunk: create a post
-export const CreatePost = (post) => async(dispatch) => {
+export const CreatePost = (postdata) => async(dispatch) => {
+
+    const {
+        description,
+        uploadImage
+    } = postdata
+
+    const formData = new FormData()
+    formData.append("description", description)
+    formData.append("uploadImage", uploadImage)
+    console.log("thunk---------", postdata)
     const response = await fetch('/api/posts/new', {
         method: "POST",
-        headers: {
-			"Content-Type": "application/json",
-		},
-		body: JSON.stringify(post)
+        // use aws s3 upload
+        body: formData
+
+        // useing url 
+        // headers: {
+		// 	"Content-Type": "application/json",
+		// },
+		// body: JSON.stringify(post)
     })
+    console.log("ressssssssss",response)
     if (response.ok) {
         const new_post = await response.json()
         dispatch(create_post_action(new_post))

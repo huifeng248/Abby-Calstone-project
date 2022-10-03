@@ -15,7 +15,7 @@
     /* width: 578px; */
     height: 44px;
     width: 100%;
-    min-width: 640px;
+    /* min-width: 640px; */
     padding: 6px 16px;
     box-sizing: border-box;
     align-items: center;
@@ -40,7 +40,7 @@
 .comment_input{
     background-color: #F0F2F5;
     border-radius: 20px;
-    width: 97%;
+    width: 98%;
     height: 36px;
     padding: 8px 12px;
     box-sizing: border-box;

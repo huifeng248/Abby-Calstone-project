@@ -65,6 +65,11 @@
     overflow-y: auto;
     box-sizing: border-box;
     border-radius: 5px;
+
+}
+
+input[type="file"] {
+    display: none;
 }
 
 .post_description{
@@ -85,21 +90,38 @@
 
 
 .post_url{
-    width: 100%;
+    width:fit-content;
     resize: none;
     margin-bottom: 10px;
     border-radius: 5px;
     padding: 5px;
     font-size: inherit;
-    background-color: #F0F2F5;
+    background-color: #1A73E3;
+    color: white;
     border: none;
     /* box-shadow: none; */
     outline: none;
-    
+    cursor: pointer;
 
 }
 
-/* .post_url:focus{
+/* .image_input_button{
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	height: 100%;
+	align-items: center;
+	padding: 8px;
+	box-sizing: border-box;
+	cursor: pointer;
+	font-size: 14px;
+	color: #0095f6;
+	font-weight: 600;
+}
+
+
+
+.post_url:focus{
     box-shadow: none
 } */
 
