@@ -88,7 +88,6 @@ export const CreatePost = (postdata) => async(dispatch) => {
     const formData = new FormData()
     formData.append("description", description)
     formData.append("uploadImage", uploadImage)
-    console.log("thunk---------", postdata)
     const response = await fetch('/api/posts/new', {
         method: "POST",
         // use aws s3 upload

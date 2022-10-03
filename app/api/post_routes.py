@@ -131,20 +131,18 @@ def get_all_posts_by_userid(id):
 @post_routes.route('/new', methods=['POST'])
 @login_required
 def add_post():
-    print("4444444444444444444444444444")
     form = PostForm()
     form['csrf_token'].data = request.cookies['csrf_token']
 
     if form.validate_on_submit():
     # aws
-        print ("APIIIIIIIIIIIIIII", request.files["uploadImage"])
         if "uploadImage" not in request.files:
-            return {"errors": "image required"}, 401
+            return {"errors": "image required"}, 400
 
         image = request.files["uploadImage"]
 
         if not allowed_file(image.filename):
-            return {"errors": "file type not permitted"}, 402
+            return {"errors": "file type not permitted"}, 400
 
         image.filename = get_unique_filename(image.filename)
 
@@ -154,7 +152,7 @@ def add_post():
             # if the dictionary doesn't have a url key
             # it means that there was an error when we tried to upload
             # so we send back that error message
-            return upload, 403
+            return upload, 400
 
         url = upload["url"]
 
@@ -164,7 +162,6 @@ def add_post():
         # db.session.commit()
         # return {"url": url}
 
-        print("come hererererererer")
         post = Post(
             user_id = current_user.id,
             # url = form.data['url'],
