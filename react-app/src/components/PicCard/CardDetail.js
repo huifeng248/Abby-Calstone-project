@@ -19,7 +19,7 @@ function CardDetail({ user, post }) {
     const [showComments, SetShowComments] = useState(false)
     const [showEditInput, setShowEditInput] = useState(false)
     const [commentDesc, setCommentDesc] = useState()
-    const [likePost, setLikePost] = useState(post.current_user_like)
+    const [likePost, setLikePost] = useState()
 
     useEffect(() => {
         if (!showDiv) return;
@@ -185,7 +185,7 @@ function CardDetail({ user, post }) {
                         toggleAPostLike(post)
                     }}>
                         <div>
-                            {likePost ?
+                            {post.liked_user_ids.indexOf(current_user.id)!== -1 ?
                                 <i className="fa-solid fa-thumbs-up likecount">  
                                 </i>
                                 : <i className="fa-regular fa-thumbs-up">
