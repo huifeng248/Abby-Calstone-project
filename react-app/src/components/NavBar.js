@@ -21,7 +21,7 @@ const NavBar = () => {
 
   useEffect(()=>{
     if (searchItem.trim().length) {
-      return null
+      
     }
   }, [searchItem])
 

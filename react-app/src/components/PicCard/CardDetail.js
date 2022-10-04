@@ -19,7 +19,8 @@ function CardDetail({ user, post }) {
     const [showComments, SetShowComments] = useState(false)
     const [showEditInput, setShowEditInput] = useState(false)
     const [commentDesc, setCommentDesc] = useState()
-    const [likePost, setLikePost] = useState()
+
+    
 
     useEffect(() => {
         if (!showDiv) return;
@@ -156,7 +157,7 @@ function CardDetail({ user, post }) {
                 <div className='counts_container'>
                     {/* will implement this later on */}
                     <div className='like_counts_container'>
-                        {   post.liked_user_ids.length ?
+                        {   post.liked_user_ids.length>0 ?
                             <i className="fa-solid fa-thumbs-up likecount"></i>
                             :
                             <i className="fa-regular fa-thumbs-up"></i>
@@ -180,12 +181,10 @@ function CardDetail({ user, post }) {
                     {/* will implement this feature later on */}
                     <div className="Image_likes"
                     onClick={() => {
-                        console.log("yes")
-                        setLikePost(!likePost)
                         toggleAPostLike(post)
                     }}>
                         <div>
-                            {post.liked_user_ids.indexOf(current_user.id)!== -1 ?
+                            {post.current_user_like?
                                 <i className="fa-solid fa-thumbs-up likecount">  
                                 </i>
                                 : <i className="fa-regular fa-thumbs-up">
