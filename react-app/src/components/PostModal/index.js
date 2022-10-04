@@ -93,7 +93,7 @@ function PostModal({ user, post, setShowPostModal, showPostModal }) {
                     }
                 })
             setShowPostModal(false)
-            dispatch(Load_Posts_Homepage())
+
         } else {
             const edit_post_payload = {
                 id: post.id,

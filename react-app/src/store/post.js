@@ -240,9 +240,8 @@ const Posts = (state = {}, action) => {
     let newState ={}
     switch(action.type) {
         case GET_POSTS_HomePage :{
-            // console.log("go herer in the reducer", action.posts[0])
             action.posts.forEach(post => {
-                newState[post.id] = post
+				newState[post.id] = post;
             });
             return newState
         }
