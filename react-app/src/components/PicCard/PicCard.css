@@ -217,6 +217,9 @@
     flex-direction: row;
     padding: 4px 0px 16px;
     box-sizing: border-box;
+    /* background-color: aqua; */
+    width: 88%;
+    position: relative;
 }
 
 .comment_and_user_name{
@@ -225,8 +228,9 @@
     background-color: #F0F2F5;
     border-radius: 20px;
     padding: 8px 12px;
-    width: 500px;
+    width: 100%;
     box-sizing: border-box;
+    /* background-color: #0070E3; */
 }
 
 .dot_div_container:hover{
@@ -252,6 +256,9 @@
     padding: 4px 16px;
     /* background-color: red; */
     align-items: center;
+    /* background-color: red; */
+    width: 100%;
+    box-sizing: border-box;
 }
 
 
@@ -331,6 +338,7 @@
 
 .fa-ellipsis{
     box-sizing: border-box;
+    position: relative;
 }
 
 .comment_error_message_ul{
@@ -384,9 +392,12 @@
 }
 
 .comment_like_wrapper{
-    /* background-color: aqua; */
+    /* background-color: red; */
     display: flex;
     flex-direction: column;
+    width: 90%;
+
+    /* position: absolute; */
 }
 
 .like-wrapper{
