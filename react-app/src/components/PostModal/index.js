@@ -1,7 +1,7 @@
 import { Modal } from '../../context/Modal'
 import { useEffect, useState } from 'react'
 import { useDispatch } from "react-redux";
-import { CreatePost, EditPost } from '../../store/post'
+import { CreatePost, EditPost, Load_Posts_Homepage } from '../../store/post'
 import './PostModal.css'
 
 
@@ -93,6 +93,7 @@ function PostModal({ user, post, setShowPostModal, showPostModal }) {
                     }
                 })
             setShowPostModal(false)
+            dispatch(Load_Posts_Homepage())
         } else {
             const edit_post_payload = {
                 id: post.id,
