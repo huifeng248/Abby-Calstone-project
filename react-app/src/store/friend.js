@@ -1,4 +1,4 @@
-import thunk from "redux-thunk"
+
 
 const LOAD_Friends = "LOAD_Friends"
 const GET_Friends_Suggestions = "GET_Friends_suggestions"

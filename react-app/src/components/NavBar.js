@@ -1,16 +1,21 @@
 
 import React, { useEffect } from 'react';
 import { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, Link } from 'react-router-dom';
 import LogoutButton from './auth/LogoutButton';
 import './NavBar.css'
+import { search_user_by_name } from '../store/search'
 
 const NavBar = () => {
 
   const user = useSelector((state) => state.session.user)
   const [showList, setShowList] = useState(false);
   const [searchItem, setSearchItem] = useState("")
+  const dispatch = useDispatch()
+  const searchUsers = useSelector((state) => state.Search)
+  const searchUsersList = Object.values(searchUsers)
+  console.log("^^^^^^^^", searchUsersList)
 
   useEffect(() => {
     if (!showList) return
@@ -19,9 +24,10 @@ const NavBar = () => {
     return () => document.removeEventListener("click", closeDropDownMenu)
   }, [showList])
 
-  useEffect(()=>{
+  useEffect(() => {
     if (searchItem.trim().length) {
-      
+      let url_params = `searchItem=${searchItem}`
+      dispatch(search_user_by_name(url_params))
     }
   }, [searchItem])
 
@@ -34,15 +40,42 @@ const NavBar = () => {
             className="home_link" to='/' exact={true} activeClassName='active'>
             FaceTa
           </NavLink>
+
+
           <div className='search_bar_container'>
             <i className="fa-solid fa-magnifying-glass"></i>
             <input className="search_input"
               placeholder='Search Friends'
-              onChange={(e)=>{
+              onChange={(e) => {
                 setSearchItem(e.target.value)
-                console.log(searchItem)}}
+              }}
             ></input>
           </div>
+
+          {searchItem.length>0 && 
+            searchUsersList.length?
+            <div className='search_users_container'>
+              {console.log("!!!!!", searchUsersList)}
+              {searchUsersList.map((user, index) => {
+                return ( 
+              <Link className="user_profile_link" to={`/posts/users/${user.id}`}>
+            
+                <div key={index}>
+                  <img className="user_profile_image" src={user.profile_img} alt="profile_image"></img>
+                  <div>{user.first_name}</div>
+                  <div>{user.last_name}</div>
+                </div>
+                </Link>)
+              })}
+            </div>
+            : null
+          }
+
+            {searchItem && !searchUsersList.length &&
+              <div> no user found</div>
+            }
+
+
           <div>
             <i className="fa-solid fa-user"
               onClick={() => setShowList(!showList)}></i>
@@ -63,38 +96,6 @@ const NavBar = () => {
 
           </div>
         }
-
-
-
-
-
-
-
-        {/* <ul>
-          <li>
-            <NavLink to='/' exact={true} activeClassName='active'>
-              Home
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to='/login' exact={true} activeClassName='active'>
-              Login
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to='/sign-up' exact={true} activeClassName='active'>
-              Sign Up
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to='/users' exact={true} activeClassName='active'>
-              Users
-            </NavLink>
-          </li>
-          <li>
-            <LogoutButton />
-          </li>
-        </ul> */}
       </nav>
     </div>
 
