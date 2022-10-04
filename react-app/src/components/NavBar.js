@@ -10,6 +10,7 @@ const NavBar = () => {
 
   const user = useSelector((state) => state.session.user)
   const [showList, setShowList] = useState(false);
+  const [searchItem, setSearchItem] = useState("")
 
   useEffect(() => {
     if (!showList) return
@@ -18,18 +19,29 @@ const NavBar = () => {
     return () => document.removeEventListener("click", closeDropDownMenu)
   }, [showList])
 
+  useEffect(()=>{
+    if (searchItem.trim().length) {
+      return null
+    }
+  }, [searchItem])
+
   if (!user) return null;
   else return (
     <div>
       <nav className='nav_bar_container'>
         <div className="home_link_container">
-          <NavLink onClick={()=> window.scroll(0,0)}
-          className="home_link" to='/' exact={true} activeClassName='active'>
+          <NavLink onClick={() => window.scroll(0, 0)}
+            className="home_link" to='/' exact={true} activeClassName='active'>
             FaceTa
           </NavLink>
           <div className='search_bar_container'>
             <i className="fa-solid fa-magnifying-glass"></i>
-            <input className="search_input" placeholder='Search Friends'></input>
+            <input className="search_input"
+              placeholder='Search Friends'
+              onChange={(e)=>{
+                setSearchItem(e.target.value)
+                console.log(searchItem)}}
+            ></input>
           </div>
           <div>
             <i className="fa-solid fa-user"

@@ -33,7 +33,7 @@ def get_all_requested_friends():
 @login_required
 def get_suggested_friends():
     current_user_id = current_user.id
-    print("+++++++++", current_user_id)
+
     friends_list = Friends.query.filter(or_(Friends.friend_id == current_user_id, Friends.user_id == current_user_id))
     friends_list_to_json = []
     for friend in friends_list:
