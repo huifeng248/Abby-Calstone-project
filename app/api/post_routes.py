@@ -23,11 +23,15 @@ def get_posts_at_homepage_all_post():
     for post in posts_to_json:
         # for every post, include the post user info
         post['user'] = User.query.get(post['user_id']).to_dict()
-        for user in post["liked_user_ids"]:
-            if user['id'] == current_user.id:
-                post['current_user_like'] = True
-            else:
-                post['current_user_like'] = False
+        
+        # if len(post['liked_user_ids']) == 0:
+        #     post['current_user_like'] = False
+        
+        # for user in post["liked_user_ids"]:
+        #     if user['id'] == current_user.id:
+        #         post['current_user_like'] = True
+        #     else:
+        #         post['current_user_like'] = False
     return jsonify(posts_to_json)
 
 
@@ -95,12 +99,11 @@ def get_all_posts_by_userid(id):
     for post in posts_to_json:
         # for every post, include the post user info
         post['user'] = User.query.get(post['user_id']).to_dict()
-        for user in post["liked_user_ids"]:
-            if user['id'] == current_user.id:
-                post['current_user_like'] = True
-                # print("$$$$$$$$", post['id'], post['current_user_like'], post['description'])
-            else:
-                post['current_user_like'] = False
+        # for user in post["liked_user_ids"]:
+        #     if user['id'] == current_user.id:
+        #         post['current_user_like'] = True
+        #     else:
+        #         post['current_user_like'] = False
     return jsonify(posts_to_json)
 
 # create a post 
