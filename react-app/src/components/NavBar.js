@@ -15,7 +15,6 @@ const NavBar = () => {
   const dispatch = useDispatch()
   const searchUsers = useSelector((state) => state.Search)
   const searchUsersList = Object.values(searchUsers)
-  console.log("^^^^^^^^", searchUsersList)
 
   useEffect(() => {
     if (!showList) return
@@ -41,40 +40,42 @@ const NavBar = () => {
             FaceTa
           </NavLink>
 
+          <div className='search_bar_container_input'>
 
-          <div className='search_bar_container'>
-            <i className="fa-solid fa-magnifying-glass"></i>
-            <input className="search_input"
-              placeholder='Search Friends'
-              onChange={(e) => {
-                setSearchItem(e.target.value)
-              }}
-            ></input>
-          </div>
 
-          {searchItem.length>0 && 
-            searchUsersList.length?
-            <div className='search_users_container'>
-              {console.log("!!!!!", searchUsersList)}
-              {searchUsersList.map((user, index) => {
-                return ( 
-              <Link className="user_profile_link" to={`/posts/users/${user.id}`}>
-            
-                <div key={index}>
-                  <img className="user_profile_image" src={user.profile_img} alt="profile_image"></img>
-                  <div>{user.first_name}</div>
-                  <div>{user.last_name}</div>
-                </div>
-                </Link>)
-              })}
+            <div className='search_bar_container'>
+              <i className="fa-solid fa-magnifying-glass"></i>
+              <input className="search_input"
+                placeholder='Search Friends'
+                onChange={(e) => {
+                  setSearchItem(e.target.value)
+                }}
+              ></input>
             </div>
-            : null
-          }
 
-            {searchItem && !searchUsersList.length &&
-              <div> no user found</div>
+            {searchItem.length > 0 &&
+              searchUsersList.length ?
+              <div className='search_users_container'>
+                {console.log("!!!!!", searchUsersList)}
+                {searchUsersList.map((user, index) => {
+                  return (
+                    <Link className="user_profile_link" to={`/posts/users/${user.id}`}>
+
+                      <div className="search_user_wrapper" key={index}>
+                        <img className="user_profile_image" src={user.profile_img} alt="profile_image"></img>
+                        <div>{user.first_name} {user.last_name}</div>
+                       
+                      </div>
+                    </Link>)
+                })}
+              </div>
+              : null
             }
 
+            {searchItem && !searchUsersList.length &&
+              <div className='no_user_found'> No User Found</div>
+            }
+          </div>
 
           <div>
             <i className="fa-solid fa-user"
