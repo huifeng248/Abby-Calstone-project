@@ -81,6 +81,7 @@ function CommentForm({ comment, post, setShowEditInput }) {
                             setCommentDesc(e.target.value)
                             setErrors([])
                         }}
+                        placeholder="Write a comment..."
                         value={commentDesc}
                     ></input>
                 </div>
