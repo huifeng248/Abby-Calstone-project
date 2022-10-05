@@ -3,6 +3,7 @@ from flask_login import login_required
 from app.models import User
 from app.forms.search_form import SearchForm
 from sqlalchemy import and_, or_
+from urllib.parse import parse_qs
 
 user_routes = Blueprint('users', __name__)
 
@@ -24,25 +25,28 @@ def user(id):
 @user_routes.route('/search', methods=['POST'])
 @login_required
 def search_users():
-    form = SearchForm()
-    form['csrf_token'].data = request.cookies['csrf_token']
-    user_name = form.data['search_content']
 
+    
+    query_paras = request.query_string.decode("utf-8")
+    query_data= parse_qs(query_paras)
+    # print("------", query_data)
+    
+    
 
-    if form.validate_on_submit():
-        # users = User.query.filter(or_(User.first_name.like('%{}%'.format(user_name))), (User.last_name.like('%{}%'.format(user_name))))
-        # users_by_first_name = User.query.filter(User.first_name.like(f"%{user_name}%"))
-        # users_by_last_name = User.query.filter(User.last_name.like('%{}%'.format(user_name)))
-        # users_by_username = User.query.filter(User.username.like('%{}%'.format(user_name)))
+    users = User.query.filter(or_(User.first_name.like(f"%{query_data['searchItem'][0]}%"), 
+                                    User.last_name.like(f"%{query_data['searchItem'][0]}%"),
+                                    User.username.like(f"%{query_data['searchItem'][0]}%")
+                                    ))
+    return (jsonify([user.to_dict() for user in users]))
+    
+    # this does not require form as just a string
+    # form = SearchForm()
+    # form['csrf_token'].data = request.cookies['csrf_token']
+    # user_name = form.data['search_content']
+    # if form.validate_on_submit():
 
-        # user_firstname = [user.to_dict() for user in users_by_first_name]
-        # user_lastname = [user.to_dict() for user in users_by_last_name]
-        # user_username = [user.to_dict() for user in users_by_username]
-        # users = user_firstname + user_lastname + user_username
-        # return {'users': users}
-
-        users = User.query.filter(or_(User.first_name.like(f"%{user_name}%"), 
-                                      User.last_name.like(f"%{user_name}%"),
-                                      User.username.like(f"%{user_name}%")
-                                      ))
-        return {'users': [user.to_dict() for user in users]}
+    #     users = User.query.filter(or_(User.first_name.like(f"%{user_name}%"), 
+    #                                   User.last_name.like(f"%{user_name}%"),
+    #                                   User.username.like(f"%{user_name}%")
+    #                                   ))
+    #     return {'users': [user.to_dict() for user in users]}
