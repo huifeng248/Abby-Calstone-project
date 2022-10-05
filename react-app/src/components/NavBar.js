@@ -56,10 +56,9 @@ const NavBar = () => {
             {searchItem.length > 0 &&
               searchUsersList.length ?
               <div className='search_users_container'>
-                {console.log("!!!!!", searchUsersList)}
                 {searchUsersList.map((user, index) => {
                   return (
-                    <Link className="user_profile_link" to={`/posts/users/${user.id}`}>
+                    <Link className="user_profile_link" onClick={()=> setSearchItem("")} to={`/posts/users/${user.id}`}>
 
                       <div className="search_user_wrapper" key={index}>
                         <img className="user_profile_image" src={user.profile_img} alt="profile_image"></img>
