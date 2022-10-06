@@ -1,6 +1,8 @@
 import { get_all_friends, delete_request_and_friend } from '../../store/friend'
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
+import no_friend_image from "../../image/no_friend.png"
+
 
 
 
@@ -24,7 +26,9 @@ function MutualFriends() {
     if (!all_friends.length) {
         return (
             <div className='no_friend_container'>
-                <img className="no_friend_avaialble" src='https://faceta2.s3.amazonaws.com/7507152f397242bc951754f904d9df6e.png' alt="no friend image"></img>
+                {/* <img className="no_friend_avaialble" src='https://faceta2.s3.amazonaws.com/7507152f397242bc951754f904d9df6e.png' alt="no friend image"></img> */}
+                <img className="no_friend_avaialble" src={no_friend_image} alt="no friend image"></img>
+
                 <div className='no_friend_words'>
                     There is no friend yet. Go to Suggestions to send request to friends.
                 </div>
