@@ -1,6 +1,7 @@
 import { get_suggested_friends, send_add_friend_request} from '../../store/friend'
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
+import no_friend_image from "../../image/no_friend.png"
 
 function SuggestedFriends() {
     const current_user = useSelector(state => state.session.user)
@@ -22,8 +23,8 @@ function SuggestedFriends() {
     if (!suggested_friends.length) {
         return (
             <div className='no_friend_container'>
-                {/* <img className="no_friend_avaialble" src="asset/image/no_friend.png" alt="no friend image"></img> */}
-                <img className="no_friend_avaialble" src='https://faceta2.s3.amazonaws.com/7507152f397242bc951754f904d9df6e.png' alt="no friend image"></img>
+                <img className="no_friend_avaialble" src={no_friend_image} alt="no friend image"></img>
+                {/* <img className="no_friend_avaialble" src='https://faceta2.s3.amazonaws.com/7507152f397242bc951754f904d9df6e.png' alt="no friend image"></img> */}
                 <div className='no_friend_words'>
                     Current there is no friend suggestions. You may go to Fiends Request to accept friend's request.
                 </div>
