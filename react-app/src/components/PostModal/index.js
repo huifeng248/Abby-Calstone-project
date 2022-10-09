@@ -158,7 +158,6 @@ function PostModal({ user, post, setShowPostModal, showPostModal }) {
                                         onChange={(e) => {
                                             setUrl(e.target.value)
                                             setIsValid(checkImageUrl(e.target.value))
-                                            // console.log("*******check image url",checkImageUrl(e.target.value) )
                                             setErrors([])}}
                                         value={url}
                                         type="url"

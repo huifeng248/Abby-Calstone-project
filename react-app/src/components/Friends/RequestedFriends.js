@@ -51,7 +51,6 @@ function RequestedFriends() {
                             <div className='friends_button_container'>
                                 <button className='accept_button'
                                     onClick={() => {
-                                        // console.log("yes");
                                         // acceptRequestOnclick(friend.friend_id)
                                         acceptRequestOnclick(friend.id)
 
@@ -59,7 +58,6 @@ function RequestedFriends() {
                                     }>Confirm</button>
                                 <button className="reject_button"
                                     onClick={()=>{
-                                        // console.log("reject request--------", friend.id)
                                         deleteOnClick(friend.id)
                                     }}>Delete</button>
                             </div>
@@ -78,7 +76,6 @@ function RequestedFriends() {
                             <div className='friends_button_container'>
                                 <button className='accept_button'
                                     onClick={() => {
-                                        console.log("yes");
                                         acceptRequestOnclick(friend.friend_id)
                                     }
                                     }>Confirm</button>

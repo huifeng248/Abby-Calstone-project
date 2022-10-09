@@ -56,7 +56,6 @@ function MutualFriends() {
                             <div className='friends_button_container'>
                                 {/* <button className='accept_button'
                                 onClick={() => {
-                                    console.log("yes");
                                     // acceptRequestOnclick(friend.friend_id)
                                     // acceptRequestOnclick(friend.id)
 
