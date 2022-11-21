@@ -64,7 +64,6 @@ function MutualFriends() {
                                 }>Confirm</button> */}
                                 <button className="reject_button"
                                 onClick={()=>{
-                                    // console.log("DELEte friend---------", friend.id)
                                     deleteOnClick(friend.id)
                                 }}
                                 >Delete</button>

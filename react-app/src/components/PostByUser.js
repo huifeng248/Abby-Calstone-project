@@ -31,8 +31,6 @@ const PostByUser = () => {
         <div className="side_bar_profile_page_container">
             <SideBar />
             <div className="outer_container">
-                {/* {console.log("current user Id", user.id)}
-            {console.log("user Params id", userId)} */}
                 {Number(user.id) === Number(userId) && <PostCreateBox user={user} />}
                 {loaded && filtered_posts.length ?
                     filtered_posts.map((post, index) => {

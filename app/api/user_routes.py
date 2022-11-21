@@ -29,7 +29,6 @@ def search_users():
     
     query_paras = request.query_string.decode("utf-8")
     query_data= parse_qs(query_paras)
-    # print("------", query_data)
     
     
 
