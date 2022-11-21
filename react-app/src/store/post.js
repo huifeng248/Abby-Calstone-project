@@ -99,7 +99,7 @@ export const CreatePost = (postdata) => async(dispatch) => {
 		// },
 		// body: JSON.stringify(post)
     })
-    console.log("ressssssssss",response)
+  
     if (response.ok) {
         const new_post = await response.json()
         dispatch(create_post_action(new_post))

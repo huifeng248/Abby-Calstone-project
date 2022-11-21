@@ -81,7 +81,6 @@ function CommentAction({ post, comment }) {
                         current_user.id === comment.user.id &&
                         <div className="dot_div_container"
                             onClick={() => {
-                                // console.log(index)
                                 setShowCommentAction(!showCommentAction)
                             }}>
                             <i className="fa-solid fa-ellipsis"></i>

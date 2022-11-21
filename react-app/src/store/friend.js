@@ -79,7 +79,6 @@ export const send_add_friend_request = (friendId) => async(dispatch) =>{
     })
     if (response.ok) {
         const new_friend = await response.json()
-        console.log("FFFFFID", friendId)
         dispatch(add_friend_action(new_friend))
     }
 }
@@ -126,7 +125,6 @@ export const delete_request_and_friend = (friendshipId) => async(dispatch) => {
         },
     }  
     )
-    console.log("friendshipId -----------", friendshipId)
     if (response.ok) {
         const data = await response.json()
         dispatch(delete_friends_action(friendshipId))

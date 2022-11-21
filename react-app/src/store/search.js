@@ -9,7 +9,6 @@ const searchUser = (users) => ({
 
 
 export const search_user_by_name = (searchItem) => async (dispatch) => {
-    console.log("Thunkkkkk", searchItem)
     const response = await fetch(`/api/users/search?${searchItem}`, {
         method: "POST",
         headers: {
@@ -28,7 +27,6 @@ const Search = (state = {}, action) => {
     let newState = {}
     switch (action.type) {
         case SEARCH_USER:
-            console.log("reducerrrrrrr", action)
             action.users.forEach(user => {
                 newState[user.id] = user
             });
