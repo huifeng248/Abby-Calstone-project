@@ -44,7 +44,6 @@ function ViewSentRequest() {
                         <div className='friends_button_container'>
                             <button className="reject_button"
                                 onClick={() => {
-                                    console.log("delete", friend.id);
                                     deleteOnClick(friend.id)
                                     // acceptRequestOnclick(friend.id)
 

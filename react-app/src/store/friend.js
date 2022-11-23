@@ -61,7 +61,6 @@ export const accept_friend_request = (id) => async(dispatch) =>{
 			"Content-Type": "application/json"
         },
     })
-    // console.log("___________thunk", id)
     if (response.ok) {
         const data = await response.json()
         dispatch(accept_friend_request_action(data))
@@ -79,7 +78,6 @@ export const send_add_friend_request = (friendId) => async(dispatch) =>{
     })
     if (response.ok) {
         const new_friend = await response.json()
-        console.log("FFFFFID", friendId)
         dispatch(add_friend_action(new_friend))
     }
 }
@@ -117,7 +115,6 @@ export const view_sent_request = () => async(dispatch) => {
 // thunk: delete: cancel send request 
 
 export const delete_request_and_friend = (friendshipId) => async(dispatch) => {
-    console.log("friendshipId++++++++++", friendshipId)
     
     const response = await fetch(`/api/friends/${friendshipId}`, {
         method: 'DELETE',
@@ -126,7 +123,6 @@ export const delete_request_and_friend = (friendshipId) => async(dispatch) => {
         },
     }  
     )
-    console.log("friendshipId -----------", friendshipId)
     if (response.ok) {
         const data = await response.json()
         dispatch(delete_friends_action(friendshipId))
@@ -155,13 +151,11 @@ const Friends = ( state ={}, action) => {
         }
         case SEND_ADD_Friend_Request: {
             newState = { ...state };
-            // console.log("*******", action.friend.friend_id, "+++++ID", action.friend.id)
             delete newState[action.friend.user_id]
             return newState
         }
         case DELETE_Request_and_Friend: {
             newState = {...state}
-            // console.log("~~~~~~~~~", action.friendshipId)
             delete newState[action.friendshipId]
             return newState
         }

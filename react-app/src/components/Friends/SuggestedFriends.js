@@ -44,7 +44,6 @@ function SuggestedFriends() {
                         <div className='friends_button_container'>
                             <button className='accept_button'
                                 onClick={() => {
-                                    console.log("add");
                                     AddFriendOnclick(user.id)
                                     // acceptRequestOnclick(friend.id)
 

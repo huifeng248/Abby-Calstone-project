@@ -42,7 +42,6 @@ def get_suggested_friends():
     
     result_list = list(set(friends_list_to_json))
     result_list.append(current_user_id)
-    # print("66666666666666", result_list)
     suggest_list = User.query.filter(User.id.not_in(result_list))
     suggest_list_to_json = [friend.to_dict() for friend in suggest_list]
     # return str(result_list)
@@ -182,10 +181,8 @@ def delete_friendship(id):
 @friend_routes.route('/<int:id>', methods=['PUT'])
 @login_required
 def accept_friend_request(id):
-    print("++++++++++++++++++", id)
     # form = FormValidation()
     # form['csrf_token'].data = request.cookies['csrf_token']
-    print("----------------", id)
 
     # friend = User.query.get(id)
     # request_friends = Friends.query.filter(Friends.user_id == current_user.id, Friends.friend_id == id)
