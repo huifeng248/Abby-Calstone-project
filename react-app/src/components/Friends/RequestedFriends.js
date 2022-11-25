@@ -57,6 +57,7 @@ function RequestedFriends() {
                                     }
                                     }>Confirm</button>
                                 <button className="reject_button"
+                                
                                     onClick={()=>{
                                         deleteOnClick(friend.id)
                                     }}>Delete</button>
